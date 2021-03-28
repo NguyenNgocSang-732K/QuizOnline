@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.infrashtructure.AccountRepository;
+import com.model.constant.AccountTypeEnum;
 import com.model.entities.Account;
-import com.model.entities.RoleAccount;
 
 @Service("accountService")
 public class AccountService extends Services<Account, Integer> implements IAccountService {
@@ -23,23 +23,16 @@ public class AccountService extends Services<Account, Integer> implements IAccou
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
+
 		Account account = accountRepository.FindByUsername(username);
-		
+
 		if (account == null) {
 			return null;
 		}
-		
+
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-		if(account.getRoleAccounts() == null) {
-			roles.add(new SimpleGrantedAuthority("Anonymous"));
-		}else {
-			for (RoleAccount item : account.getRoleAccounts()) {
-				if (item.getRole().isStatus()) {
-					roles.add(new SimpleGrantedAuthority(item.getRole().getName()));
-				}
-			}
-		}
+		String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
+		roles.add(new SimpleGrantedAuthority(role_name));
 		return new User(account.getUsername(), account.getPassword(), roles);
 	}
 }
