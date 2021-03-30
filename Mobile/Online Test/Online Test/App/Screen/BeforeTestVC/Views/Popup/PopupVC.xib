@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupVC" customModule="Online_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="btnNo" destination="tML-yN-BYI" id="qTS-lr-cZt"/>
+                <outlet property="btnYes" destination="zAJ-vl-Ub4" id="TEp-7r-TNZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewPopUp" destination="ZAV-pL-jmN" id="rzl-gF-5Wk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAV-pL-jmN">
+                    <rect key="frame" x="41.5" y="373" width="331" height="150"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mày có muốn thi ko?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quK-94-TdJ">
+                            <rect key="frame" x="16.5" y="10" width="298" height="45"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="eXj-09-ePl">
+                            <rect key="frame" x="49.5" y="75" width="232" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tML-yN-BYI">
+                                    <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="dnE-iW-8xH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Không">
+                                        <color key="titleColor" red="0.96470588239999999" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickNo:" destination="-1" eventType="touchUpInside" id="l94-1u-Gca"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAJ-vl-Ub4">
+                                    <rect key="frame" x="162" y="0.0" width="70" height="40"/>
+                                    <color key="backgroundColor" red="0.15294117647058825" green="0.40000000000000002" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="pPn-7B-yln"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Có">
+                                        <color key="titleColor" red="0.96470588239999999" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickYes:" destination="-1" eventType="touchUpInside" id="3BY-VC-Bn6"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="HeD-UV-J8g"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.82745098039999998" green="0.87843137250000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="eXj-09-ePl" firstAttribute="width" secondItem="ZAV-pL-jmN" secondAttribute="width" multiplier="0.7" id="H3k-Di-Ru1"/>
+                        <constraint firstItem="eXj-09-ePl" firstAttribute="top" secondItem="quK-94-TdJ" secondAttribute="bottom" constant="20" id="JB5-Vr-nep"/>
+                        <constraint firstItem="eXj-09-ePl" firstAttribute="centerX" secondItem="ZAV-pL-jmN" secondAttribute="centerX" id="OGg-ee-m6t"/>
+                        <constraint firstItem="quK-94-TdJ" firstAttribute="centerX" secondItem="ZAV-pL-jmN" secondAttribute="centerX" id="Rk7-SL-G6o"/>
+                        <constraint firstItem="quK-94-TdJ" firstAttribute="top" secondItem="ZAV-pL-jmN" secondAttribute="top" constant="10" id="UpQ-zv-NTy"/>
+                        <constraint firstItem="quK-94-TdJ" firstAttribute="width" secondItem="ZAV-pL-jmN" secondAttribute="width" multiplier="0.9" id="cHe-vo-3ap"/>
+                        <constraint firstAttribute="height" constant="150" id="caa-nE-ghp"/>
+                        <constraint firstItem="quK-94-TdJ" firstAttribute="height" secondItem="ZAV-pL-jmN" secondAttribute="height" multiplier="0.3" id="jS9-NP-djx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZAV-pL-jmN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HfO-30-4vV"/>
+                <constraint firstItem="ZAV-pL-jmN" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="aZk-wV-XQq"/>
+                <constraint firstItem="ZAV-pL-jmN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="lNt-FC-tOb"/>
+            </constraints>
+            <point key="canvasLocation" x="35" y="86"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
