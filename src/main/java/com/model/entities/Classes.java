@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Feb 24, 2021, 12:21:22 AM by Hibernate Tools 4.3.5.Final
+// Generated Mar 28, 2021, 10:44:40 PM by Hibernate Tools 4.3.5.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,25 +34,31 @@ import lombok.EqualsAndHashCode;
 public class Classes extends EntityBase implements java.io.Serializable {
 
 	private Integer id;
+	private Account account;
 	private String name;
 	private Date createDate;
-	private boolean status;
-	private Set<Account> accounts = new HashSet<Account>(0);
+	private int createBy;
+	private int status;
+	private Set<ClassesSubject> classesSubjects = new HashSet<ClassesSubject>(0);
 
 	public Classes() {
 	}
 
-	public Classes(String name, Date createDate, boolean status) {
+	public Classes(String name, Date createDate, int createBy, int status) {
 		this.name = name;
 		this.createDate = createDate;
+		this.createBy = createBy;
 		this.status = status;
 	}
 
-	public Classes(String name, Date createDate, boolean status, Set<Account> accounts) {
+	public Classes(Account account, String name, Date createDate, int createBy, int status,
+			Set<ClassesSubject> classesSubjects) {
+		this.account = account;
 		this.name = name;
 		this.createDate = createDate;
+		this.createBy = createBy;
 		this.status = status;
-		this.accounts = accounts;
+		this.classesSubjects = classesSubjects;
 	}
 
 	@Id
@@ -67,7 +73,17 @@ public class Classes extends EntityBase implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "Name", nullable = false, length = 250)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Techer_Id")
+	public Account getAccount() {
+		return this.account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	@Column(name = "Name", nullable = false, length = 200)
 	public String getName() {
 		return this.name;
 	}
@@ -76,8 +92,8 @@ public class Classes extends EntityBase implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Create_Date", nullable = false, length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Create_Date", nullable = false, length = 19)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -86,22 +102,31 @@ public class Classes extends EntityBase implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
+	@Column(name = "Create_By", nullable = false)
+	public int getCreateBy() {
+		return this.createBy;
+	}
+
+	public void setCreateBy(int createBy) {
+		this.createBy = createBy;
+	}
+
 	@Column(name = "Status", nullable = false)
-	public boolean isStatus() {
+	public int getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "classes", cascade = CascadeType.ALL)
-	public Set<Account> getAccounts() {
-		return this.accounts;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "classes")
+	public Set<ClassesSubject> getClassesSubjects() {
+		return this.classesSubjects;
 	}
 
-	public void setAccounts(Set<Account> accounts) {
-		this.accounts = accounts;
+	public void setClassesSubjects(Set<ClassesSubject> classesSubjects) {
+		this.classesSubjects = classesSubjects;
 	}
 
 }

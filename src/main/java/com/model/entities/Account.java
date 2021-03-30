@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Feb 24, 2021, 12:21:22 AM by Hibernate Tools 4.3.5.Final
+// Generated Mar 28, 2021, 10:44:40 PM by Hibernate Tools 4.3.5.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -7,15 +7,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,39 +32,54 @@ import lombok.EqualsAndHashCode;
 public class Account extends EntityBase implements java.io.Serializable {
 
 	private Integer id;
-	private Classes classes;
 	private String username;
 	private String password;
-	private String name;
-	private Date birthday;
-	private boolean status;
+	private String email;
+	private String phone;
+	private String address;
+	private boolean isActive;
+	private String otp;
+	private Integer classId;
+	private int accountType;
 	private Date createDate;
-	private Set<RoleAccount> roleAccounts = new HashSet<RoleAccount>(0);
+	private int createBy;
+	private int status;
+	private Set<Classes> classeses = new HashSet<Classes>(0);
 
 	public Account() {
 	}
 
-	public Account(Classes classes, String username, String password, String name, Date birthday, boolean status,
-			Date createDate) {
-		this.classes = classes;
+	public Account(String username, String password, String email, String phone, String address, boolean isActive,
+			String otp, int accountType, Date createDate, int createBy, int status) {
 		this.username = username;
 		this.password = password;
-		this.name = name;
-		this.birthday = birthday;
-		this.status = status;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.isActive = isActive;
+		this.otp = otp;
+		this.accountType = accountType;
 		this.createDate = createDate;
+		this.createBy = createBy;
+		this.status = status;
 	}
 
-	public Account(Classes classes, String username, String password, String name, Date birthday, boolean status,
-			Date createDate, Set<RoleAccount> roleAccounts) {
-		this.classes = classes;
+	public Account(String username, String password, String email, String phone, String address, boolean isActive,
+			String otp, Integer classId, int accountType, Date createDate, int createBy, int status,
+			Set<Classes> classeses) {
 		this.username = username;
 		this.password = password;
-		this.name = name;
-		this.birthday = birthday;
-		this.status = status;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+		this.isActive = isActive;
+		this.otp = otp;
+		this.classId = classId;
+		this.accountType = accountType;
 		this.createDate = createDate;
-		this.roleAccounts = roleAccounts;
+		this.createBy = createBy;
+		this.status = status;
+		this.classeses = classeses;
 	}
 
 	@Id
@@ -83,17 +94,7 @@ public class Account extends EntityBase implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "Class_Id", nullable = false)
-	public Classes getClasses() {
-		return this.classes;
-	}
-
-	public void setClasses(Classes classes) {
-		this.classes = classes;
-	}
-
-	@Column(name = "Username", nullable = false, length = 250)
+	@Column(name = "Username", nullable = false, length = 50)
 	public String getUsername() {
 		return this.username;
 	}
@@ -102,7 +103,7 @@ public class Account extends EntityBase implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@Column(name = "Password", nullable = false, length = 10000)
+	@Column(name = "Password", nullable = false, length = 16777215)
 	public String getPassword() {
 		return this.password;
 	}
@@ -111,36 +112,71 @@ public class Account extends EntityBase implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "Name", nullable = false, length = 250)
-	public String getName() {
-		return this.name;
+	@Column(name = "Email", nullable = false, length = 100)
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Birthday", nullable = false, length = 10)
-	public Date getBirthday() {
-		return this.birthday;
+	@Column(name = "Phone", nullable = false, length = 12)
+	public String getPhone() {
+		return this.phone;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	@Column(name = "Status", nullable = false)
-	public boolean isStatus() {
-		return this.status;
+	@Column(name = "Address", nullable = false, length = 200)
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Create_Date", nullable = false, length = 10)
+	@Column(name = "IsActive", nullable = false)
+	public boolean isIsActive() {
+		return this.isActive;
+	}
+
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	@Column(name = "OTP", nullable = false, length = 20)
+	public String getOtp() {
+		return this.otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+
+	@Column(name = "Class_Id")
+	public Integer getClassId() {
+		return this.classId;
+	}
+
+	public void setClassId(Integer classId) {
+		this.classId = classId;
+	}
+
+	@Column(name = "Account_Type", nullable = false)
+	public int getAccountType() {
+		return this.accountType;
+	}
+
+	public void setAccountType(int accountType) {
+		this.accountType = accountType;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Create_Date", nullable = false, length = 19)
 	public Date getCreateDate() {
 		return this.createDate;
 	}
@@ -149,13 +185,31 @@ public class Account extends EntityBase implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
-	public Set<RoleAccount> getRoleAccounts() {
-		return this.roleAccounts;
+	@Column(name = "Create_By", nullable = false)
+	public int getCreateBy() {
+		return this.createBy;
 	}
 
-	public void setRoleAccounts(Set<RoleAccount> roleAccounts) {
-		this.roleAccounts = roleAccounts;
+	public void setCreateBy(int createBy) {
+		this.createBy = createBy;
+	}
+
+	@Column(name = "Status", nullable = false)
+	public int getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	public Set<Classes> getClasseses() {
+		return this.classeses;
+	}
+
+	public void setClasseses(Set<Classes> classeses) {
+		this.classeses = classeses;
 	}
 
 }

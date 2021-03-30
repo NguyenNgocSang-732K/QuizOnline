@@ -57,7 +57,6 @@ public class Services<Entity extends EntityBase, ID extends Serializable> implem
 	@Override
 	@Transactional
 	public Entity Save(Entity entity) {
-		entity.setCreateDate(new Date());
 		Entity saved = baseRepository.save(entity);
 		return saved;
 	}

@@ -18,24 +18,31 @@ public abstract class EntityBase implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "Id", unique = true, nullable = false)
-	private Integer id;
+	protected Integer id;
+
+//	@Column(name = "Status")
+//	protected Integer status;
+//
+//	@Temporal(TemporalType.DATE)
+//	@Column(name = "Create_Date")
+//	protected Date createDate;
+//	
+//	@Column(name = "Create_By")
+//	protected int createBy;
 
 	@Column(name = "Status")
-	private boolean status;
+	public abstract int getStatus();
+
+	public abstract void setStatus(int status);
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Create_Date")
-	private Date createDate;
-
-//	public abstract Integer getId();
-//
-//	public abstract void setId(Integer id);
-
-	public abstract boolean isStatus();
-
-	public abstract void setStatus(boolean status);
-	
 	public abstract Date getCreateDate();
 
 	public abstract void setCreateDate(Date createDate);
+	
+	@Column(name = "Create_By")
+	public abstract int getCreateBy();
+
+	public abstract void setCreateBy(int createBy);
 }
