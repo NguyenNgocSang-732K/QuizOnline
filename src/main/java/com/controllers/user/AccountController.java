@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping({ "accountEdit" })
-public class AccountEditController {
+@RequestMapping({ "account" })
+public class AccountController {
 	
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index() throws IOException {
@@ -17,6 +17,11 @@ public class AccountEditController {
 	
 	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
 	public String login() throws IOException {
-		return "user/login/index";
+		return "shared/login/index";
+	}
+	
+	@RequestMapping(value = { "register" }, method = RequestMethod.GET)
+	public String register() throws IOException {
+		return "shared/register/index";
 	}
 }
