@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2021 at 06:00 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Mar 31, 2021 at 03:46 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,27 +28,45 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account` (
-  `Id` int(11) NOT NULL,
-  `Username` varchar(50) COLLATE utf8_bin NOT NULL,
-  `Password` mediumtext COLLATE utf8_bin NOT NULL,
-  `Email` varchar(100) COLLATE utf8_bin NOT NULL,
-  `Phone` varchar(12) COLLATE utf8_bin NOT NULL,
-  `Address` varchar(200) COLLATE utf8_bin NOT NULL,
-  `IsActive` tinyint(1) NOT NULL,
-  `OTP` varchar(20) COLLATE utf8_bin NOT NULL,
-  `Class_Id` int(11) DEFAULT NULL,
-  `Account_Type` int(11) NOT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL,
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isActive` tinyint(1) NOT NULL,
+  `otp` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `account_Type` tinyint(2) NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `account`
+-- RELATIONSHIPS FOR TABLE `account`:
+--   `id`
+--       `account_exam` -> `account_Id`
 --
 
-INSERT INTO `account` (`Id`, `Username`, `Password`, `Email`, `Phone`, `Address`, `IsActive`, `OTP`, `Class_Id`, `Account_Type`, `Create_Date`, `Create_By`, `Status`) VALUES
-(1, 'admin', '$2a$10$N11k8TnV8ZHJGxACunoRhu9TAFf80xXedqR70zWvQOo.CoFl4rkuW', 'admin@gmail.com', '0868946944', 'Tây Ninh', 0, '', NULL, 1, '2021-03-28 00:00:00', 0, 1);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_exam`
+--
+
+CREATE TABLE `account_exam` (
+  `id` int(11) NOT NULL,
+  `account_Id` int(11) NOT NULL,
+  `exam_Id` int(11) NOT NULL,
+  `created_Date` date NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `account_exam`:
+--   `exam_Id`
+--       `exam` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -58,51 +75,20 @@ INSERT INTO `account` (`Id`, `Username`, `Password`, `Email`, `Phone`, `Address`
 --
 
 CREATE TABLE `answer` (
-  `Id` int(11) NOT NULL,
-  `Content` varchar(200) COLLATE utf8_bin NOT NULL,
-  `IsCorrect` tinyint(1) NOT NULL,
-  `Question_Id` int(11) DEFAULT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
+  `id` int(11) NOT NULL,
+  `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `iscorrect` tinyint(1) NOT NULL DEFAULT 0,
+  `question_Id` int(11) NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Table structure for table `classes`
+-- RELATIONSHIPS FOR TABLE `answer`:
+--   `question_Id`
+--       `question` -> `id`
 --
-
-CREATE TABLE `classes` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(200) COLLATE utf8_bin NOT NULL,
-  `Techer_Id` int(11) DEFAULT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `classes`
---
-
-INSERT INTO `classes` (`Id`, `Name`, `Techer_Id`, `Create_Date`, `Create_By`, `Status`) VALUES
-(1, 'C1808G2', NULL, '2021-03-28 00:00:00', 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `classes_subject`
---
-
-CREATE TABLE `classes_subject` (
-  `Id` int(11) NOT NULL,
-  `Classes_Id` int(11) DEFAULT NULL,
-  `Subject_Id` int(11) DEFAULT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -111,15 +97,62 @@ CREATE TABLE `classes_subject` (
 --
 
 CREATE TABLE `exam` (
-  `Id` int(11) NOT NULL,
-  `Classes_Subject_Id` int(11) DEFAULT NULL,
-  `Name` varchar(200) COLLATE utf8_bin NOT NULL,
-  `Code` varchar(20) COLLATE utf8_bin NOT NULL,
-  `Type` int(11) NOT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL,
+  `code` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `level_Id` int(11) NOT NULL,
+  `subject_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `exam`:
+--   `level_Id`
+--       `level` -> `id`
+--   `subject_Id`
+--       `subject` -> `id`
+--   `id`
+--       `exam_question` -> `exam_Id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_question`
+--
+
+CREATE TABLE `exam_question` (
+  `id` int(11) NOT NULL,
+  `exam_Id` int(11) NOT NULL,
+  `question_Id` int(11) NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `exam_question`:
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `level`
+--
+
+CREATE TABLE `level` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `level`:
+--
 
 -- --------------------------------------------------------
 
@@ -128,17 +161,46 @@ CREATE TABLE `exam` (
 --
 
 CREATE TABLE `question` (
-  `Id` int(11) NOT NULL,
-  `Content` varchar(250) COLLATE utf8_bin NOT NULL,
-  `Answer_Type` int(11) NOT NULL,
-  `Question_Type` int(11) NOT NULL,
-  `Exam_Id` int(11) DEFAULT NULL,
-  `Order` int(11) NOT NULL,
-  `Image` varchar(200) COLLATE utf8_bin NOT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL,
+  `content` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `answer_Type` int(11) DEFAULT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `level_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `question`:
+--   `level_Id`
+--       `level` -> `id`
+--   `id`
+--       `exam_question` -> `question_Id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_answer`
+--
+
+CREATE TABLE `student_answer` (
+  `id` int(11) NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `answer_Id` int(11) DEFAULT NULL,
+  `account_Id` int(11) NOT NULL,
+  `exam_question_Id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `student_answer`:
+--   `answer_Id`
+--       `answer` -> `id`
+--   `exam_question_Id`
+--       `exam_question` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -147,12 +209,16 @@ CREATE TABLE `question` (
 --
 
 CREATE TABLE `subject` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(200) COLLATE utf8_bin NOT NULL,
-  `Create_Date` datetime NOT NULL,
-  `Create_By` int(11) NOT NULL,
-  `Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL,
+  `name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `created_Date` date NOT NULL,
+  `created_By` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- RELATIONSHIPS FOR TABLE `subject`:
+--
 
 --
 -- Indexes for dumped tables
@@ -162,51 +228,66 @@ CREATE TABLE `subject` (
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Class_Id` (`Class_Id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `account_exam`
+--
+ALTER TABLE `account_exam`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_Id` (`account_Id`,`exam_Id`),
+  ADD KEY `FK_Account_Exam_Exam` (`exam_Id`);
 
 --
 -- Indexes for table `answer`
 --
 ALTER TABLE `answer`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Question_Id` (`Question_Id`);
-
---
--- Indexes for table `classes`
---
-ALTER TABLE `classes`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Techer_Id` (`Techer_Id`),
-  ADD KEY `Techer_Id_2` (`Techer_Id`);
-
---
--- Indexes for table `classes_subject`
---
-ALTER TABLE `classes_subject`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Classes_Id` (`Classes_Id`,`Subject_Id`),
-  ADD KEY `Subject_Id` (`Subject_Id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `question_Id` (`question_Id`);
 
 --
 -- Indexes for table `exam`
 --
 ALTER TABLE `exam`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Classes_Subject_Id` (`Classes_Subject_Id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `level_Id` (`level_Id`,`subject_Id`),
+  ADD KEY `subject_Id` (`subject_Id`);
+
+--
+-- Indexes for table `exam_question`
+--
+ALTER TABLE `exam_question`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `exam_Id` (`exam_Id`,`question_Id`),
+  ADD KEY `question_Id` (`question_Id`);
+
+--
+-- Indexes for table `level`
+--
+ALTER TABLE `level`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Exam_Id` (`Exam_Id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `level_Id` (`level_Id`);
+
+--
+-- Indexes for table `student_answer`
+--
+ALTER TABLE `student_answer`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `answer_Id` (`answer_Id`,`account_Id`,`exam_question_Id`),
+  ADD KEY `account_Id` (`account_Id`),
+  ADD KEY `exam_question_Id` (`exam_question_Id`);
 
 --
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -216,78 +297,99 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `account_exam`
+--
+ALTER TABLE `account_exam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `classes`
---
-ALTER TABLE `classes`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `classes_subject`
---
-ALTER TABLE `classes_subject`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exam_question`
+--
+ALTER TABLE `exam_question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `level`
+--
+ALTER TABLE `level`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_answer`
+--
+ALTER TABLE `student_answer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`id`) REFERENCES `account_exam` (`account_Id`);
+
+--
+-- Constraints for table `account_exam`
+--
+ALTER TABLE `account_exam`
+  ADD CONSTRAINT `FK_Account_Exam_Exam` FOREIGN KEY (`exam_Id`) REFERENCES `exam` (`id`);
+
+--
 -- Constraints for table `answer`
 --
 ALTER TABLE `answer`
-  ADD CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`Question_Id`) REFERENCES `question` (`Id`);
-
---
--- Constraints for table `classes`
---
-ALTER TABLE `classes`
-  ADD CONSTRAINT `classes_ibfk_1` FOREIGN KEY (`Techer_Id`) REFERENCES `account` (`Id`);
-
---
--- Constraints for table `classes_subject`
---
-ALTER TABLE `classes_subject`
-  ADD CONSTRAINT `classes_subject_ibfk_1` FOREIGN KEY (`Subject_Id`) REFERENCES `subject` (`Id`),
-  ADD CONSTRAINT `classes_subject_ibfk_2` FOREIGN KEY (`Classes_Id`) REFERENCES `classes` (`Id`);
+  ADD CONSTRAINT `FK_Answer_Question` FOREIGN KEY (`question_Id`) REFERENCES `question` (`id`);
 
 --
 -- Constraints for table `exam`
 --
 ALTER TABLE `exam`
-  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`Classes_Subject_Id`) REFERENCES `classes_subject` (`Id`);
+  ADD CONSTRAINT `FK_Exam_Level` FOREIGN KEY (`level_Id`) REFERENCES `level` (`id`),
+  ADD CONSTRAINT `FK_Exam_Subject` FOREIGN KEY (`subject_Id`) REFERENCES `subject` (`id`),
+  ADD CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`id`) REFERENCES `exam_question` (`exam_Id`);
 
 --
 -- Constraints for table `question`
 --
 ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`Exam_Id`) REFERENCES `exam` (`Id`);
+  ADD CONSTRAINT `FK_Question_Level` FOREIGN KEY (`level_Id`) REFERENCES `level` (`id`),
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`id`) REFERENCES `exam_question` (`question_Id`);
+
+--
+-- Constraints for table `student_answer`
+--
+ALTER TABLE `student_answer`
+  ADD CONSTRAINT `FK_student_answer_answer` FOREIGN KEY (`answer_Id`) REFERENCES `answer` (`id`),
+  ADD CONSTRAINT `FK_student_answer_exam_question` FOREIGN KEY (`exam_question_Id`) REFERENCES `exam_question` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
