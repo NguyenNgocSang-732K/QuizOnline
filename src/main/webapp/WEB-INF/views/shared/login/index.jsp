@@ -50,7 +50,7 @@
 				</div>
 				<div class="card-body">
 					<form
-						action="http://learnplus.frontendmatter.com/student-dashboard.html"
+						action="${pageContext.request.contextPath }/dashboard/index"
 						method="get">
 						<div class="form-group">
 							<input type="email" class="form-control"
@@ -71,7 +71,7 @@
 					</form>
 				</div>
 				<div class="card-footer text-center bg-white">
-					Not yet a student? <a href="guest-signup.html">Sign up</a>
+					Not yet a student? <a href="${pageContext.request.contextPath }/account/register">Sign up</a>
 				</div>
 			</div>
 		</div>

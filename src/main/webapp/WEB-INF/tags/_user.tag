@@ -74,12 +74,12 @@
 						class="rounded-circle" width="40"></a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item"
-							href="${pageContext.request.contextPath }/accountEdit/index">
+							href="${pageContext.request.contextPath }/account/index">
 							<i class="material-icons">edit</i> Profile
 						</a> <a class="dropdown-item"
 							href="${pageContext.request.contextPath }/profile/index"> <i
 							class="material-icons">person</i> Profile Details
-						</a> <a class="dropdown-item" href="guest-login.html"> <i
+						</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/user/account/login"> <i
 							class="material-icons">lock</i> Logout
 						</a>
 					</div></li>
