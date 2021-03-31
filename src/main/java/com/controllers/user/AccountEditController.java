@@ -17,6 +17,6 @@ public class AccountEditController {
 	
 	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
 	public String login() throws IOException {
-		return "user/login/index";
+		return "shared/login/index";
 	}
 }
