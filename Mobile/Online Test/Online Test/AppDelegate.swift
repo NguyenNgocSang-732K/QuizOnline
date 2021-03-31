@@ -17,15 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let homeVC = HomeVC()
-        let navBaseVC = UINavigationController(rootViewController: homeVC)
-        window?.rootViewController = navBaseVC
+        let loginVC = LoginVC()
+
+        window?.rootViewController = loginVC
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+ 
 
 
 

@@ -18,15 +18,15 @@ class DetailsVC: BaseViewControllers {
         ExamBase(id: "1", nameExam: "Đề 1", questionExam: [
             ExamModel(id: "ex_0", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansdasdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd...", imageExam: nil, answer: [
                 Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
+                Answer(answer: "3"),
+                Answer(answer: "4"),
+                Answer(answer: "6")
     ], answerUser: [], answerExam: ["A"]),
             ExamModel(id: "ex_2", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
+                Answer(answer: "1"),
+                Answer(answer: "3"),
+                Answer(answer: "5"),
+                Answer(answer: "6")
     ], answerUser: [], answerExam: ["A"]),
             ExamModel(id: "ex_3", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd", imageExam: nil, answer: [
                 Answer(answer: "12"),

@@ -24,18 +24,26 @@ class BaseViewControllers: UIViewController {
         self.navigationController?.navigationBar.isHidden = isHiden
     }
     
-    func changeLeftButton(title:String? = "", image: UIImage = UIImage()){
+    func changeLeftButton(title:String? = "", image: UIImage?){
         let btnLeft = UIButton()
         btnLeft.setTitle(title, for: .normal)
-        btnLeft.setBackgroundImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        btnLeft.setTitleColor(.black, for: .normal)
+        if let image = image{
+            btnLeft.setBackgroundImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
         btnLeft.addTarget(self, action: #selector(clickLeftBtn), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnLeft)
     }
-    func changeRightButton(title:String? = "", image: UIImage = UIImage()){
-        let btnLeft = UIButton()
-        btnLeft.setTitle(title, for: .normal)
-        btnLeft.setBackgroundImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnLeft)
+    func changeRightButton(title:String? = "", image: UIImage?){
+        let btn = UIButton()
+        btn.setTitle(title, for: .normal)
+        btn.addTarget(self, action: #selector(clickRightBtn), for: .touchUpInside)
+        btn.setTitleColor(.black, for: .normal)
+        if let image = image{
+            btn.setBackgroundImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
     }
     
     func transparentNav(isTrans:Bool){
@@ -60,6 +68,15 @@ class BaseViewControllers: UIViewController {
     
     @objc func clickLeftBtn(){
         
+    }
+    @objc func clickRightBtn(){
+        
+    }
+    
+    
+    func hideLeftBtn(){
+      
+            self.navigationItem.leftBarButtonItem = nil
     }
     /*
     // MARK: - Navigation

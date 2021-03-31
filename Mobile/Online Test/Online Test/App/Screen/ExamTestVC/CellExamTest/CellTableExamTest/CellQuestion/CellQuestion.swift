@@ -12,9 +12,9 @@ class CellQuestion: UITableViewCell {
     @IBOutlet weak var txtQuestion: UILabel!
     
     @IBOutlet weak var imvQuestion: UIImageView!
-    @IBOutlet weak var heightTextView: NSLayoutConstraint!
-    
-//    @IBOutlet weak var stackV: UIStackView!
+ 
+    @IBOutlet weak var viewStack: UIView!
+
    
     
     
@@ -28,15 +28,13 @@ class CellQuestion: UITableViewCell {
     }
     
     func setupUI() {
-//        stackV.layer.cornerRadius = 20
-//        stackV.clipsToBounds = true
+        viewStack.layer.cornerRadius = 30
+        viewStack.clipsToBounds = true
     }
     
     
     func bindData(question:String?){
         txtQuestion.text = question
-        let height = question?.heightForView(font: UIFont.systemFont(ofSize: 15), width: 414)
-        heightTextView.constant = height!
         imvQuestion.image = #imageLiteral(resourceName: "1222")
 
         

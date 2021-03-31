@@ -15,6 +15,11 @@
 		762C51A0261212660083B3D4 /* CellAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C519E261212660083B3D4 /* CellAnswer.swift */; };
 		762C51A1261212660083B3D4 /* CellAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C519F261212660083B3D4 /* CellAnswer.xib */; };
 		762C51A82612FACB0083B3D4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C51A72612FACB0083B3D4 /* String+Extension.swift */; };
+		762C5209261423F30083B3D4 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C5208261423F30083B3D4 /* UITableView+Extension.swift */; };
+		762C5223261486930083B3D4 /* ExamTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C5222261486930083B3D4 /* ExamTestVC.xib */; };
+		762C52292614A3610083B3D4 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C52272614A3610083B3D4 /* LoginVC.swift */; };
+		762C522A2614A3610083B3D4 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C52282614A3610083B3D4 /* LoginVC.xib */; };
+		762C522D2614AD260083B3D4 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C522C2614AD260083B3D4 /* AppRoute.swift */; };
 		763B6C7B2611B2A000FD9415 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6C7A2611B2A000FD9415 /* AppDelegate.swift */; };
 		763B6C7F2611B2A000FD9415 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6C7E2611B2A000FD9415 /* ViewController.swift */; };
 		763B6C822611B2A000FD9415 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763B6C802611B2A000FD9415 /* Main.storyboard */; };
@@ -37,7 +42,6 @@
 		763B6CCB2611DD3F00FD9415 /* BeforeTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6CC92611DD3F00FD9415 /* BeforeTestVC.swift */; };
 		763B6CCC2611DD3F00FD9415 /* BeforeTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B6CCA2611DD3F00FD9415 /* BeforeTestVC.xib */; };
 		763B6CD02611DF7500FD9415 /* ExamTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6CCE2611DF7500FD9415 /* ExamTestVC.swift */; };
-		763B6CD12611DF7500FD9415 /* ExamTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B6CCF2611DF7500FD9415 /* ExamTestVC.xib */; };
 		763B6CDF2611E33D00FD9415 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763B6CDD2611E33D00FD9415 /* PopupVC.swift */; };
 		763B6CE02611E33D00FD9415 /* PopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 763B6CDE2611E33D00FD9415 /* PopupVC.xib */; };
 /* End PBXBuildFile section */
@@ -51,6 +55,11 @@
 		762C519E261212660083B3D4 /* CellAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnswer.swift; sourceTree = "<group>"; };
 		762C519F261212660083B3D4 /* CellAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellAnswer.xib; sourceTree = "<group>"; };
 		762C51A72612FACB0083B3D4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		762C5208261423F30083B3D4 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		762C5222261486930083B3D4 /* ExamTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamTestVC.xib; sourceTree = "<group>"; };
+		762C52272614A3610083B3D4 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		762C52282614A3610083B3D4 /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		762C522C2614AD260083B3D4 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		763B6C772611B2A000FD9415 /* Online Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Online Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		763B6C7A2611B2A000FD9415 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		763B6C7E2611B2A000FD9415 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +84,6 @@
 		763B6CC92611DD3F00FD9415 /* BeforeTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeTestVC.swift; sourceTree = "<group>"; };
 		763B6CCA2611DD3F00FD9415 /* BeforeTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeforeTestVC.xib; sourceTree = "<group>"; };
 		763B6CCE2611DF7500FD9415 /* ExamTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTestVC.swift; sourceTree = "<group>"; };
-		763B6CCF2611DF7500FD9415 /* ExamTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExamTestVC.xib; sourceTree = "<group>"; };
 		763B6CDD2611E33D00FD9415 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		763B6CDE2611E33D00FD9415 /* PopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +126,15 @@
 			path = CellQuestion;
 			sourceTree = "<group>";
 		};
+		762C52262614A3330083B3D4 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				762C52272614A3610083B3D4 /* LoginVC.swift */,
+				762C52282614A3610083B3D4 /* LoginVC.xib */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
 		763B6C6E2611B2A000FD9415 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +163,7 @@
 				763B6C832611B2A300FD9415 /* Assets.xcassets */,
 				763B6C852611B2A300FD9415 /* LaunchScreen.storyboard */,
 				763B6C882611B2A300FD9415 /* Info.plist */,
+				762C522C2614AD260083B3D4 /* AppRoute.swift */,
 			);
 			path = "Online Test";
 			sourceTree = "<group>";
@@ -162,6 +180,7 @@
 		763B6C912611B2E200FD9415 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				762C52262614A3330083B3D4 /* LoginVC */,
 				763B6CD32611DF7B00FD9415 /* ExamTestVC */,
 				763B6CC82611DB9500FD9415 /* BeforeTestVC */,
 				763B6CB92611CD1100FD9415 /* DetailsSubjectVC */,
@@ -237,6 +256,7 @@
 			children = (
 				763B6CB22611C30900FD9415 /* UIView+Extension.swift */,
 				762C51A72612FACB0083B3D4 /* String+Extension.swift */,
+				762C5208261423F30083B3D4 /* UITableView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -283,8 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				763B6CE32611F69100FD9415 /* CellExamTest */,
+				762C5222261486930083B3D4 /* ExamTestVC.xib */,
 				763B6CCE2611DF7500FD9415 /* ExamTestVC.swift */,
-				763B6CCF2611DF7500FD9415 /* ExamTestVC.xib */,
 			);
 			path = ExamTestVC;
 			sourceTree = "<group>";
@@ -373,11 +393,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762C522A2614A3610083B3D4 /* LoginVC.xib in Resources */,
 				762C519426120B850083B3D4 /* CellExamTest.xib in Resources */,
+				762C5223261486930083B3D4 /* ExamTestVC.xib in Resources */,
 				763B6CC62611D47300FD9415 /* CellExam.xib in Resources */,
 				763B6CE02611E33D00FD9415 /* PopupVC.xib in Resources */,
 				762C51A1261212660083B3D4 /* CellAnswer.xib in Resources */,
-				763B6CD12611DF7500FD9415 /* ExamTestVC.xib in Resources */,
 				763B6C872611B2A300FD9415 /* LaunchScreen.storyboard in Resources */,
 				763B6CCC2611DD3F00FD9415 /* BeforeTestVC.xib in Resources */,
 				763B6C972611B32200FD9415 /* HomeVC.xib in Resources */,
@@ -399,6 +420,8 @@
 			files = (
 				763B6CBC2611CD3600FD9415 /* DetailsVC.swift in Sources */,
 				763B6CAF2611C2D400FD9415 /* BaseViewXib.swift in Sources */,
+				762C52292614A3610083B3D4 /* LoginVC.swift in Sources */,
+				762C5209261423F30083B3D4 /* UITableView+Extension.swift in Sources */,
 				763B6C962611B32200FD9415 /* HomeVC.swift in Sources */,
 				762C51A82612FACB0083B3D4 /* String+Extension.swift in Sources */,
 				763B6CDF2611E33D00FD9415 /* PopupVC.swift in Sources */,
@@ -412,6 +435,7 @@
 				763B6CC52611D47300FD9415 /* CellExam.swift in Sources */,
 				763B6C9B2611B58B00FD9415 /* BaseViewControllers.swift in Sources */,
 				763B6CA12611BD2300FD9415 /* CellHome.swift in Sources */,
+				762C522D2614AD260083B3D4 /* AppRoute.swift in Sources */,
 				763B6C7F2611B2A000FD9415 /* ViewController.swift in Sources */,
 				763B6CCB2611DD3F00FD9415 /* BeforeTestVC.swift in Sources */,
 				763B6CB72611C9BF00FD9415 /* Subject.swift in Sources */,
@@ -563,7 +587,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57ACH3ESNQ;
 				INFOPLIST_FILE = "Online Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -571,7 +597,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thiet.Online-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -581,7 +607,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57ACH3ESNQ;
 				INFOPLIST_FILE = "Online Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -589,7 +617,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thiet.Online-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

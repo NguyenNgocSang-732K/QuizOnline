@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-YK-4tc">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pcI-Yb-eCt">
                         <size key="itemSize" width="128" height="128"/>
@@ -36,7 +36,7 @@
                 <constraint firstItem="fkb-YK-4tc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jh7-Qw-vhj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fkb-YK-4tc" secondAttribute="trailing" id="fCL-aI-PQs"/>
                 <constraint firstItem="fkb-YK-4tc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="r2s-nZ-Nzt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fkb-YK-4tc" secondAttribute="bottom" id="rAN-j7-nH7"/>
+                <constraint firstAttribute="bottom" secondItem="fkb-YK-4tc" secondAttribute="bottom" id="rAN-j7-nH7"/>
             </constraints>
             <point key="canvasLocation" x="-52" y="90"/>
         </view>

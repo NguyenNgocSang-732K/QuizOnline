@@ -25,5 +25,13 @@ class CellAnswer: UITableViewCell{
         viewAnswer.clipsToBounds = true
         viewAnswer.backgroundColor = #colorLiteral(red: 0.8274509804, green: 0.8784313725, blue: 0.9176470588, alpha: 1)
     }
+    
+    func bindData(answer:String?, title:String?){
+        guard let answer = answer, let title = title else {
+            return
+        }
+        lbTitleAnswer.text = title
+        lbAnswer.text = answer
+    }
 
 }
