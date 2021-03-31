@@ -14,4 +14,9 @@ public class AccountEditController {
 	public String index() throws IOException {
 		return "user/student-account-edit/index";
 	}
+	
+	@RequestMapping(value = { "login" }, method = RequestMethod.GET)
+	public String login() throws IOException {
+		return "user/login/index";
+	}
 }
