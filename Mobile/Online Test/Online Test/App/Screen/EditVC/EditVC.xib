@@ -14,7 +14,7 @@
                 <outlet property="btnSave" destination="VWw-iR-WtU" id="t7u-6N-bo0"/>
                 <outlet property="dropDownSex" destination="xOk-vp-moU" id="Oki-GG-6sa"/>
                 <outlet property="imvProfile" destination="Pzm-PC-lpr" id="IqR-Nu-tfB"/>
-                <outlet property="spaceBottom" destination="z2P-KZ-0o6" id="75k-dp-8P4"/>
+                <outlet property="scrollView" destination="VSG-rU-1RJ" id="Uu6-z3-vJW"/>
                 <outlet property="tfBirthday" destination="BKx-Tn-oBc" id="QoX-r4-2fi"/>
                 <outlet property="tfMail" destination="FGt-TY-852" id="oLV-xo-bI5"/>
                 <outlet property="tfName" destination="xFQ-zB-QxX" id="iEO-WP-6Ay"/>

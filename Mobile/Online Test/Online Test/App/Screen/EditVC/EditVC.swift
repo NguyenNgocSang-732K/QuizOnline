@@ -25,6 +25,9 @@ class EditVC: BaseViewControllers {
     
     @IBOutlet weak var btnSave: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
     
     let arrSex = ["Nam", "Nu"]
     
@@ -37,50 +40,6 @@ class EditVC: BaseViewControllers {
         // Do any additional setup after loading the view.
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification ,
-                                                  object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardRectValue = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardRectValue.height
-            UIView.animate(withDuration: 0.4) {
-                self.spaceBottom.constant = keyboardHeight
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-    @objc func keyboardWillHide(_ notification: Notification) {
-       
-        UIView.animate(withDuration: 0.4) {
-            self.spaceBottom.constant = 0
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-
 
     func setupUI(){
         btnImage.layer.cornerRadius = UIScreen.main.bounds.width * 0.28 / 2
@@ -102,6 +61,10 @@ class EditVC: BaseViewControllers {
         
         btnSave.layer.cornerRadius = 25
         btnSave.clipsToBounds = true
+        tfName.delegate = self
+        tfMail.delegate = self
+        tfPhone.delegate = self
+        tfBirthday.delegate = self
     }
     
     @IBAction func clickSave(_ sender: Any) {
@@ -109,16 +72,82 @@ class EditVC: BaseViewControllers {
     }
     
     @objc func clickImage(){
-        print("asdada")
-    }
-    /*
-    // MARK: - Navigation
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+                    self.openCamera()
+                }))
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+                alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+                    self.openGallery()
+                }))
+
+                alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+
+                self.present(alert, animated: true, completion: nil)
     }
-    */
+    
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    func openGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have permission to access gallery.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+  
+
+}
+extension EditVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            imvProfile.image = pickedImage
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension EditVC:UITextFieldDelegate{
+    
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        let rect = scrollView.contentOffset
+//        
+//        if scrollView.contentSize.height >= rect.y{
+//            self.scrollView.setContentOffset(CGPoint(x: rect.x, y: rect.y), animated: true)
+//        }
+//        else{
+//            self.scrollView.setContentOffset(CGPoint(x: rect.x, y: rect.y + 100), animated: true)
+//        }
+//        
+//        return true
+//    }
 
 }

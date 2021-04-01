@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window?.rootViewController = loginVC
         window?.makeKeyAndVisible()
+        
+        
+        IQKeyboardManager.shared.enable = true
         // Override point for customization after application launch.
         return true
     }

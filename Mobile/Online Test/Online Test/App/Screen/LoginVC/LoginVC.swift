@@ -9,7 +9,8 @@ import UIKit
 import LocalAuthentication
 
 class LoginVC: BaseViewControllers {
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var viewUsername: UIView!
     
     @IBOutlet weak var viewPassword: UIView!
@@ -20,8 +21,6 @@ class LoginVC: BaseViewControllers {
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
     
-    
-    @IBOutlet weak var spaceBottom: NSLayoutConstraint!
     
     
     
@@ -34,54 +33,7 @@ class LoginVC: BaseViewControllers {
         // Do any additional setup after loading the view.
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification ,
-                                                  object: nil)
-    }
-    
-    
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardRectValue = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardRectValue.height
-            UIView.animate(withDuration: 0.4) {
-                self.spaceBottom.constant = keyboardHeight
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
-    @objc func keyboardWillHide(_ notification: Notification) {
-       
-        UIView.animate(withDuration: 0.4) {
-            self.spaceBottom.constant = 0
-            self.view.layoutIfNeeded()
-        }
-    }
-    
 
-
-    
     func setupUI(){
         
         viewUsername.layer.cornerRadius = 20
@@ -96,6 +48,9 @@ class LoginVC: BaseViewControllers {
         }else{
             btnTrackID.setImage(#imageLiteral(resourceName: "touchID").withRenderingMode(.alwaysOriginal), for: .normal)
         }
+        
+        tfUsername.delegate = self
+        tfPassword.delegate = self
         
     }
     
@@ -145,4 +100,17 @@ class LoginVC: BaseViewControllers {
         }
         return false
     }
+}
+
+
+
+extension LoginVC:UITextFieldDelegate{
+    
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        let rect = scrollView.contentOffset
+//        scrollView.setContentOffset(CGPoint(x: rect.x, y: rect.y + 130), animated: true)
+//        return true
+//    }
+   
+
 }

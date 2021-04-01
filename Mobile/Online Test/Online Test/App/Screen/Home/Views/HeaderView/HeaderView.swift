@@ -14,13 +14,15 @@ protocol TapProfileDelegate:class {
 class HeaderView: BaseViewXib {
     @IBOutlet weak var imvProfile: UIImageView!
     
+    @IBOutlet weak var vStack: UIStackView!
     
     var delegate:TapProfileDelegate?
     
     override func setUpViews() {
         let guesTap = UITapGestureRecognizer(target: self, action: #selector(clickProfile))
-        imvProfile.isUserInteractionEnabled = true
-        imvProfile.addGestureRecognizer(guesTap)
+        vStack.isUserInteractionEnabled = true
+        vStack.addGestureRecognizer(guesTap)
+        imvProfile.layer.cornerRadius = 25
     }
     
     @objc func clickProfile(){
