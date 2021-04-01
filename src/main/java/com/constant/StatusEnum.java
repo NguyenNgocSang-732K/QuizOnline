@@ -1,4 +1,4 @@
-package com.model.constant;
+package com.constant;
 
 public enum StatusEnum {
 	VISIBLE(1) {

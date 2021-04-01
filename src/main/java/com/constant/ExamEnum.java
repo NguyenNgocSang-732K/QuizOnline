@@ -1,4 +1,4 @@
-package com.model.constant;
+package com.constant;
 
 public enum ExamEnum {
 	EXAM_THEME(1) {
