@@ -1,6 +1,7 @@
 package com.controllers.admin;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,10 @@ public class HomeController extends AdminBaseController {
 	public String Login(ModelMap modelMap) {
 		LoginModel loginModel = new LoginModel("admin", "123");
 		
+//		//--Pass admin
 //		String pw_hash = BCrypt.hashpw("123", BCrypt.gensalt());
 //		System.out.println(pw_hash);
-		UserDetails a =  iAccountService.loadUserByUsername("ngoctu");
+		
 		modelMap.put("loginModel", loginModel);
 		return "account/admin/login";
 	}
