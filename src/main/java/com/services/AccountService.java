@@ -1,7 +1,9 @@
 package com.services;
 
 import com.constant.AccountTypeEnum;
+import com.constant.StatusEnum;
 import com.model.entities.Account;
+import com.model.models.CurrentUserProfile;
 import com.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,26 +16,46 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("accountService")
 public class AccountService implements IAccountService {
 
-    private @Autowired
-    @Qualifier("accountRepository")
-    AccountRepository accountRepository;
+	private @Autowired @Qualifier("accountRepository") AccountRepository accountRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	@Override
+	public CurrentUserProfile loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Account account = accountRepository.findByUsername(username);
+		Account account = accountRepository.findByUsername(username);
 
-        if (account == null) {
-            return null;
-        }
+		if (account == null) {
+			return null;
+		}
 
-        List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-        String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
-        roles.add(new SimpleGrantedAuthority(role_name));
-        return new User(account.getUsername(), account.getPassword(), roles);
-    }
+		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+		String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
+		roles.add(new SimpleGrantedAuthority(role_name));
+
+		CurrentUserProfile currentUser = new CurrentUserProfile();
+
+		currentUser.setAuthorities(roles);
+		currentUser.setId(account.getId());
+		currentUser.setEmail(account.getEmail());
+		currentUser.setPhone(account.getPhone());
+		currentUser.setUsername(account.getUsername());
+		currentUser.setPassword(account.getPassword());
+		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getValue(account.getStatus()));
+		return currentUser;
+	}
+
+	
+	@Override
+	public Account FindById(int id) {
+		// TODO Auto-generated method stub
+		Optional<Account> account = accountRepository.findById(id);
+		if (account.isEmpty()) {
+			return null;
+		}
+		return account.get();
+	}
 }

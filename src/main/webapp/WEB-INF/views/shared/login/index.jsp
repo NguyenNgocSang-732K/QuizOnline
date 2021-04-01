@@ -50,14 +50,14 @@
 				</div>
 				<div class="card-body">
 					<form
-						action="${pageContext.request.contextPath }/dashboard/index"
-						method="get">
+						action="${pageContext.request.contextPath }/securitylogin"
+						method="post">
 						<div class="form-group">
-							<input type="email" class="form-control"
-								placeholder="Email Address">
+							<input type="text" name="username" class="form-control"
+								placeholder="Username">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control"
+							<input type="password" name="password" class="form-control"
 								placeholder="Password">
 						</div>
 						<div class="form-group ">
