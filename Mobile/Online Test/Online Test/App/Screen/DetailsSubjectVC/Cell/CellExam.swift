@@ -7,8 +7,9 @@
 
 import UIKit
 
-class CellExam: UICollectionViewCell {
+class CellExam: UITableViewCell {
 
+    @IBOutlet weak var viewSub: UIView!
     @IBOutlet weak var titleExam: UILabel!
     @IBOutlet weak var lbTotalCheck: UILabel!
     @IBOutlet weak var lbTotalUncheck: UILabel!
@@ -27,9 +28,9 @@ class CellExam: UICollectionViewCell {
 
     
     func setupUI(){
-        contentView.backgroundColor = #colorLiteral(red: 0.8274509804, green: 0.8784313725, blue: 0.9176470588, alpha: 1)
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 20
+        viewSub.backgroundColor = #colorLiteral(red: 0.8274509804, green: 0.8784313725, blue: 0.9176470588, alpha: 1)
+        viewSub.clipsToBounds = true
+        viewSub.layer.cornerRadius = 20
         viewPoint.layer.cornerRadius = 20
     }
     

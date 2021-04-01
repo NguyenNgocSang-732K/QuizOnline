@@ -22,7 +22,7 @@ class ExamTestVC: BaseViewControllers {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    var counter = 5
     
     var index = 0{
         didSet{
@@ -40,9 +40,9 @@ class ExamTestVC: BaseViewControllers {
     }
     
     
-    var counter = 30
+    var timer:Timer?
 
-   
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +50,15 @@ class ExamTestVC: BaseViewControllers {
         setupUI()
         // Do any additional setup after loading the view.
     }
-
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer = nil
+    }
     
     func setupUI(){
         
@@ -62,18 +69,57 @@ class ExamTestVC: BaseViewControllers {
         navigationItem.title = "30:00"
         self.hideLeftBtn()
         changeRightButton(title: nil, image: #imageLiteral(resourceName: "next"))
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+        
+        //bo Điều chỉnh các Insets của Scroll View
+        
+        clv.contentInsetAdjustmentBehavior = .never
+        
+        
+       
     }
     
     
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        var bottomPadding:CGFloat = 0
+//
+//        if #available(iOS 11.0, *) {
+//            if let window = UIApplication.shared.keyWindow{
+//                bottomPadding = window.safeAreaInsets.bottom - 10
+//                if bottomPadding < 0 {
+//                    bottomPadding = 0
+//                }
+//            }
+//        }
+////        let cellSize = UIScreen.main.bounds.size
+//        let contentOffset = clv.contentOffset
+//
+////        let r = CGRect(x: 0, y: contentOffset.y - bottomPadding, width: cellSize.width, height: cellSize.height)
+//        self.clv.setContentOffset(CGPoint(x: 0, y: contentOffset.y - bottomPadding ), animated: false)
+//
+//
+////        let r = CGRect(x: contentOffset.x + cellSize.width, y: contentOffset.y , width: cellSize.width, height: cellSize.height)
+////
+////        self.clv.setContentOffset(CGPoint(x: contentOffset.x + cellSize.width, y: contentOffset.y), animated: true)
+//
+//    }
+    
     @objc func updateCounter() {
-        //example functionality
+        
         if counter > 0 {
             counter -= 1
             navigationItem.title = "\(counter)"
         }
         if counter == 0{
-            AppRouter.shared.gotoHome()
+            timer?.invalidate()
+            timer = nil
+            let resultVC = ResultVC()
+            resultVC.modalPresentationStyle = .fullScreen
+            
+            self.present(resultVC, animated: true, completion: {
+                self.removeFromParent()
+            })
         }
     }
     
@@ -90,6 +136,7 @@ class ExamTestVC: BaseViewControllers {
     }
     
     override func clickRightBtn() {
+        
         index += 1
         
         guard let arr = exam?.questionExam else {

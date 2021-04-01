@@ -8,16 +8,21 @@
 import UIKit
 import LocalAuthentication
 
-class LoginVC: UIViewController {
+class LoginVC: BaseViewControllers {
 
     @IBOutlet weak var viewUsername: UIView!
     
     @IBOutlet weak var viewPassword: UIView!
     @IBOutlet weak var tfUsername: UITextField!
     
+    @IBOutlet weak var btnTrackID: UIButton!
     
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
+    
+    
+    @IBOutlet weak var spaceBottom: NSLayoutConstraint!
+    
     
     
     override func viewDidLoad() {
@@ -28,6 +33,52 @@ class LoginVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification ,
+                                                  object: nil)
+    }
+    
+    
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardRectValue = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardRectValue.height
+            UIView.animate(withDuration: 0.4) {
+                self.spaceBottom.constant = keyboardHeight
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    @objc func keyboardWillHide(_ notification: Notification) {
+       
+        UIView.animate(withDuration: 0.4) {
+            self.spaceBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 
 
     
@@ -39,6 +90,12 @@ class LoginVC: UIViewController {
         viewPassword.layer.cornerRadius = 20
         btnLogin.layer.cornerRadius = 15
         btnLogin.clipsToBounds = true
+        
+        if faceIDAvailable(){
+            btnTrackID.setImage(#imageLiteral(resourceName: "iconHome").withRenderingMode(.alwaysOriginal), for: .normal)
+        }else{
+            btnTrackID.setImage(#imageLiteral(resourceName: "touchID").withRenderingMode(.alwaysOriginal), for: .normal)
+        }
         
     }
     
@@ -71,11 +128,21 @@ class LoginVC: UIViewController {
                     }
                 }
             } else {
-                // no biometry
+                let ac = UIAlertController(title: "Biometry unavailable", message: "Your device is not configured for biometric authentication.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(ac, animated: true)
             }
         
     }
     
     @IBAction func clickRegister(_ sender: Any) {
+    }
+    
+    func faceIDAvailable() -> Bool {
+        if #available(iOS 11.0, *) {
+            let context = LAContext()
+            return (context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: nil) && context.biometryType == .faceID)
+        }
+        return false
     }
 }

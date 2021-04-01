@@ -10,7 +10,7 @@ import UIKit
 class DetailsVC: BaseViewControllers {
     
     
-    @IBOutlet weak var clv: UICollectionView!
+    @IBOutlet weak var tbv: UITableView!
     
     
     
@@ -115,22 +115,24 @@ class DetailsVC: BaseViewControllers {
         // Do any additional setup after loading the view.
     }
 
+    deinit {
+        print("adasdasdasdasdasdasd")
+    }
     
     func setupUI(){
         self.navigationItem.title = "De thi"
         changeLeftButton(title: nil, image: #imageLiteral(resourceName: "back"))
         changeBackgroundColor()
         transparentNav(isTrans: true)
-        hidenNavigationBar(isHiden: false)
-        clv.delegate = self
-        clv.dataSource = self
-        clv.register(UINib(nibName: "CellExam", bundle: nil), forCellWithReuseIdentifier: "cell")
+        tbv.delegate = self
+        tbv.dataSource = self
+        tbv.register(UINib(nibName: "CellExam", bundle: nil), forCellReuseIdentifier: CellExam.description())
     }
     
     
     
     override func clickLeftBtn() {
-        self.navigationController?.popViewController(animated: true)
+        self.popVc()
     }
 
     /*
@@ -144,13 +146,13 @@ class DetailsVC: BaseViewControllers {
     */
 
 }
-extension DetailsVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension DetailsVC:UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrExam.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = clv.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CellExam
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tbv.dequeueReusableCell(withIdentifier: CellExam.description(), for: indexPath) as! CellExam
         
         let examBase = arrExam[indexPath.item]
         
@@ -159,25 +161,16 @@ extension DetailsVC:UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 40
-        let height:CGFloat = 64
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let size = CGSize(width: width, height: height)
-        
-        
-        return size
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let exam = arrExam[indexPath.item]
         let beforeVC = BeforeTestVC(exam: exam)
         
-        
         self.push(controller: beforeVC)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
 }

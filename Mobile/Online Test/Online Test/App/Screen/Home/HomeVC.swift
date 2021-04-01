@@ -35,7 +35,7 @@ class HomeVC: BaseViewControllers {
     }
     
     func setupUI(){
-        hidenNavigationBar()
+        
         transparentNav(isTrans: true)
         clv.delegate = self
         clv.dataSource = self
@@ -43,6 +43,15 @@ class HomeVC: BaseViewControllers {
         clv.register(UINib(nibName: "CellHome", bundle: nil), forCellWithReuseIdentifier: "cell")
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hidenNavigationBar()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hidenNavigationBar(isHiden: false)
     }
     /*
     // MARK: - Navigation
@@ -102,8 +111,9 @@ extension HomeVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollect
 
 extension HomeVC:TapProfileDelegate{
     func pushViewProfile() {
-        print("asdasdasdas")
+        let profileVC = ProfileVC()
+        self.push(controller: profileVC)
     }
-    
+        
     
 }

@@ -14,6 +14,7 @@ protocol TapProfileDelegate:class {
 class HeaderView: BaseViewXib {
     @IBOutlet weak var imvProfile: UIImageView!
     
+    
     var delegate:TapProfileDelegate?
     
     override func setUpViews() {

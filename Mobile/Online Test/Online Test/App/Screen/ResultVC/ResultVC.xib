@@ -9,9 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsVC" customModule="Online_Test" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultVC" customModule="Online_Test" customModuleProvider="target">
             <connections>
-                <outlet property="tbv" destination="o3p-G4-H4u" id="2fq-xk-Wwp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,20 +19,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o3p-G4-H4u">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                    <color key="backgroundColor" red="0.96470588235294119" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjD-o9-uj1">
+                    <rect key="frame" x="170" y="468" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="click:" destination="-1" eventType="touchUpInside" id="oI4-sR-DLf"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="o3p-G4-H4u" secondAttribute="bottom" id="gvd-py-gTP"/>
-                <constraint firstItem="o3p-G4-H4u" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="m4S-ut-U05"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="o3p-G4-H4u" secondAttribute="trailing" id="mW8-WY-c9a"/>
-                <constraint firstItem="o3p-G4-H4u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wH7-QH-JAB"/>
-            </constraints>
-            <point key="canvasLocation" x="-52" y="90"/>
+            <point key="canvasLocation" x="59" y="76"/>
         </view>
     </objects>
     <resources>

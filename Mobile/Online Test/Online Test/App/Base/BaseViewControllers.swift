@@ -12,6 +12,10 @@ class BaseViewControllers: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let tapGestureReconizer = UITapGestureRecognizer(target: self, action:#selector(tap))
+        tapGestureReconizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureReconizer)
 
         // Do any additional setup after loading the view.
     }
@@ -64,6 +68,10 @@ class BaseViewControllers: UIViewController {
     func push(controller:UIViewController){
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func popVc(){
+        self.navigationController?.popViewController(animated: true)
+    }
 
     
     @objc func clickLeftBtn(){
@@ -72,7 +80,9 @@ class BaseViewControllers: UIViewController {
     @objc func clickRightBtn(){
         
     }
-    
+    @objc func tap(){
+        view.endEditing(true)
+    }
     
     func hideLeftBtn(){
       
