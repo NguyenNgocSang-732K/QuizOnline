@@ -3,6 +3,7 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s-form"
 	uri="http://www.springframework.org/tags/form"%>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -30,8 +31,7 @@
 				<a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
 			</div>
 			<div class="card-body">
-				<!-- <p class="login-box-msg">Sign in to start your session</p> -->
-				
+				<%--@elvariable id="loginModel" type="java"--%>
 				<s-form:form method="post" modelAttribute="loginModel" action="${pageContext.request.contextPath }/securitylogin">
 					<div class="input-group mb-3">
 						<!-- <input type="email" class="form-control" placeholder="Username"> -->

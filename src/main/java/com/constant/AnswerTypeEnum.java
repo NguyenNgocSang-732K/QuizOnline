@@ -1,4 +1,4 @@
-package com.model.constant;
+package com.constant;
 
 public enum AnswerTypeEnum {
 	CHECKBOX(1) {

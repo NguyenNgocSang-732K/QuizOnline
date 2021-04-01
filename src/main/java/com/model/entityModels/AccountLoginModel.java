@@ -1,15 +1,15 @@
-package com.model.models;
+package com.model.entityModels;
 
-public class LoginModel {
+public class AccountLoginModel {
 	private String username;
 	private String password;
 
-	public LoginModel() {
+	public AccountLoginModel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LoginModel(String username, String password) {
+	public AccountLoginModel(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

@@ -1,6 +1,6 @@
 package com.services;
 
-import com.model.constant.AccountTypeEnum;
+import com.constant.AccountTypeEnum;
 import com.model.entities.Account;
 import com.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +35,10 @@ public class AccountService implements IAccountService {
         String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
         roles.add(new SimpleGrantedAuthority(role_name));
         return new User(account.getUsername(), account.getPassword(), roles);
+    }
+
+    @Override
+    public Account findByUsername(String username) {
+        return accountRepository.findByUsername(username);
     }
 }
