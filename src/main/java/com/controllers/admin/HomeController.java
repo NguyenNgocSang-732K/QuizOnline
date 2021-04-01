@@ -21,7 +21,7 @@ public class HomeController extends AdminBaseController {
 //		System.out.println(pw_hash);
 		
 		modelMap.put("loginModel", loginModel);
-		return "account/admin/login";
+		return "shared/login/index";
 	}
 
 	@RequestMapping(value = { "dashboard" }, method = RequestMethod.GET)
