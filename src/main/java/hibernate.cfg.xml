@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+  <property name="hibernate.connection.password">123456</property>
+  <property name="hibernate.connection.url">jdbc:sqlserver://localhost;database=quizonline</property>
+  <property name="hibernate.connection.username">sa</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+  <mapping class="com.model.entities.Account"/>
+  <mapping class="com.model.entities.AccountExam"/>
+  <mapping class="com.model.entities.Answer"/>
+  <mapping class="com.model.entities.Exam"/>
+  <mapping class="com.model.entities.ExamQuestion"/>
+  <mapping class="com.model.entities.Level"/>
+  <mapping class="com.model.entities.Question"/>
+  <mapping class="com.model.entities.StudentAnswer"/>
+  <mapping class="com.model.entities.Subject"/>
+ </session-factory>
+</hibernate-configuration>
