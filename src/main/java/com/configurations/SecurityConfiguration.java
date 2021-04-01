@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 			    .passwordParameter("password")
 				.loginProcessingUrl("/securitylogin")
-				.defaultSuccessUrl("/admin/dashboard")
+				.defaultSuccessUrl("/admin/setAuthentication")
 				.failureUrl("/admin/login?error=401")
 				.and()
 				.logout()
