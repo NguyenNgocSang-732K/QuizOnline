@@ -5,8 +5,8 @@
 <%@ taglib prefix="s-form"
 	uri="http://www.springframework.org/tags/form"%>
 
-<template:_user title="Dashboard">
+<template:_admin title="Dashboard">
 	<jsp:attribute name="content">
-		<h1>Dashboard</h1>
+          	<h1>Dashboard</h1>    
 	</jsp:attribute>
-</template:_user>
+</template:_admin>

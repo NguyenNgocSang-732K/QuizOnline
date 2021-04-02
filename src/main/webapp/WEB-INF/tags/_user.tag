@@ -74,13 +74,14 @@
 						class="rounded-circle" width="40"></a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item"
-							href="${pageContext.request.contextPath }/account/index">
-							<i class="material-icons">edit</i> Profile
+							href="${pageContext.request.contextPath }/account/index"> <i
+							class="material-icons">edit</i> Profile
 						</a> <a class="dropdown-item"
 							href="${pageContext.request.contextPath }/profile/index"> <i
 							class="material-icons">person</i> Profile Details
-						</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/resources/user/account/login"> <i
-							class="material-icons">lock</i> Logout
+						</a> <a class="dropdown-item"
+							href="${pageContext.request.contextPath}/resources/user/account/login">
+							<i class="material-icons">lock</i> Logout
 						</a>
 					</div></li>
 				<!-- // END User dropdown -->
@@ -92,8 +93,10 @@
 		<div class="mdk-drawer-layout js-mdk-drawer-layout flex"
 			data-fullbleed data-push data-has-scrolling-region>
 
-			<jsp:invoke fragment="content"></jsp:invoke>
-
+			<div
+				class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+				<jsp:invoke fragment="content"></jsp:invoke>
+			</div>
 			<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
 				<div class="mdk-drawer__content ">
 					<div
