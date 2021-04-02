@@ -1,9 +1,10 @@
 package com.services;
 
 
-import com.model.entities.Account;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.model.entities.Account;
+
 public interface IAccountService extends UserDetailsService{
-    Account findByUsername(String username);
+	public Account FindById(int id);
 }
