@@ -57,7 +57,7 @@
                 <%--@elvariable id="account" type="za.co.myProject.UserFormObject"--%>
                 <s:form
                         modelAttribute="account"
-                        action="${pageContext.request.contextPath }/LoginProcess"
+                        action="${pageContext.request.contextPath }/securitylogin"
                         method="POST">
                     <div class="form-group">
 
@@ -67,7 +67,8 @@
                     </div>
                     <div class="form-group">
 
-                        <s:input path="password" cssClass="form-control" placeholder="Password"/>
+                        <s:input path="password" cssClass="form-control" placeholder="Password"
+                                 type="password"/>
                         <td><s:errors path="password"></s:errors></td>
 
                     </div>

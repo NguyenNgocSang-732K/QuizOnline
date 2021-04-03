@@ -1,5 +1,9 @@
 package com.services;
 
-public interface IQuestionService {
+import com.model.entityModels.QuestionModel;
 
+import java.util.List;
+
+public interface IQuestionService {
+    List<QuestionModel> GetAll();
 }

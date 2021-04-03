@@ -53,7 +53,7 @@ public class AccountService implements IAccountService {
 	public Account FindById(int id) {
 		// TODO Auto-generated method stub
 		Optional<Account> account = accountRepository.findById(id);
-		if (account.isEmpty()) {
+		if (!account.isPresent()) {
 			return null;
 		}
 		return account.get();

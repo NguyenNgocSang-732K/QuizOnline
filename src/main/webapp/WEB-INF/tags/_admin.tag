@@ -116,25 +116,25 @@
 										Instructor
 								</a></li>
 							</ul>
-							<div class="sidebar-heading">Instructor</div>
+							<div class="sidebar-heading">Management</div>
 							<ul class="sidebar-menu">
 								<li class="sidebar-menu-item"><a
 									class="sidebar-menu-button" href="instructor-statement.html">
 										<i
 										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
-										student management
+										Students
 								</a></li>
 								<li class="sidebar-menu-item"><a
 									class="sidebar-menu-button" href="instructor-courses.html">
 										<i
 										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
-										Course Manager
+										Courses
 								</a></li>
 								<li class="sidebar-menu-item"><a
 									class="sidebar-menu-button" href="instructor-quizzes.html">
 										<i
 										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-										Quiz Manager
+										Questions
 								</a></li>
 							</ul>
 
