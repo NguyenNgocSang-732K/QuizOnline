@@ -3,14 +3,12 @@ package com.services;
 import com.constant.AccountTypeEnum;
 import com.constant.StatusEnum;
 import com.model.entities.Account;
-import com.model.models.CurrentUserProfile;
+import com.model.entityModels.*;
 import com.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
