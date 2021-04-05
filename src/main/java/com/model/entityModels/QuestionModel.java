@@ -42,6 +42,22 @@ public class QuestionModel {
         this.content = content;
     }
 
+    public Integer getAnswerType() {
+        return answerType;
+    }
+
+    public void setAnswerType(Integer answerType) {
+        this.answerType = answerType;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -50,11 +66,27 @@ public class QuestionModel {
         this.createdDate = createdDate;
     }
 
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public LevelModel getLevelModel() {
+        return levelModel;
+    }
+
+    public void setLevelModel(LevelModel levelModel) {
+        this.levelModel = levelModel;
     }
 }
