@@ -1,6 +1,7 @@
 package com.model.entityModels;
 
 import java.util.Date;
+import java.util.List;
 
 public class QuestionModel {
     private Integer id;
@@ -11,8 +12,11 @@ public class QuestionModel {
     private int createdBy;
     private int status;
     private LevelModel levelModel;
+    private List<AnswerModel> answerModels;
 
-    public QuestionModel(Integer id, String content, Integer answerType, String image, Date createdDate, int createdBy, int status, LevelModel levelModel) {
+    public QuestionModel(Integer id, String content, Integer answerType,
+                         String image, Date createdDate, int createdBy, int status,
+                         LevelModel levelModel, List<AnswerModel> answerModels) {
         this.id = id;
         this.content = content;
         this.answerType = answerType;
@@ -21,9 +25,18 @@ public class QuestionModel {
         this.createdBy = createdBy;
         this.status = status;
         this.levelModel = levelModel;
+        this.answerModels = answerModels;
     }
 
     public QuestionModel() {
+    }
+
+    public List<AnswerModel> getAnswerModels() {
+        return answerModels;
+    }
+
+    public void setAnswerModels(List<AnswerModel> answerModels) {
+        this.answerModels = answerModels;
     }
 
     public Integer getId() {

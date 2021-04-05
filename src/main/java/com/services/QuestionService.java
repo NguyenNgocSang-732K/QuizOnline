@@ -3,6 +3,7 @@ package com.services;
 import com.model.entities.Question;
 import com.model.entityModels.PaginationModel;
 import com.model.entityModels.QuestionModel;
+import com.model.entityModels.QuestionUpdateModel;
 import com.model.mapper.QuestionMapper;
 import com.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("questionService")
@@ -24,11 +26,8 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public PaginationModel<QuestionModel> GetAll(int page, int pageSize, String searchText) {
-
         // Declare pageable with page and pageSize
-        Pageable paging = PageRequest.of(page, pageSize);
-
-
+        Pageable paging = PageRequest.of(page - 1, pageSize);
         Page<Question> pageTuts;
 
         // Find data with paging and searchText parameter
@@ -39,17 +38,31 @@ public class QuestionService implements IQuestionService {
                     paging);
         }
 
+        if (pageTuts.getTotalPages() == 0)
+            return null;
+
         List<QuestionModel> questionModels = pageTuts.getContent()
                 .stream()
                 .map(QuestionMapper::ToQuestionModel)
                 .collect(Collectors.toList());
 
         PaginationModel<QuestionModel> paginationModel = new PaginationModel<QuestionModel>();
-        paginationModel.setCurrentPage(pageTuts.getNumber());
+        paginationModel.setCurrentPage(pageTuts.getNumber() + 1);
         paginationModel.setData(questionModels);
         paginationModel.setTotalPages(pageTuts.getTotalPages());
         paginationModel.setTotalItems(pageTuts.getTotalElements());
 
         return paginationModel;
     }
+
+    @Override
+    public QuestionUpdateModel findById(int questionId) {
+
+        Optional<Question> question = _questionRepository.findById(questionId);
+
+        return question.empty().isPresent() ? null :
+                QuestionMapper.ToQuestionUpdateModel(question.get());
+    }
+
+
 }

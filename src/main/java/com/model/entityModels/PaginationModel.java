@@ -1,5 +1,7 @@
 package com.model.entityModels;
 
+import com.constant.GeneralTypeEnum;
+
 import java.util.List;
 
 public class PaginationModel<T> {
@@ -7,6 +9,7 @@ public class PaginationModel<T> {
     private List<T> data;
     private int totalPages;
     private int currentPage;
+    private int pageSize = GeneralTypeEnum.PAGESIZE;
 
     public PaginationModel(int totalItems, List<T> data, int totalPages, int currentPage) {
         this.totalItems = totalItems;
@@ -48,5 +51,9 @@ public class PaginationModel<T> {
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
     }
 }
