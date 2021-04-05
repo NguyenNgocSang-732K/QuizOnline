@@ -1,7 +1,9 @@
 package com.controllers.admin;
 
 import com.model.entities.Account;
-import com.model.models.CurrentUserProfile;
+import com.model.entityModels.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
