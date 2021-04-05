@@ -12,12 +12,13 @@ class BeforeTestVC: BaseViewControllers {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet weak var tfTitle: UITextView!
     
-    var exam:ExamBase?
+    var questions:[Question]?
+    var time:Int?
     
     
-    init(exam:ExamBase?) {
-        
-        self.exam = exam
+    init(questions:[Question]?, time:Int?) {
+        self.time = time
+        self.questions = questions
         super.init(nibName: "BeforeTestVC", bundle: nil)
         
     }
@@ -27,7 +28,7 @@ class BeforeTestVC: BaseViewControllers {
     }
     
     deinit {
-        exam = nil
+        questions = nil
     }
     
     
@@ -52,7 +53,7 @@ class BeforeTestVC: BaseViewControllers {
     }
     
     @IBAction func clickStart(_ sender: Any) {
-        let popUp = PopupVC(exam: exam)
+        let popUp = PopupVC(questions: questions, time: time)
         
         popUp.modalPresentationStyle = .fullScreen
         

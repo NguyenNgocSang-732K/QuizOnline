@@ -13,99 +13,17 @@ class DetailsVC: BaseViewControllers {
     @IBOutlet weak var tbv: UITableView!
     
     
+    var arrExam:[Exam]? = []
     
-    var arrExam = [
-        ExamBase(id: "1", nameExam: "Đề 1", questionExam: [
-            ExamModel(id: "ex_0", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansdasdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd...", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "3"),
-                Answer(answer: "4"),
-                Answer(answer: "6")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_2", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd", imageExam: nil, answer: [
-                Answer(answer: "1"),
-                Answer(answer: "3"),
-                Answer(answer: "5"),
-                Answer(answer: "6")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_3", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:asdnadasdmnasmdamnsdbamnsdbmansbdmansbdmansbdmasndbmansbdmansbdmansbdmansbdmnasbdmansbdmnasbdmnasbdnmasbdmnasbdmnasbdmnabdmnasbdmansbdmnasdmansdbamnsdbmansdmansd", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_4", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"])
-        ], time: "30:00"),
-        ExamBase(id: "2", nameExam: "Đề 2", questionExam: [
-            ExamModel(id: "ex_0", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_1", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer:[
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_2", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_3", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_4", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"])
-        ], time: "30:00"),
-        ExamBase(id: "3", nameExam: "Đề 3", questionExam: [
-            ExamModel(id: "ex_0", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_1", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_2", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_3", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"]),
-            ExamModel(id: "ex_4", nameModelExam: "a", question: "Câu 1: Khoanh tròn vào chữ cái trước kết quả đúng: (0,5 điểm) Kết quả của phép tính 17 + 9 là:", imageExam: nil, answer: [
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12"),
-                Answer(answer: "12")
-    ], answerUser: [], answerExam: ["A"])
-        ], time: "30:00"),
-        ]
+    init(arrExam:[Exam]?) {
+        self.arrExam = arrExam
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,29 +66,31 @@ class DetailsVC: BaseViewControllers {
 }
 extension DetailsVC:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrExam.count
+        return arrExam?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tbv.dequeueReusableCell(withIdentifier: CellExam.description(), for: indexPath) as! CellExam
         
-        let examBase = arrExam[indexPath.item]
+        let exam = arrExam?[indexPath.item]
         
-        cell.bindData(examBase: examBase)
+        
+        cell.bindData(exam: exam)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let exam = arrExam[indexPath.item]
-        let beforeVC = BeforeTestVC(exam: exam)
+        let questions = arrExam?[indexPath.item].question
+        let time = arrExam?[indexPath.item].time
+        let beforeVC = BeforeTestVC(questions: questions, time:time)
         
         self.push(controller: beforeVC)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
     
 }

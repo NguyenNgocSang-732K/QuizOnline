@@ -34,10 +34,11 @@ class CellExam: UITableViewCell {
         viewPoint.layer.cornerRadius = 20
     }
     
-    func bindData(examBase:ExamBase?){
-        guard let examBase = examBase else {
+    func bindData(exam:Exam?){
+        guard let exam = exam else {
             return
         }
-        titleExam.text = examBase.nameExam
+        titleExam.text = exam.name
+        lbPoint.text = "\(exam.level ?? 9)"
     }
 }

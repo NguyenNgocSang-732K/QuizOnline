@@ -12,7 +12,7 @@ class CellExamTest: UICollectionViewCell {
     @IBOutlet weak var tbv: UITableView!
     
     
-    var exam_1:ExamModel?{
+    var question:Question?{
         didSet{
             tbv.reloadData()
         }
@@ -51,7 +51,7 @@ extension CellExamTest:UITableViewDelegate, UITableViewDataSource{
         case 0:
             return 1
         default:
-            return exam_1?.answer.count ?? 0
+            return question?.answer?.count ?? 0
         }
     }
     
@@ -59,13 +59,13 @@ extension CellExamTest:UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section {
         case 0:
             let cell = tbv.dequeueReusableCell(withIdentifier: CellQuestion.description(), for: indexPath) as! CellQuestion
-            cell.bindData(question: exam_1?.question)
+//            cell.bindData(question: exam_1?.question)
             return cell
         default:
             let cell = tbv.dequeueReusableCell(withIdentifier: CellAnswer.description(), for: indexPath) as! CellAnswer
-            let answer = exam_1?.answer[indexPath.row]
+            let answer = question?.answer?[indexPath.row]
             
-            cell.bindData(answer: answer?.answer, title: "A")
+            cell.bindData(answer: answer?.content, title: "A")
             return cell
         }
     }

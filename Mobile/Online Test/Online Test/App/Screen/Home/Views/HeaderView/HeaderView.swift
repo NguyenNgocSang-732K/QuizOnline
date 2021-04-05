@@ -22,7 +22,7 @@ class HeaderView: BaseViewXib {
         let guesTap = UITapGestureRecognizer(target: self, action: #selector(clickProfile))
         vStack.isUserInteractionEnabled = true
         vStack.addGestureRecognizer(guesTap)
-        imvProfile.layer.cornerRadius = 25
+        imvProfile.layer.cornerRadius = 20
     }
     
     @objc func clickProfile(){

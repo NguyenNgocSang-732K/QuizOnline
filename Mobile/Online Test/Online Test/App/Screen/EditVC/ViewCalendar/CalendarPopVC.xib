@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarPopVC" customModule="Online_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCancel" destination="yyz-KL-mAj" id="gKa-80-Rzm"/>
+                <outlet property="btnOk" destination="oX9-1g-wlA" id="uQU-Da-FwJ"/>
+                <outlet property="datePicker" destination="f3G-xd-bMC" id="7Ii-oC-Z1t"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewDate" destination="48C-KC-Pqs" id="Ggb-nT-RUc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48C-KC-Pqs">
+                    <rect key="frame" x="41.5" y="248" width="331" height="400"/>
+                    <subviews>
+                        <datePicker clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="f3G-xd-bMC">
+                            <rect key="frame" x="0.0" y="0.0" width="331" height="320"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                <!--1970-01-01 11:00:00 +0000-->
+                            </date>
+                            <connections>
+                                <action selector="changeDate:" destination="-1" eventType="valueChanged" id="tFW-kX-sJr"/>
+                            </connections>
+                        </datePicker>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX9-1g-wlA">
+                            <rect key="frame" x="241" y="335" width="70" height="40"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="G5V-Uj-0Va"/>
+                                <constraint firstAttribute="width" constant="70" id="qna-B7-lTj"/>
+                            </constraints>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="clickOK:" destination="-1" eventType="touchUpInside" id="iZT-YE-i1R"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyz-KL-mAj">
+                            <rect key="frame" x="20" y="335" width="70" height="40"/>
+                            <color key="backgroundColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Sn6-RN-6tj"/>
+                                <constraint firstAttribute="width" constant="70" id="WWa-eo-mg2"/>
+                            </constraints>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="clickCancel:" destination="-1" eventType="touchUpInside" id="4cu-B1-ec7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <constraints>
+                        <constraint firstItem="yyz-KL-mAj" firstAttribute="leading" secondItem="48C-KC-Pqs" secondAttribute="leading" constant="20" id="2a3-mv-n15"/>
+                        <constraint firstAttribute="bottom" secondItem="oX9-1g-wlA" secondAttribute="bottom" constant="25" id="5f4-03-vxT"/>
+                        <constraint firstItem="f3G-xd-bMC" firstAttribute="height" secondItem="48C-KC-Pqs" secondAttribute="height" multiplier="0.8" id="9Id-3G-1Vh"/>
+                        <constraint firstItem="f3G-xd-bMC" firstAttribute="top" secondItem="48C-KC-Pqs" secondAttribute="top" id="9M2-ZR-kgC"/>
+                        <constraint firstAttribute="bottom" secondItem="yyz-KL-mAj" secondAttribute="bottom" constant="25" id="Mt3-RP-nPO"/>
+                        <constraint firstAttribute="trailing" secondItem="f3G-xd-bMC" secondAttribute="trailing" id="Qdk-xh-SEZ"/>
+                        <constraint firstItem="f3G-xd-bMC" firstAttribute="leading" secondItem="48C-KC-Pqs" secondAttribute="leading" id="U0x-Bb-stL"/>
+                        <constraint firstAttribute="height" constant="400" id="md0-2Z-Swc"/>
+                        <constraint firstAttribute="trailing" secondItem="oX9-1g-wlA" secondAttribute="trailing" constant="20" id="vX1-mG-aSj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.35492483380338447" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="48C-KC-Pqs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8PR-SD-21b"/>
+                <constraint firstItem="48C-KC-Pqs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D08-o4-2Ze"/>
+                <constraint firstItem="48C-KC-Pqs" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="hdF-uB-WXE"/>
+            </constraints>
+            <point key="canvasLocation" x="138" y="90"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

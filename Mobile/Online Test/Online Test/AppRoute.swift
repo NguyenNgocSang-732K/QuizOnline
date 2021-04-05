@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import KRProgressHUD
 
 class AppRouter {
     static let shared = AppRouter()
@@ -29,13 +30,24 @@ class AppRouter {
     }
     
     func gotoHome() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let windowApp = appDelegate.window else { return }
+        KRProgressHUD.show()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let windowApp = appDelegate.window else { KRProgressHUD.dismiss(); return }
         //---
-        let homeVC = HomeVC()
-        let navRoot = UINavigationController(rootViewController:homeVC)
-    
-        windowApp.rootViewController = navRoot
-        windowApp.makeKeyAndVisible()
+        
+        Provider.shared.getSubject.getDemoApi { (listSubject) in
+            let homeVC = HomeVC(arrSubject: listSubject)
+            let navRoot = UINavigationController(rootViewController:homeVC)
+        
+            windowApp.rootViewController = navRoot
+            windowApp.makeKeyAndVisible()
+            KRProgressHUD.dismiss()
+        } failure: { err in
+            KRProgressHUD.dismiss()
+            return
+        }
+
+        
+        
     }
 //
 //    func popToBookedScreen(menu: SectionData.Menu) {

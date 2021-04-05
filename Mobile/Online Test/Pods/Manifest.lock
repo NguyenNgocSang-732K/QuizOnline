@@ -1,16 +1,32 @@
 PODS:
+  - Alamofire (4.9.1)
   - IQKeyboardManagerSwift (6.5.6)
+  - KRActivityIndicatorView (3.0.7)
+  - KRProgressHUD (3.4.7):
+    - KRActivityIndicatorView (= 3.0.7)
+  - ObjectMapper (3.5.3)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.8)
   - IQKeyboardManagerSwift
+  - KRProgressHUD
+  - ObjectMapper (~> 3.5)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - IQKeyboardManagerSwift
+    - KRActivityIndicatorView
+    - KRProgressHUD
+    - ObjectMapper
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
+  KRProgressHUD: a248f0bc6c9c2aed40a37b76e03ffecc7f85c887
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
 
-PODFILE CHECKSUM: 269fb498d8cf992e0d70c181e8ead1a43843263d
+PODFILE CHECKSUM: ceb4f8f3b49f1f89f68826472fae28a7e245ee29
 
 COCOAPODS: 1.10.0

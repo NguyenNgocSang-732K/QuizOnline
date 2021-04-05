@@ -38,9 +38,9 @@ class CellHome: UICollectionViewCell {
         guard let subject = subject else {
             return
         }
-        imvSubject.image = subject.imageSubject
-        nameSubject.text = subject.nameSubject
-        titleTotal.text = subject.total
+//        imvSubject.image = subject.imageSubject
+        nameSubject.text = subject.name
+        titleTotal.text = subject.createDate
     }
     
 

@@ -1,5 +1,5 @@
 //
-//  ExamModel.swift
+//  Exam.swift
 //  Online Test
 //
 //  Created by vinova on 3/29/21.
@@ -47,12 +47,46 @@ class ExamModel {
 }
 
 
-class Answer {
-    var answer:String? = ""
+//class Answer {
+//    var answer:String? = ""
+//    
+//    
+//    init(answer:String?) {
+//        self.answer = answer
+//    }
+//    
+//}
+
+
+
+
+import Foundation
+import ObjectMapper
+
+struct Exam: Mappable {
     
+    var code: String?
+    var createBy: Int?
+    var createDate: String?
+    var id: Int?
+    var level: Int?
+    var name: String?
+    var question: [Question]?
+    var status: Bool?
+    var time: Int?
     
-    init(answer:String?) {
-        self.answer = answer
+    init?(map: Map) { }
+    
+    mutating func mapping(map: Map) {
+        code <- map["code"]
+        createBy <- map["create_by"]
+        createDate <- map["create_date"]
+        id <- map["id"]
+        level <- map["level"]
+        name <- map["name"]
+        question <- map["question"]
+        status <- map["status"]
+        time <- map["time"]
     }
     
 }

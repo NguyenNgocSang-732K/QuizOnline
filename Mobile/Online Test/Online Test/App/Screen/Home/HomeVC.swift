@@ -13,23 +13,38 @@ class HomeVC: BaseViewControllers {
     @IBOutlet weak var clv: UICollectionView!
     
     
-    var arrObject = [
-        Subject(id: "1", nameSubject: "Toán", imageSubject: #imageLiteral(resourceName: "math"), total: "9/10"),
-        Subject(id: "2", nameSubject: "Ngữ Văn", imageSubject: #imageLiteral(resourceName: "van"), total: "9/10"),
-        Subject(id: "3", nameSubject: "Vật Lý", imageSubject: #imageLiteral(resourceName: "vatly"), total: "9/10"),
-        Subject(id: "4", nameSubject: "Hoá", imageSubject: #imageLiteral(resourceName: "hoa"), total: "9/10"),
-        Subject(id: "5", nameSubject: "Sinh Học", imageSubject: #imageLiteral(resourceName: "sinhhoc"), total: "9/10"),
-        Subject(id: "6", nameSubject: "Lịch sử", imageSubject: #imageLiteral(resourceName: "lichsu"), total: "9/10"),
-        Subject(id: "7", nameSubject: "Địa Lý", imageSubject: #imageLiteral(resourceName: "dialy"), total: "9/10"),
-        Subject(id: "8", nameSubject: "Tiếng Anh", imageSubject: #imageLiteral(resourceName: "english"), total: "9/10"),
-        Subject(id: "9", nameSubject: "GDCD", imageSubject: #imageLiteral(resourceName: "gdcc"), total: "9/10"),
-    ]
+    var arrSubject:[Subject] = []
+    
+//    var arrObject = [
+//        Subject(id: "1", nameSubject: "Toán", imageSubject: #imageLiteral(resourceName: "math"), total: "9/10"),
+//        Subject(id: "2", nameSubject: "Ngữ Văn", imageSubject: #imageLiteral(resourceName: "van"), total: "9/10"),
+//        Subject(id: "3", nameSubject: "Vật Lý", imageSubject: #imageLiteral(resourceName: "vatly"), total: "9/10"),
+//        Subject(id: "4", nameSubject: "Hoá", imageSubject: #imageLiteral(resourceName: "hoa"), total: "9/10"),
+//        Subject(id: "5", nameSubject: "Sinh Học", imageSubject: #imageLiteral(resourceName: "sinhhoc"), total: "9/10"),
+//        Subject(id: "6", nameSubject: "Lịch sử", imageSubject: #imageLiteral(resourceName: "lichsu"), total: "9/10"),
+//        Subject(id: "7", nameSubject: "Địa Lý", imageSubject: #imageLiteral(resourceName: "dialy"), total: "9/10"),
+//        Subject(id: "8", nameSubject: "Tiếng Anh", imageSubject: #imageLiteral(resourceName: "english"), total: "9/10"),
+//        Subject(id: "9", nameSubject: "GDCD", imageSubject: #imageLiteral(resourceName: "gdcc"), total: "9/10"),
+//    ]
+    
+    init(arrSubject:[Subject]){
+        self.arrSubject = arrSubject
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+        
+        
+    
 
         // Do any additional setup after loading the view.
     }
@@ -66,14 +81,14 @@ class HomeVC: BaseViewControllers {
 }
 extension HomeVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrObject.count
+        return arrSubject.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = clv.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CellHome
         
-        let subject = arrObject[indexPath.item]
-        
+        let subject = arrSubject[indexPath.item]
+//
         cell.bindData(subject: subject)
         
         return cell
@@ -100,9 +115,10 @@ extension HomeVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-//        print(indexPath.item)
        
-        let detailsVC = DetailsVC()
+        let arrExam = arrSubject[indexPath.item].exams
+        
+        let detailsVC = DetailsVC(arrExam: arrExam)
 
         self.push(controller: detailsVC)
     }

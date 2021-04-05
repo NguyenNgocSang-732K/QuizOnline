@@ -19,13 +19,17 @@ class EditVC: BaseViewControllers {
     
     @IBOutlet weak var tfMail: UITextField!
     
-    @IBOutlet weak var tfBirthday: UITextField!
+    @IBOutlet weak var lbBirthday: UILabel!
     
     @IBOutlet weak var spaceBottom: NSLayoutConstraint!
     
     @IBOutlet weak var btnSave: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    let calendarView = CalendarPopVC()
+    
+   
     
     
     
@@ -57,6 +61,7 @@ class EditVC: BaseViewControllers {
         dropDownSex.didSelect{(selectedText , index , id) in
             //
         }
+        dropDownSex.checkMarkEnabled = false
         dropDownSex.text = arrSex[0]
         
         btnSave.layer.cornerRadius = 25
@@ -64,11 +69,33 @@ class EditVC: BaseViewControllers {
         tfName.delegate = self
         tfMail.delegate = self
         tfPhone.delegate = self
-        tfBirthday.delegate = self
+        
+        changeLeftButton(image: #imageLiteral(resourceName: "back"))
+        
     }
+    
+    @IBAction func clickCalendar(_ sender: Any) {
+        
+        calendarView.delegate = self
+        view.addSubview(self.calendarView.view)
+    }
+    
+    
     
     @IBAction func clickSave(_ sender: Any) {
         
+        
+        if tfMail.isValidEmail(){
+            print("is mail")
+        }
+        else{
+            print("not mail")
+        }
+        
+    }
+    
+    override func clickLeftBtn() {
+        self.popVc()
     }
     
     @objc func clickImage(){
@@ -135,19 +162,21 @@ extension EditVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate
     
 }
 
+extension EditVC:ActionPickerDelegate{
+    func didTapOk(value:String) {
+        lbBirthday.text = value
+        calendarView.view.removeFromSuperview()
+    }
+    
+    func didTapCancel() {
+        calendarView.view.removeFromSuperview()
+    }
+    
+    
+    
+
+}
 extension EditVC:UITextFieldDelegate{
     
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        let rect = scrollView.contentOffset
-//        
-//        if scrollView.contentSize.height >= rect.y{
-//            self.scrollView.setContentOffset(CGPoint(x: rect.x, y: rect.y), animated: true)
-//        }
-//        else{
-//            self.scrollView.setContentOffset(CGPoint(x: rect.x, y: rect.y + 100), animated: true)
-//        }
-//        
-//        return true
-//    }
-
+    
 }

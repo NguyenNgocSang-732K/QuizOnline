@@ -13,10 +13,12 @@ class PopupVC: BaseViewControllers {
     @IBOutlet weak var btnNo: UIButton!
     @IBOutlet weak var viewPopUp: UIView!
     
-    var exam:ExamBase?
+    var questions:[Question]?
+    var time:Int?
     
-    init(exam:ExamBase?) {
-        self.exam = exam
+    init(questions:[Question]?, time:Int?) {
+        self.questions = questions
+        self.time = time
         super.init(nibName: "PopupVC", bundle: nil)
     }
     
@@ -37,7 +39,7 @@ class PopupVC: BaseViewControllers {
     }
     
     deinit {
-        exam = nil
+        questions = nil
     }
 
     
@@ -56,12 +58,18 @@ class PopupVC: BaseViewControllers {
     
     @IBAction func clickYes(_ sender: Any) {
         
-        let examVC = ExamTestVC(exam: exam)
+        if let questions = questions{
+            let examVC = ExamTestVC(questions: questions, time:time)
+            let navRoot = UINavigationController(rootViewController: examVC)
+            navRoot.modalPresentationStyle = .fullScreen
+            self.present(navRoot, animated: true, completion: nil)
+        }
+        else{
+            self.dismiss(animated: true, completion: nil)
+        }
         
         
-        let navRoot = UINavigationController(rootViewController: examVC)
-        navRoot.modalPresentationStyle = .fullScreen
-        self.present(navRoot, animated: true, completion: nil)
+       
         
     }
 }

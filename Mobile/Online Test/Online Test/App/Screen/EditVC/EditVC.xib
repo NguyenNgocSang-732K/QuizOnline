@@ -14,8 +14,8 @@
                 <outlet property="btnSave" destination="VWw-iR-WtU" id="t7u-6N-bo0"/>
                 <outlet property="dropDownSex" destination="xOk-vp-moU" id="Oki-GG-6sa"/>
                 <outlet property="imvProfile" destination="Pzm-PC-lpr" id="IqR-Nu-tfB"/>
+                <outlet property="lbBirthday" destination="ANk-PU-4kP" id="zMx-wp-Fl1"/>
                 <outlet property="scrollView" destination="VSG-rU-1RJ" id="Uu6-z3-vJW"/>
-                <outlet property="tfBirthday" destination="BKx-Tn-oBc" id="QoX-r4-2fi"/>
                 <outlet property="tfMail" destination="FGt-TY-852" id="oLV-xo-bI5"/>
                 <outlet property="tfName" destination="xFQ-zB-QxX" id="iEO-WP-6Ay"/>
                 <outlet property="tfPhone" destination="6tj-pw-Kzf" id="bjY-Zp-stM"/>
@@ -120,10 +120,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Nam" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xOk-vp-moU" customClass="DropDown" customModule="Online_Test" customModuleProvider="target">
-                                            <rect key="frame" x="263" y="10" width="90" height="40"/>
+                                            <rect key="frame" x="233" y="10" width="120" height="40"/>
                                             <color key="backgroundColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="90" id="AV5-ub-xNi"/>
+                                                <constraint firstAttribute="width" constant="120" id="AV5-ub-xNi"/>
                                                 <constraint firstAttribute="height" constant="40" id="u5x-1u-Zv6"/>
                                             </constraints>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -151,14 +151,14 @@
                                             <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Le Dinh Thiet" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6tj-pw-Kzf">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0981667604" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6tj-pw-Kzf">
                                             <rect key="frame" x="113.5" y="10" width="239.5" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="9Of-id-nyr"/>
                                             </constraints>
                                             <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.87843137250000003" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -182,14 +182,14 @@
                                             <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Le Dinh Thiet" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGt-TY-852">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="thiettut@gmail.com" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FGt-TY-852">
                                             <rect key="frame" x="61" y="10" width="292" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="iwX-ay-w0x"/>
                                             </constraints>
                                             <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.87843137250000003" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,23 +213,34 @@
                                             <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Le Dinh Thiet" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BKx-Tn-oBc">
-                                            <rect key="frame" x="94" y="10" width="259" height="40"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="caW-lF-Sye">
+                                            <rect key="frame" x="251" y="10" width="102" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-PU-4kP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8a-GM-4CI">
+                                                    <rect key="frame" x="70" y="0.0" width="32" height="40"/>
+                                                    <state key="normal" image="calendar"/>
+                                                    <connections>
+                                                        <action selector="clickCalendar:" destination="-1" eventType="touchUpInside" id="Igd-iU-BTb"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="JUj-aF-FVr"/>
+                                                <constraint firstAttribute="height" constant="40" id="y5K-ZM-Wgg"/>
                                             </constraints>
-                                            <color key="textColor" red="0.1529411765" green="0.40000000000000002" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.82745098039999998" green="0.87843137250000003" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="BKx-Tn-oBc" secondAttribute="trailing" constant="20" id="8nd-BI-VTg"/>
-                                        <constraint firstItem="BKx-Tn-oBc" firstAttribute="leading" secondItem="dTd-gu-NUz" secondAttribute="trailing" constant="10" id="EpY-f2-Suk"/>
                                         <constraint firstItem="dTd-gu-NUz" firstAttribute="leading" secondItem="EYH-8C-cPF" secondAttribute="leading" constant="10" id="VgO-NZ-vsJ"/>
                                         <constraint firstItem="dTd-gu-NUz" firstAttribute="centerY" secondItem="EYH-8C-cPF" secondAttribute="centerY" id="fc8-jQ-9w4"/>
-                                        <constraint firstItem="BKx-Tn-oBc" firstAttribute="centerY" secondItem="EYH-8C-cPF" secondAttribute="centerY" id="szB-A5-Stm"/>
+                                        <constraint firstItem="caW-lF-Sye" firstAttribute="centerY" secondItem="EYH-8C-cPF" secondAttribute="centerY" id="p6r-Cb-SRr"/>
+                                        <constraint firstAttribute="trailing" secondItem="caW-lF-Sye" secondAttribute="trailing" constant="20" id="tt1-1L-Thh"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWw-iR-WtU">
@@ -299,6 +310,7 @@
         </view>
     </objects>
     <resources>
+        <image name="calendar" width="32" height="32"/>
         <image name="edit" width="20.5" height="20.5"/>
         <image name="ks" width="1024" height="768"/>
     </resources>

@@ -11,18 +11,18 @@ class ExamTestVC: BaseViewControllers {
 
     @IBOutlet weak var clv: UICollectionView!
     
+    var time:Int?
+    var questions:[Question]?
     
-    var exam:ExamBase?
-    
-    init(exam:ExamBase?) {
-        self.exam = exam
+    init(questions:[Question]?, time:Int?) {
+        self.time = time
+        self.questions = questions
         super.init(nibName: "ExamTestVC", bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    var counter = 5
     
     var index = 0{
         didSet{
@@ -30,7 +30,7 @@ class ExamTestVC: BaseViewControllers {
                 self.hideLeftBtn()
                 changeRightButton(title: nil, image: #imageLiteral(resourceName: "next"))
             }else{
-                guard let exams = exam?.questionExam else {
+                guard let exams = questions else {
                     return
                 }
                 self.changeLeftButton(image: #imageLiteral(resourceName: "pre"))
@@ -66,7 +66,7 @@ class ExamTestVC: BaseViewControllers {
         clv.dataSource = self
         clv.register(UINib(nibName: "CellExamTest", bundle: nil), forCellWithReuseIdentifier: CellExamTest.description())
         
-        navigationItem.title = "30:00"
+        navigationItem.title = "\(time ?? 0)"
         self.hideLeftBtn()
         changeRightButton(title: nil, image: #imageLiteral(resourceName: "next"))
         
@@ -107,11 +107,16 @@ class ExamTestVC: BaseViewControllers {
     
     @objc func updateCounter() {
         
-        if counter > 0 {
-            counter -= 1
-            navigationItem.title = "\(counter)"
+        
+        guard var time = time else {
+            return
         }
-        if counter == 0{
+        
+        if time > 0 {
+            time -= 1
+            navigationItem.title = "\(time)"
+        }
+        if time == 0{
             timer?.invalidate()
             timer = nil
             let resultVC = ResultVC()
@@ -139,7 +144,7 @@ class ExamTestVC: BaseViewControllers {
         
         index += 1
         
-        guard let arr = exam?.questionExam else {
+        guard let arr = questions else {
             return
         }
         
@@ -157,7 +162,7 @@ class ExamTestVC: BaseViewControllers {
 }
 extension ExamTestVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return exam?.questionExam?.count ?? 0
+        return questions?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -165,9 +170,9 @@ extension ExamTestVC:UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         let cell = clv.dequeueReusableCell(withReuseIdentifier: CellExamTest.description(), for: indexPath) as! CellExamTest
         
-        let exam_1 = exam?.questionExam?[indexPath.item]
+        let question = questions?[indexPath.item]
         
-        cell.exam_1 = exam_1
+        cell.question = question
         
         
         return cell

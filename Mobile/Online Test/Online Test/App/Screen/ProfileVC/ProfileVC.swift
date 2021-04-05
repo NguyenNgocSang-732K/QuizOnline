@@ -92,7 +92,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource{
                 return 120
             }
         default:
-            return 64
+            return 80
         }
     }
     

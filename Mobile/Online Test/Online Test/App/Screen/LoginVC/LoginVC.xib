@@ -47,12 +47,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="nIh-xo-1Jz"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YJE-8W-O3i">
-                                            <rect key="frame" x="52" y="31" width="267" height="40"/>
+                                            <rect key="frame" x="47" y="28.5" width="272" height="40"/>
                                             <color key="backgroundColor" red="0.82745098039215681" green="0.8784313725490196" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="tintColor" red="0.15294117647058825" green="0.40000000000000002" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -63,10 +63,10 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userLogin" translatesAutoresizingMaskIntoConstraints="NO" id="aAl-qx-syW">
-                                            <rect key="frame" x="12" y="36" width="30" height="30"/>
+                                            <rect key="frame" x="12" y="36" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="aAl-qx-syW" secondAttribute="height" id="17f-Do-JMZ"/>
-                                                <constraint firstAttribute="width" constant="30" id="9L0-aI-Jfq"/>
+                                                <constraint firstAttribute="width" constant="25" id="9L0-aI-Jfq"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -91,12 +91,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="MLz-eP-MZc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tCV-VW-cqn">
-                                            <rect key="frame" x="52" y="31" width="267" height="40"/>
+                                            <rect key="frame" x="47" y="28.5" width="272" height="40"/>
                                             <color key="backgroundColor" red="0.82745098039999998" green="0.87843137250000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="td1-hC-pg6"/>
@@ -106,9 +106,9 @@
                                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         </textField>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="key" translatesAutoresizingMaskIntoConstraints="NO" id="TDj-gB-An5">
-                                            <rect key="frame" x="12" y="36" width="30" height="30"/>
+                                            <rect key="frame" x="12" y="36" width="25" height="25"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="CjZ-TR-MZN"/>
+                                                <constraint firstAttribute="width" constant="25" id="CjZ-TR-MZN"/>
                                                 <constraint firstAttribute="width" secondItem="TDj-gB-An5" secondAttribute="height" id="RtU-Op-CA8"/>
                                             </constraints>
                                         </imageView>
