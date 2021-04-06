@@ -187,7 +187,7 @@
 <script
         src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
 <script
-        src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
+        src="${pageContext.request.contextPath}/resources/common/js/pagination.js"></script>
 
 <!-- Material Design Components  -->
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>

@@ -29,4 +29,10 @@ public class ManageQuestionController extends AdminBaseController {
         modelmap.put("searchText", searchText);
         return "admin/IndexQuestion";
     }
+
+    @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
+    public String edit(ModelMap modelMap, @PathVariable("id") int id) {
+
+        return "admin/EditQuestion";
+    }
 }

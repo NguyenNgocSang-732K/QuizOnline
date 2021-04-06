@@ -1,10 +1,11 @@
-/*.page-title-underline {*/
-/*    width: 100%;*/
-/*    height: 1px;*/
-/*}*/
+@import "static/common/css/constant.css";
 
-#filter-wrapper{
-    border-top: 1px solid black;
+.page-title-underline {
+    border-top: 1px solid var(--border-color);
+}
+
+/*Index Question Page*/
+#filter-wrapper {
     padding-top: 2%;
 }
 
@@ -14,4 +15,28 @@
 
 .pagination-wrapper {
     float: right;
+}
+
+/*Edit Question Page*/
+#edit-question-wrapper {
+    padding-top: 2%;
+}
+
+#edit-question-wrapper .wrapper-content .dp-row {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+#edit-question-wrapper .wrapper-content .dp-row .input-title{
+    margin-left: 2%;
+    width: 20%;
+
+}
+
+#edit-question-wrapper .wrapper-content .dp-row .input-value{
+    margin-left: 2%;
+    width: 50%;
 }
