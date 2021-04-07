@@ -2,6 +2,7 @@
 <%@ attribute name="title" type="java.lang.String" required="true"
 	rtexprvalue="true"%>
 <%@ attribute name="content" fragment="true"%>
+<%@ taglib prefix="auth" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
