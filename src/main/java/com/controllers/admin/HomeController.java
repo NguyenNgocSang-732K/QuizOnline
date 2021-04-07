@@ -1,6 +1,7 @@
 package com.controllers.admin;
 
 import com.model.entityModels.AccountLoginModel;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +12,7 @@ public class HomeController extends AdminBaseController {
 
     @RequestMapping(value = {"login"}, method = RequestMethod.GET)
     public String Login(ModelMap modelMap) {
-        if (Current_User != null && Current_User.getId() > 0) {
-            return "redirect:/admin/dashboard";
-        }
+
 //        --Pass admin
 //		String pw_hash = BCrypt.hashpw("123", BCrypt.gensalt());
 //		System.out.println(pw_hash);
