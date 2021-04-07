@@ -3,6 +3,8 @@ package com.controllers.admin;
 import com.model.entities.Account;
 import com.model.entityModels.*;
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,13 @@ public class AdminBaseController {
 
 	protected @Autowired IAccountService iAccountService;
 
-	protected Account Current_Account;
+	protected static Account Current_Account;
 
-	protected CurrentUserProfile Current_User;
+	protected static CurrentUserProfile Current_User;
+
+	protected static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+	protected static String RootPathImage;
 
 	protected String View(String viewName, ModelMap map) {
 		map.put("currentUser", Current_User);

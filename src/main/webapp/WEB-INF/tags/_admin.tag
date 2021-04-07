@@ -82,11 +82,12 @@
 						src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
 						alt="Avatar" class="rounded-circle" width="40"></a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="instructor-account-edit.html">
+						<a class="dropdown-item"
+							href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
 							<i class="material-icons">edit</i> Profile
 						</a> <a class="dropdown-item" href="instructor-profile.html"> <i
 							class="material-icons">person</i> Profile Details
-						</a> <a class="dropdown-item" href="guest-login.html"> <i
+						</a> </a> <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/logout"> <i
 							class="material-icons">lock</i> Logout
 						</a>
 					</div></li>
