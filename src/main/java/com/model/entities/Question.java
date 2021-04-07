@@ -38,17 +38,8 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
-	public Question(Level level, String content, String image, Date createdDate, int createdBy, int status) {
-		this.level = level;
-		this.content = content;
-		this.image = image;
-		this.createdDate = createdDate;
-		this.createdBy = createdBy;
-		this.status = status;
-	}
-
-	public Question(Level level, String content, Integer answerType, String image, Date createdDate, int createdBy,
-			int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
+	public Question(Integer id, Level level, String content, Integer answerType, String image, Date createdDate, int createdBy, int status) {
+		this.id = id;
 		this.level = level;
 		this.content = content;
 		this.answerType = answerType;
@@ -56,8 +47,6 @@ public class Question implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
-		this.answers = answers;
-		this.examQuestions = examQuestions;
 	}
 
 	@Id

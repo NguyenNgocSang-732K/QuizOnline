@@ -14,7 +14,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
-		String prefix_admin = "/account/admin/";
+		String prefix_admin = "/admin/";
 		String prefix_user = "/account/user/";
 		http.authorizeRequests().antMatchers(prefix_admin+"login").anonymous()
 				.antMatchers("/admin/**").permitAll()
@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 			    .passwordParameter("password")
 				.loginProcessingUrl("/securitylogin")
-				.defaultSuccessUrl("/admin/dashboard")
+				.defaultSuccessUrl("/admin/setAuthentication")
 				.failureUrl("/admin/login?error=401")
 				.and()
 				.logout()
