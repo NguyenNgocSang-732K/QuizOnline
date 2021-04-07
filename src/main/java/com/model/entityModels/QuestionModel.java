@@ -1,6 +1,7 @@
 package com.model.entityModels;
 
 import java.util.Date;
+import java.util.List;
 
 public class QuestionModel {
     private Integer id;
@@ -11,8 +12,11 @@ public class QuestionModel {
     private int createdBy;
     private int status;
     private LevelModel levelModel;
+    private List<AnswerModel> answerModels;
 
-    public QuestionModel(Integer id, String content, Integer answerType, String image, Date createdDate, int createdBy, int status, LevelModel levelModel) {
+    public QuestionModel(Integer id, String content, Integer answerType,
+                         String image, Date createdDate, int createdBy, int status,
+                         LevelModel levelModel, List<AnswerModel> answerModels) {
         this.id = id;
         this.content = content;
         this.answerType = answerType;
@@ -21,9 +25,18 @@ public class QuestionModel {
         this.createdBy = createdBy;
         this.status = status;
         this.levelModel = levelModel;
+        this.answerModels = answerModels;
     }
 
     public QuestionModel() {
+    }
+
+    public List<AnswerModel> getAnswerModels() {
+        return answerModels;
+    }
+
+    public void setAnswerModels(List<AnswerModel> answerModels) {
+        this.answerModels = answerModels;
     }
 
     public Integer getId() {
@@ -42,6 +55,22 @@ public class QuestionModel {
         this.content = content;
     }
 
+    public Integer getAnswerType() {
+        return answerType;
+    }
+
+    public void setAnswerType(Integer answerType) {
+        this.answerType = answerType;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -50,11 +79,27 @@ public class QuestionModel {
         this.createdDate = createdDate;
     }
 
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public int getStatus() {
         return status;
     }
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public LevelModel getLevelModel() {
+        return levelModel;
+    }
+
+    public void setLevelModel(LevelModel levelModel) {
+        this.levelModel = levelModel;
     }
 }
