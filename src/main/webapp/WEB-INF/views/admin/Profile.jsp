@@ -26,19 +26,21 @@
                         </ul>
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first">
-                               <s-form:form
+                                    <%--@elvariable id="profile" type="za.co.myProject.UserFormObject"--%>
+                                <s-form:form
 								action="${pageContext.request.contextPath }/admin/profile"
 								class="form-horizontal" method="POST" modelAttribute="profile" enctype="multipart/form-data">
 								<s-form:hidden path="id" />
                                     <div class="form-group row">
-                                        <label for="avatar"
+                                        <label for="file_upload"
 										class="col-sm-3 col-form-label">Avatar</label>
                                         <div class="col-sm-9">
                                             <div class="media">
                                                 <div class="media-left">
                                                     <div
 													class="icon-block rounded display-image"
-													style="background-image: url(${pageContext.request.contextPath}/images/account/dui.jpg);">
+													style="background-image:
+                                                            url(${pageContext.request.contextPath}/images/LearnPlus.png);">
                                                         <i
 														class="material-icons text-muted-light md-36">photo</i>
                                                     </div>
@@ -56,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="fullname"
 										class="col-sm-3 col-form-label">Name</label>
                                         <div class="col-md-6">
                                             <div class="row">
