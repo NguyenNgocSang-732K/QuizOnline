@@ -25,19 +25,27 @@
 	href="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.css"
 	rel="stylesheet">
 
-<!-- Material Design Icons  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous">
 
-<!-- Roboto Web Font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
-	rel="stylesheet">
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-<!-- MDK -->
-<link type="text/css"
-	href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
-	rel="stylesheet">
+    <!-- Material Design Components  -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+
+    <!-- Roboto Web Font -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
+            rel="stylesheet">
+
+    <!-- MDK -->
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
+          rel="stylesheet">
 
 <!-- Sidebar Collapse -->
 <link type="text/css"
@@ -49,30 +57,29 @@
 	href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css"
 	rel="stylesheet">
 
-
-
-
-
+<%--    Simple Pagination--%>
+    <link href="${pageContext.request.contextPath}/resources/admin/assets/css/simplePagination.css"
+          rel="stylesheet">
 </head>
 
 <body>
 
-	<div class="d-flex flex-column h-100">
-		<!-- Navbar -->
-		<nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+<div class="d-flex flex-column h-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
 
-			<!-- Toggle sidebar -->
-			<button class="navbar-toggler d-block" data-toggle="sidebar"
-				type="button">
-				<span class="material-icons">menu</span>
-			</button>
+        <!-- Toggle sidebar -->
+        <button class="navbar-toggler d-block" data-toggle="sidebar"
+                type="button">
+            <span class="material-icons">menu</span>
+        </button>
 
-			<!-- Brand -->
-			<a href="${pageContext.request.contextPath}/dashboard/index"
-				class="navbar-brand"><i class="material-icons">school</i>
-				LearnPlus</a>
+        <!-- Brand -->
+        <a href="${pageContext.request.contextPath}/dashboard/index"
+           class="navbar-brand"><i class="material-icons">school</i>
+            LearnPlus</a>
 
-			<div class="navbar-spacer"></div>
+        <div class="navbar-spacer"></div>
 
 			<!-- Menu -->
 			<ul class="nav navbar-nav">
@@ -97,85 +104,91 @@
 		</nav>
 		<!-- // END Navbar -->
 
-		<div class="mdk-drawer-layout js-mdk-drawer-layout flex"
-			data-fullbleed data-push data-has-scrolling-region>
-			<div
-				class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-				<jsp:invoke fragment="content"></jsp:invoke>
-			</div>
-			<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
-				<div class="mdk-drawer__content ">
-					<div
-						class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
-						<div class="sidebar-p-y" data-simplebar
-							data-simplebar-force-enabled="true">
-							<div class="sidebar-heading">APPLICATIONS</div>
-							<ul class="sidebar-menu">
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-dashboard.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
-										Instructor
-								</a></li>
-							</ul>
-							<div class="sidebar-heading">Management</div>
-							<ul class="sidebar-menu">
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-statement.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
-										Students
-								</a></li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-courses.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
-										Courses
-								</a></li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-quizzes.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-										Questions
-								</a></li>
-							</ul>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout flex"
+         data-fullbleed data-push data-has-scrolling-region>
+        <div
+                class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+            <jsp:invoke fragment="content"></jsp:invoke>
+        </div>
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+            <div class="mdk-drawer__content ">
+                <div
+                        class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
+                    <div class="sidebar-p-y" data-simplebar
+                         data-simplebar-force-enabled="true">
+                        <div class="sidebar-heading">APPLICATIONS</div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button" href="instructor-dashboard.html">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
+                                Instructor
+                            </a></li>
+                        </ul>
+                        <div class="sidebar-heading">Management</div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button" href="instructor-statement.html">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
+                                Students
+                            </a></li>
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button" href="instructor-courses.html">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
+                                Courses
+                            </a></li>
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button"
+                                    href="${pageContext.request.contextPath}/admin/questions">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+                                Questions
+                            </a></li>
+                        </ul>
 
-						</div>
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		</div>
-	</div>
+    </div>
+</div>
 
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
+<!-- jQuery -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
 
-	<!-- Bootstrap -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/popper.min.js"></script>
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/bootstrap.min.js"></script>
 
-	<!-- Simplebar -->
-	<!-- Used for adding a custom scrollbar to the drawer -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.js"></script>
+<!-- Simplebar -->
+<!-- Used for adding a custom scrollbar to the drawer -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.js"></script>
 
-	<!-- MDK -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/dom-factory.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.js"></script>
+<!-- MDK -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/dom-factory.js"></script>
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.js"></script>
 
-	<!-- Sidebar Collapse -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.js"></script>
+<!-- Sidebar Collapse -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.js"></script>
+<!-- Simple Pagination  -->
+<script src="${pageContext.request.contextPath}/resources/admin/assets/js/simplePagination.js"></script>
+</body>
 
-	<!-- App JS -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
+<!-- App JS -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
+<script
+        src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
 
 </body>
 
