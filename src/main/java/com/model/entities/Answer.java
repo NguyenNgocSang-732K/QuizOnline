@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 1, 2021, 9:46:29 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class Answer implements java.io.Serializable {
 	private Integer id;
 	private Question question;
 	private String content;
-	private int iscorrect;
+	private boolean iscorrect;
 	private Date createdDate;
 	private int createdBy;
 	private int status;
@@ -36,7 +36,7 @@ public class Answer implements java.io.Serializable {
 	public Answer() {
 	}
 
-	public Answer(Question question, String content, int iscorrect, Date createdDate, int createdBy, int status) {
+	public Answer(Question question, String content, boolean iscorrect, Date createdDate, int createdBy, int status) {
 		this.question = question;
 		this.content = content;
 		this.iscorrect = iscorrect;
@@ -45,7 +45,7 @@ public class Answer implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Answer(Question question, String content, int iscorrect, Date createdDate, int createdBy, int status,
+	public Answer(Question question, String content, boolean iscorrect, Date createdDate, int createdBy, int status,
 			Set<StudentAnswer> studentAnswers) {
 		this.question = question;
 		this.content = content;
@@ -88,11 +88,11 @@ public class Answer implements java.io.Serializable {
 	}
 
 	@Column(name = "iscorrect", nullable = false)
-	public int getIscorrect() {
+	public boolean isIscorrect() {
 		return this.iscorrect;
 	}
 
-	public void setIscorrect(int iscorrect) {
+	public void setIscorrect(boolean iscorrect) {
 		this.iscorrect = iscorrect;
 	}
 

@@ -12,6 +12,14 @@
 #filter-wrapper .filter-category {
     text-align: right;
 }
+#table-wrapper > div > div > div > table > tbody > tr > td{
+    width: auto;
+}
+#table-wrapper > div > div > div > table > tbody > tr > td:nth-child(1){
+    width: 50%;
+}
+
+
 
 .pagination-wrapper {
     float: right;
@@ -22,21 +30,14 @@
     padding-top: 2%;
 }
 
-#edit-question-wrapper .wrapper-content .dp-row {
-    width: 100%;
+#edit-question-wrapper .dp-row{
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2%;
-}
-
-#edit-question-wrapper .wrapper-content .dp-row .input-title{
-    margin-left: 2%;
-    width: 20%;
+    width: 100%;
+    margin-top: 2%;
 
 }
 
-#edit-question-wrapper .wrapper-content .dp-row .input-value{
-    margin-left: 2%;
-    width: 50%;
+#edit-question-wrapper .dp-row .input-title{
+    width: 30%;
+    text-align: left;
 }

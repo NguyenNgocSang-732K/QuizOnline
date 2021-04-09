@@ -29,6 +29,9 @@ function searchPaginationWithButton(btnSearch, searchText) {
 }
 
 $(document).ready(function () {
-    pagination($('#pagination'), data, itemsOnPage, currentPage, $("#searchText"))
+    if (typeof (data) !== "undefined" && typeof (itemsOnPage) !== "undefined" && typeof (currentPage) !== "undefined") {
+        pagination($('#pagination'), data, itemsOnPage, currentPage, $("#searchText"))
+    }
+
     searchPaginationWithButton($('.btnSearchQuestion'), $("#searchText"))
 })

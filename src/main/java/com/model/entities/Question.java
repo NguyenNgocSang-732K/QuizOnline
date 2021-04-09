@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 1, 2021, 9:46:29 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -38,8 +38,16 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
-	public Question(Integer id, Level level, String content, Integer answerType, String image, Date createdDate, int createdBy, int status) {
-		this.id = id;
+	public Question(Level level, String content, Date createdDate, int createdBy, int status) {
+		this.level = level;
+		this.content = content;
+		this.createdDate = createdDate;
+		this.createdBy = createdBy;
+		this.status = status;
+	}
+
+	public Question(Level level, String content, Integer answerType, String image, Date createdDate, int createdBy,
+			int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
 		this.level = level;
 		this.content = content;
 		this.answerType = answerType;
@@ -47,6 +55,8 @@ public class Question implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
+		this.answers = answers;
+		this.examQuestions = examQuestions;
 	}
 
 	@Id
@@ -89,7 +99,7 @@ public class Question implements java.io.Serializable {
 		this.answerType = answerType;
 	}
 
-	@Column(name = "image", nullable = false, length = 100)
+	@Column(name = "image", length = 100)
 	public String getImage() {
 		return this.image;
 	}

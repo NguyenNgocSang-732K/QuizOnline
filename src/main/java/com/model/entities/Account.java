@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 1, 2021, 9:46:29 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -25,6 +25,8 @@ public class Account implements java.io.Serializable {
 	private Integer id;
 	private String username;
 	private String password;
+	private String fullname;
+	private String photo;
 	private String email;
 	private String phone;
 	private String address;
@@ -40,10 +42,11 @@ public class Account implements java.io.Serializable {
 	public Account() {
 	}
 
-	public Account(String username, String password, String email, String phone, int isActive, int accountType,
-			Date createdDate, int createdBy, int status) {
+	public Account(String username, String password, String fullname, String email, String phone, int isActive,
+			int accountType, Date createdDate, int createdBy, int status) {
 		this.username = username;
 		this.password = password;
+		this.fullname = fullname;
 		this.email = email;
 		this.phone = phone;
 		this.isActive = isActive;
@@ -53,11 +56,13 @@ public class Account implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Account(String username, String password, String email, String phone, String address, int isActive,
-			String otp, int accountType, Date createdDate, int createdBy, int status, Set<AccountExam> accountExams,
-			Set<StudentAnswer> studentAnswers) {
+	public Account(String username, String password, String fullname, String photo, String email, String phone,
+			String address, int isActive, String otp, int accountType, Date createdDate, int createdBy, int status,
+			Set<AccountExam> accountExams, Set<StudentAnswer> studentAnswers) {
 		this.username = username;
 		this.password = password;
+		this.fullname = fullname;
+		this.photo = photo;
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
@@ -99,6 +104,24 @@ public class Account implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Column(name = "fullname", nullable = false, length = 250)
+	public String getFullname() {
+		return this.fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	@Column(name = "photo", length = 250)
+	public String getPhoto() {
+		return this.photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	@Column(name = "email", nullable = false, length = 250)

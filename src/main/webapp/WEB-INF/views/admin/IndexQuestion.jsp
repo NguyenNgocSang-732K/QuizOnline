@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-1">
                         <button type="button"
-                                class="btn btn-primary btnSearchQuestion"><span
+                                class="btn btn-primary" id="btnSearchQuestion"><span
                                 class="material-icons">search</span>
                         </button>
                     </div>

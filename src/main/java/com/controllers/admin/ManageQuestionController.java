@@ -1,8 +1,7 @@
 package com.controllers.admin;
 
 import com.constant.GeneralTypeEnum;
-import com.model.entityModels.PaginationModel;
-import com.model.entityModels.QuestionModel;
+import com.services.ILevelService;
 import com.services.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +16,13 @@ public class ManageQuestionController extends AdminBaseController {
 
     private @Autowired
     IQuestionService _questionService;
+    private @Autowired
+    ILevelService _levelService;
 
     @RequestMapping(value = {"questions"}, method = RequestMethod.GET)
-    public String Index(ModelMap modelmap,
-                        @RequestParam(required = false, defaultValue = "1") String page,
-                        @RequestParam(required = false, defaultValue = "") String searchText) {
+    public String IndexQuestion(ModelMap modelmap,
+                                @RequestParam(required = false, defaultValue = "1") String page,
+                                @RequestParam(required = false, defaultValue = "") String searchText) {
 
         modelmap.put("questionModels", _questionService.GetAll(Integer.parseInt(page),
                 GeneralTypeEnum.PAGESIZE,
@@ -31,8 +32,9 @@ public class ManageQuestionController extends AdminBaseController {
     }
 
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
-    public String edit(ModelMap modelMap, @PathVariable("id") int id) {
-
+    public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id) {
+        modelMap.put("question", _questionService.findById(id));
+        modelMap.put("levels", _levelService.GetAll());
         return "admin/EditQuestion";
     }
 }
