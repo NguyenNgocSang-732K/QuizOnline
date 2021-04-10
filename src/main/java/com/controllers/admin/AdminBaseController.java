@@ -1,5 +1,6 @@
 package com.controllers.admin;
 
+import com.constant.AuthenManager;
 import com.model.entities.Account;
 import com.model.entityModels.*;
 
@@ -18,16 +19,12 @@ public class AdminBaseController {
 
 	protected @Autowired IAccountService iAccountService;
 
-	protected static Account Current_Account;
-
-	protected static CurrentUserProfile Current_User;
-
 	protected static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	protected static String RootPathImage;
 
 	protected String View(String viewName, ModelMap map) {
-		map.put("currentUser", Current_User);
+		map.put("currentUser", AuthenManager.Current_User);
 		return "admin/" + viewName;
 	}
 

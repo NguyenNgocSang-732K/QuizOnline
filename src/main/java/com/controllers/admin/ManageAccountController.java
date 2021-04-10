@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.constant.AccountTypeEnum;
+import com.constant.AuthenManager;
 import com.helper.ImageHelper;
 import com.model.entities.Account;
 
@@ -20,7 +21,7 @@ public class ManageAccountController extends AdminBaseController {
 
 	@RequestMapping(value = { "profile/{id}" }, method = RequestMethod.GET)
 	public String Profile(@PathVariable("id") int id, ModelMap modelMap) {
-		System.out.println(Current_User.getEmail());
+		System.out.println(AuthenManager.Current_User.getEmail());
 		Account account = iAccountService.FindById(id);
 		if (account != null) {
 			modelMap.put("profile", account);

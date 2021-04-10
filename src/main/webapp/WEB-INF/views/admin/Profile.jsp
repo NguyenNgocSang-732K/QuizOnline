@@ -40,7 +40,7 @@
                                                     <div
 													class="icon-block rounded display-image"
 													style="background-image:
-                                                            url(${pageContext.request.contextPath}/images/LearnPlus.png);">
+                                                            url(${pageContext.request.contextPath}/images/${profile.photo} });">
                                                         <i
 														class="material-icons text-muted-light md-36">photo</i>
                                                     </div>
