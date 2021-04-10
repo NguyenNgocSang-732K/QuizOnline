@@ -7,7 +7,8 @@
 
 <template:_admin title="Manage Account">
 	<jsp:attribute name="content">
-		<div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+		<div
+			class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
                 <div class="container-fluid">
 
                     <ol class="breadcrumb">
@@ -25,15 +26,21 @@
                         </ul>
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first">
-                                <form action="#" class="form-horizontal">
+                                    <%--@elvariable id="profile" type="za.co.myProject.UserFormObject"--%>
+                                <s-form:form
+								action="${pageContext.request.contextPath }/admin/profile"
+								class="form-horizontal" method="POST" modelAttribute="profile" enctype="multipart/form-data">
+								<s-form:hidden path="id" />
                                     <div class="form-group row">
-                                        <label for="avatar"
+                                        <label for="file_upload"
 										class="col-sm-3 col-form-label">Avatar</label>
                                         <div class="col-sm-9">
                                             <div class="media">
                                                 <div class="media-left">
                                                     <div
-													class="icon-block rounded">
+													class="icon-block rounded display-image"
+													style="background-image:
+                                                            url(${pageContext.request.contextPath}/images/${profile.photo} });">
                                                         <i
 														class="material-icons text-muted-light md-36">photo</i>
                                                     </div>
@@ -42,8 +49,7 @@
 												class="media-body media-middle">
                                                     <label
 													class="custom-file m-0">
-                                                        <input
-													type="file" id="file">
+                                                      <input type="file" id="file_upload" name="file_upload"/>
                                                         <span
 													class="custom-file-control"></span>
                                                     </label>
@@ -52,18 +58,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="name"
-										class="col-sm-3 col-form-label">Full Name</label>
-                                        <div class="col-sm-8">
+                                        <label for="fullname"
+										class="col-sm-3 col-form-label">Name</label>
+                                        <div class="col-md-6">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text"
-													class="form-control" placeholder="First Name"
-													value="Danial">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text"
-													class="form-control" placeholder="Last Name" value="Nguyen">
+                                                <div class="col-md-12">
+													<s-form:input path="fullname" cssClass="form-control"
+													placeholder="Name" />
                                                 </div>
                                             </div>
                                         </div>
@@ -74,18 +75,53 @@
                                         <div class="col-sm-6 col-md-6">
                                             <div class="input-group">
                                                 <span
-												class="input-group-addon" id="basic-addon1">
+												class="input-group-addon">
                                                     <i
 												class="material-icons md-18 text-muted">mail</i>
                                                 </span>
-                                                <input type="text"
-												class="form-control" placeholder="Email Address"
-												value="contact@mosaicpro.biz" disabled>
+                                                <s-form:input
+												path="email" cssClass="form-control"
+												placeholder="Email Address" />
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                     <div class="form-group row">
+                                        <label for="email"
+										class="col-sm-3 col-form-label">Phone</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="input-group">
+                                            <span
+												class="input-group-addon">
+                                                    <i
+												class="material-icons md-18 text-muted">phone_iphone</i>
+                                                </span>
+                                               <s-form:input
+												path="phone" cssClass="form-control"
+												placeholder="Phone Number" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                     <div class="form-group row">
+                                        <label for="email"
+										class="col-sm-3 col-form-label">Address</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="input-group">
+                                              <span
+												class="input-group-addon">
+                                                    <i
+												class="material-icons md-18 text-muted">home</i>
+                                                </span>
+                                               <s-form:input
+												path="address" cssClass="form-control" placeholder="Address" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
 
-                                    <div class="form-group row">
+                                   <!--  <div class="form-group row">
                                         <label for="password"
 										class="col-sm-3 col-form-label">Change Password</label>
                                         <div class="col-sm-6 col-md-4">
@@ -99,14 +135,14 @@
 												class="form-control" placeholder="Enter new password">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <div
 										class="col-sm-8 offset-sm-3">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="#"
-													class="btn btn-success">Save Changes</a>
+                                               <button type="submit"
+													class="btn btn-primary">Save Changes</button>    
                                                 </div>
                                                 <!-- <div class="media-body media-middle pl-1">
                                                     <label class="custom-control custom-checkbox m-0">
@@ -119,11 +155,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </s-form:form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>	
+            
+            
 	</jsp:attribute>
 </template:_admin>
+<script src="${pageContext.request.contextPath}/resources/admin/account/profile.js"></script>

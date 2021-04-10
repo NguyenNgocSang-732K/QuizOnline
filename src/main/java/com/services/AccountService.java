@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,6 @@ public class AccountService implements IAccountService {
 		return currentUser;
 	}
 
-	
 	@Override
 	public Account FindById(int id) {
 		// TODO Auto-generated method stub
@@ -55,5 +55,32 @@ public class AccountService implements IAccountService {
 			return null;
 		}
 		return account.get();
+	}
+
+	@Override
+	public Account Save(Account edit) {
+		// TODO Auto-generated method stub
+		Account account = null;
+		if (edit.getId() == 0) {
+			edit.setCreatedDate(new Date());
+			edit.setStatus(1);
+			account = edit;
+		} else {
+			account = accountRepository.findById(edit.getId()).get();
+			//--
+			account.setUsername(account.getUsername());
+			//--			
+			account.setAccountType(edit.getAccountType());
+			account.setAddress(edit.getAddress());
+			account.setCreatedBy(edit.getCreatedBy());
+			account.setEmail(edit.getEmail());
+			account.setFullname(edit.getFullname());
+			account.setIsActive(edit.getIsActive());
+			account.setPhone(edit.getPhone());
+			account.setPhoto(edit.getPhoto());
+			account.setStatus(edit.getStatus());
+		}
+
+		return accountRepository.save(account);
 	}
 }

@@ -11,9 +11,6 @@ public class HomeController extends AdminBaseController {
 
     @RequestMapping(value = {"login"}, method = RequestMethod.GET)
     public String Login(ModelMap modelMap) {
-        if (Current_User != null && Current_User.getId() > 0) {
-            return "redirect:/admin/dashboard";
-        }
 //        --Pass admin
 //		String pw_hash = BCrypt.hashpw("123", BCrypt.gensalt());
 //		System.out.println(pw_hash);
