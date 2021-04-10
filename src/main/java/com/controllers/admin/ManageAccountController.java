@@ -34,7 +34,7 @@ public class ManageAccountController extends AdminBaseController {
 	public String Profile(@ModelAttribute("profile") Account account, @RequestParam("file_upload") MultipartFile file,
 			ModelMap modelMap, HttpServletRequest request) {
 
-		String photo = ImageHelper.saveImage(request, file, RootPathImage+"account/");
+		String photo = ImageHelper.saveImage(request, file, "uploads/images/");
 		account.setPhoto(photo);
 		account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
 		iAccountService.Save(account);

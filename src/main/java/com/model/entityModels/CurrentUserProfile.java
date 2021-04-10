@@ -19,6 +19,8 @@ public class CurrentUserProfile implements UserDetails {
 
 	private String username;
 
+	private String photo;
+
 	private boolean status;
 
 	private boolean credentialsNonExpired;
@@ -35,8 +37,8 @@ public class CurrentUserProfile implements UserDetails {
 	}
 
 	public CurrentUserProfile(Collection<? extends GrantedAuthority> authorities, int id, String email, String phone,
-			String password, String username, Boolean status, boolean credentialsNonExpired, Boolean enabled,
-			Boolean accountNonExpired, Boolean accountNonLocked) {
+			String password, String username, String photo, boolean status, boolean credentialsNonExpired,
+			boolean enabled, boolean accountNonExpired, boolean accountNonLocked) {
 		super();
 		this.authorities = authorities;
 		this.id = id;
@@ -44,6 +46,7 @@ public class CurrentUserProfile implements UserDetails {
 		this.phone = phone;
 		this.password = password;
 		this.username = username;
+		this.photo = photo;
 		this.status = status;
 		this.credentialsNonExpired = credentialsNonExpired;
 		this.enabled = enabled;
@@ -92,6 +95,14 @@ public class CurrentUserProfile implements UserDetails {
 //		// TODO Auto-generated method stub
 //		return this.enabled;
 //	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public int getId() {
 		return id;

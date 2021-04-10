@@ -46,14 +46,15 @@ public class ImageHelper {
 //		}
 //	}
 
-	public static String saveImage(HttpServletRequest request, MultipartFile multipartFile, String rootPath) {
+	public static String saveImage(HttpServletRequest request, MultipartFile multipartFile, String path) {
 
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
 			String date = "_" + dateFormat.format(new Date()) + ".";
 			String[] names = multipartFile.getOriginalFilename().split("\\.");
 			String fileName = names[0] + date + names[1];
-			File fileSave = new File(rootPath + fileName);
+			String file =  request.getServletContext().getRealPath("/")+path+fileName;
+			File fileSave = new File(file);
 
 			try (OutputStream os = new FileOutputStream(fileSave)) {
 				os.write(multipartFile.getBytes());

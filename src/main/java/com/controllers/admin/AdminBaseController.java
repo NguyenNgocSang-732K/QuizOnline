@@ -21,8 +21,6 @@ public class AdminBaseController {
 
 	protected static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-	protected static String RootPathImage;
-
 	protected String View(String viewName, ModelMap map) {
 		map.put("currentUser", AuthenManager.Current_User);
 		return "admin/" + viewName;
