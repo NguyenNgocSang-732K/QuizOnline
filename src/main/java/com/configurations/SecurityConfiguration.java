@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable();
 		String prefix_admin = "/admin/";
 		String prefix_user = "/account/user/";
-		http.authorizeRequests().antMatchers(prefix_admin+"login").anonymous()
+		http.authorizeRequests()
 				.antMatchers("/admin/**").permitAll()
 				.and()
 				.formLogin()
@@ -24,13 +24,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 			    .passwordParameter("password")
 				.loginProcessingUrl("/securitylogin")
-				.defaultSuccessUrl("/admin/setAuthentication")
+				.defaultSuccessUrl("/admin/dashboard")
 				.failureUrl("/admin/login?error=401")
 				.and()
 				.logout()
 				.logoutUrl(prefix_admin+"logout")
-				.logoutSuccessUrl(prefix_admin+"login?logout").and()
-				.exceptionHandling().accessDeniedPage(prefix_admin+"accessdenied");
+				.logoutSuccessUrl(prefix_admin+"login?logout=success").and()
+				.exceptionHandling().accessDeniedPage(prefix_admin+"accs");
 	}
 
 	@Bean
