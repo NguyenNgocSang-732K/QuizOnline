@@ -5,7 +5,7 @@
 <%@ taglib prefix="s-form"
 	uri="http://www.springframework.org/tags/form"%>
 
-<template:_admin title="Manage Account">
+<template:_admin title="Profile">
 	<jsp:attribute name="content">
 		<div
 			class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
@@ -29,7 +29,8 @@
                                     <%--@elvariable id="profile" type="za.co.myProject.UserFormObject"--%>
                                 <s-form:form
 								action="${pageContext.request.contextPath }/admin/profile"
-								class="form-horizontal" method="POST" modelAttribute="profile" enctype="multipart/form-data">
+								class="form-horizontal" method="POST" modelAttribute="profile"
+								enctype="multipart/form-data">
 								<s-form:hidden path="id" />
                                     <div class="form-group row">
                                         <label for="file_upload"
@@ -40,16 +41,20 @@
                                                     <div
 													class="icon-block rounded display-image"
 													style="background-image:
-                                                            url(${pageContext.request.contextPath}/images/${profile.photo} });">
-                                                        <i
-														class="material-icons text-muted-light md-36">photo</i>
+                                                            url(${pageContext.request.contextPath}/images/${profile.photo}); background-size:cover;">
+                                                       <core:if
+														test="${empty profile.photo}">
+                                                       <i class="material-icons text-muted-light md-36">photo</i>
+                                                       </core:if>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div
 												class="media-body media-middle">
                                                     <label
 													class="custom-file m-0">
-                                                      <input type="file" id="file_upload" name="file_upload"/>
+                                                      <input type="file"
+													id="file_upload" name="file_upload" />
                                                         <span
 													class="custom-file-control"></span>
                                                     </label>
@@ -165,4 +170,5 @@
             
 	</jsp:attribute>
 </template:_admin>
-<script src="${pageContext.request.contextPath}/resources/admin/account/profile.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin/account/profile.js"></script>

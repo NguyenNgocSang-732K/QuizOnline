@@ -24,13 +24,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 			    .passwordParameter("password")
 				.loginProcessingUrl("/securitylogin")
-				.defaultSuccessUrl("/admin/dashboard")
-				.failureUrl("/admin/login?error=401")
+				.defaultSuccessUrl("/dashboard")
+				.failureUrl("/login?error=401")
 				.and()
 				.logout()
-				.logoutUrl(prefix_admin+"logout")
-				.logoutSuccessUrl(prefix_admin+"login?logout=success").and()
-				.exceptionHandling().accessDeniedPage(prefix_admin+"accs");
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login?logout=success").and()
+				.exceptionHandling();
 	}
 
 	@Bean

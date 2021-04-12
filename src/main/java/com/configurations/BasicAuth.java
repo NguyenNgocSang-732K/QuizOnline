@@ -8,14 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.StringContent;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.constant.AuthenManager;
 import com.model.entityModels.CurrentUserProfile;
+import com.services.IAccountService;
 
 public class BasicAuth implements HandlerInterceptor {
+
+	private @Autowired IAccountService iAccountService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -24,18 +28,25 @@ public class BasicAuth implements HandlerInterceptor {
 		boolean userIsNull = user == null || user.toString().equalsIgnoreCase("anonymousUser")
 				|| user.toString().isEmpty();
 		String currentURI = request.getRequestURI().toLowerCase();
-		if(!userIsNull) {
+		if (!userIsNull) {
 			AuthenManager.Current_User = (CurrentUserProfile) SecurityContextHolder.getContext().getAuthentication()
 					.getPrincipal();
+			AuthenManager.Current_Account = iAccountService.FindById(AuthenManager.Current_User.getId());
 		}
-		if (!currentURI.equalsIgnoreCase("/admin/login")) {
+
+		if(currentURI.startsWith("/resources")) {
+			return true;
+		}
+		
+		if (!currentURI.equalsIgnoreCase("/login")) {
 			if (userIsNull) {
-				response.sendRedirect("/admin/login");
+				response.sendRedirect("/login");
 				return false;
 			}
-		}else {
-			if(!userIsNull) {
-				response.sendRedirect("/admin/dashboard");
+		} else {
+			if (!userIsNull) {
+				String area = AuthenManager.IsMod() ? "admin" : "student";
+				response.sendRedirect("/" + area + "/dashboard");
 				return false;
 			}
 		}
@@ -45,7 +56,7 @@ public class BasicAuth implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		//System.out.println("Log postHandle");
+		// System.out.println("Log postHandle");
 		// System.out.println("Log 4: Host - " + request.getRemoteHost());
 		// System.out.println("Log 4: Port - " + request.getRemotePort());
 		// System.out.println("Log 4: User - " + request.getRemoteUser());
@@ -54,7 +65,7 @@ public class BasicAuth implements HandlerInterceptor {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		//System.out.println("Log afterCompletion");
+		// System.out.println("Log afterCompletion");
 		// TODO Auto-generated method stub
 
 	}
