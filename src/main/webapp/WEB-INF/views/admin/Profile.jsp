@@ -5,7 +5,7 @@
 <%@ taglib prefix="s-form"
 	uri="http://www.springframework.org/tags/form"%>
 
-<template:_admin title="Manage Account">
+<template:_admin title="Profile">
 	<jsp:attribute name="content">
 		<div
 			class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
