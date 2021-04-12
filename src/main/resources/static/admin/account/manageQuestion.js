@@ -1,28 +1,36 @@
 $(document).ready(function () {
-    $('#pagination').pagination({
-        items: data,
-        itemsOnPage: itemsOnPage,
-        currentPage: currentPage,
-        onPageClick: function (pgNumber) {
-            var searchText = $("#searchText").val().trim();
-
-            var newurl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + window.location.pathname;
-
-            if (searchText === undefined || searchText === "") {
-                window.location.assign(newurl + '?page=' + pgNumber);
-            } else {
-                window.location.assign(newurl + '?page=' + pgNumber + '&searchText=' + searchText);
-            }
-        }
-    })
-
-    $('.btnSearchQuestion').on('click', function () {
-        var searchText = $("#searchText").val().trim();
-        var newurl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + window.location.pathname;
-        console.log(searchText)
-        if (searchText !== undefined || searchText !== "") {
-            window.location.assign(newurl + '?page=' + 1 + '&searchText=' + searchText);
-        }
-
-    })
+    $('.content').richText({
+        bold: true,
+        italic: true,
+        underline: true,
+        leftAlign: true,
+        centerAlign: true,
+        rightAlign: true,
+        justify: true,
+        ol: false,
+        ul: false,
+        heading: false,
+        fonts: true,
+        fontList: ["Arial",
+            "Arial Black",
+            "Comic Sans MS",
+            "Courier New",
+            "Geneva",
+            "Georgia",
+            "Helvetica",
+            "Impact",
+            "Lucida Console",
+            "Tahoma",
+            "Times New Roman",
+            "Verdana"
+        ],
+        fontColor: true,
+        fontSize: true,
+        imageUpload: false,
+        fileUpload: false,
+        urls: false,
+        table: true,
+        removeStyles: true,
+        code: true,
+    });
 })

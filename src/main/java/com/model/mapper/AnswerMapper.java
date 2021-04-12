@@ -9,7 +9,7 @@ public class AnswerMapper {
 
         answerModel.setId(answerEntity.getId());
         answerModel.setContent(answerEntity.getContent());
-        answerModel.setIscorrect(answerEntity.getIscorrect());
+        answerModel.setIscorrect(answerEntity.isIscorrect());
         answerModel.setCreatedDate(answerEntity.getCreatedDate());
         answerModel.setCreatedBy(answerEntity.getCreatedBy());
         answerModel.setStatus(answerEntity.getStatus());

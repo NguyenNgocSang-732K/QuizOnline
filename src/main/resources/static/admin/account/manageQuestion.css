@@ -1,10 +1,9 @@
-/*.page-title-underline {*/
-/*    width: 100%;*/
-/*    height: 1px;*/
-/*}*/
+.page-title-underline {
+    border-top: 1px solid var(--border-color);
+}
 
-#filter-wrapper{
-    border-top: 1px solid black;
+/*Index Question Page*/
+#filter-wrapper {
     padding-top: 2%;
 }
 
@@ -12,6 +11,48 @@
     text-align: right;
 }
 
+#table-wrapper > div > div > div > table > tbody > tr > td{
+    width: auto;
+}
+#table-wrapper > div > div > div > table > tbody > tr > td:nth-child(1){
+    width: 50%;
+}
+
 .pagination-wrapper {
     float: right;
+}
+
+/*Edit Question Page*/
+#edit-question-wrapper {
+    padding-top: 2%;
+}
+
+#edit-question-wrapper .dp-row{
+    display: inline-flex;
+    width: 100%;
+    margin-top: 2%;
+
+}
+
+#edit-question-wrapper .dp-row .input-title{
+    min-width: 30%;
+    text-align: left;
+}
+
+#edit-question-wrapper .dp-row .input-value{
+    width: 60%;
+}
+
+#edit-question-wrapper .dp-row .title-manage-answers{
+    text-align: right;
+}
+
+#edit-question-wrapper .dp-row .input-value label{
+    margin-left: 2%;
+}
+
+#edit-question-wrapper .dp-row .input-value .edit-question-custom-radio{
+    position: inherit;
+    margin-top: 0;
+    margin-left: 0;
 }

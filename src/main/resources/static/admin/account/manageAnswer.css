@@ -1,0 +1,9 @@
+.page-title-underline {
+    border-top: 1px solid var(--border-color);
+}
+
+
+/*Index Answers*/
+#wrapper-answers{
+    padding-top: 2%;
+}

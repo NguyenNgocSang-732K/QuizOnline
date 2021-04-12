@@ -47,10 +47,19 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
 	rel="stylesheet">
 
-<!-- MDK -->
-<link type="text/css"
-	href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
-	rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- RichText Editor -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/assets/css/richtext.min.css">
+
+    <!-- Common Css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/common/css/constant.css">
+
+    <!-- MDK -->
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
+          rel="stylesheet">
 
 <!-- Sidebar Collapse -->
 <link type="text/css"
@@ -194,19 +203,28 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.js"></script>
 
-	<!-- Sidebar Collapse -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.js"></script>
-	<!-- Simple Pagination  -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/js/simplePagination.js"></script>
+<!-- Sidebar Collapse -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.js"></script>
+
+<!-- RichText Editor -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/js/richtext.js"></script>
+
+<!-- Simple Pagination  -->
+<script src="${pageContext.request.contextPath}/resources/admin/assets/js/simplePagination.js"></script>
 </body>
 
 <!-- App JS -->
 <script
-	src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
-<%-- <script
-        src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script> --%>
+        src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
+
+<!-- Pagination Common -->
+<script
+        src="${pageContext.request.contextPath}/resources/common/js/pagination.js"></script>
+
+<script
+        src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
 
 </body>
 

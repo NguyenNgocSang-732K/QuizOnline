@@ -7,7 +7,7 @@ import java.util.Date;
 public class AnswerModel {
     private Integer id;
     private String content;
-    private int iscorrect;
+    private boolean iscorrect;
     private Date createdDate;
     private int createdBy;
     private int status;
@@ -17,7 +17,7 @@ public class AnswerModel {
     public AnswerModel() {
     }
 
-    public AnswerModel(Integer id, String content, int iscorrect, Date createdDate, int createdBy, int status, QuestionModel questionModel) {
+    public AnswerModel(Integer id, String content, boolean iscorrect, Date createdDate, int createdBy, int status, QuestionModel questionModel) {
         this.id = id;
         this.content = content;
         this.iscorrect = iscorrect;
@@ -43,11 +43,11 @@ public class AnswerModel {
         this.content = content;
     }
 
-    public int getIscorrect() {
+    public boolean isIscorrect() {
         return iscorrect;
     }
 
-    public void setIscorrect(int iscorrect) {
+    public void setIscorrect(boolean iscorrect) {
         this.iscorrect = iscorrect;
     }
 

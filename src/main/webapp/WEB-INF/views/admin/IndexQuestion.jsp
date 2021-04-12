@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-1">
                         <button type="button"
-                                class="btn btn-primary btnSearchQuestion"><span
+                                class="btn btn-primary" id="btnSearchQuestion"><span
                                 class="material-icons">search</span>
                         </button>
                     </div>
@@ -78,13 +78,11 @@
                                     <td>
                                         <a role="button"
                                            href="${pageContext.request.contextPath}/admin/question/${question.id}"
-                                           class="btn btn-warning"><span
+                                           class="btn btn-primary"><span
                                                 class="material-icons">edit</span></a>
                                     </td>
                                 </tr>
                             </core:forEach>
-
-
                             </tbody>
                         </table>
                     </div>

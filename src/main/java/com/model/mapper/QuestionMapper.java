@@ -4,6 +4,8 @@ import com.model.entities.Question;
 import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
 
+import java.util.stream.Collectors;
+
 public class QuestionMapper {
     public static QuestionModel ToQuestionModel(Question questionEntity) {
         QuestionModel questionModel = new QuestionModel();
@@ -31,6 +33,10 @@ public class QuestionMapper {
         questionUpdateModel.setCreatedBy(questionEntity.getCreatedBy());
         questionUpdateModel.setStatus(questionEntity.getStatus());
         questionUpdateModel.setLevelModel(LevelMapper.ToLevelModel(questionEntity.getLevel()));
+        questionUpdateModel.setAnswerModels(questionEntity.getAnswers()
+                .stream()
+                .map(p -> AnswerMapper.ToAnswerModel(p))
+                .collect(Collectors.toList()));
 
         return questionUpdateModel;
     }
