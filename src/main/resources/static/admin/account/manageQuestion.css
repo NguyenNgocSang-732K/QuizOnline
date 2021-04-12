@@ -1,5 +1,3 @@
-@import "static/common/css/constant.css";
-
 .page-title-underline {
     border-top: 1px solid var(--border-color);
 }
@@ -12,14 +10,13 @@
 #filter-wrapper .filter-category {
     text-align: right;
 }
+
 #table-wrapper > div > div > div > table > tbody > tr > td{
     width: auto;
 }
 #table-wrapper > div > div > div > table > tbody > tr > td:nth-child(1){
     width: 50%;
 }
-
-
 
 .pagination-wrapper {
     float: right;
@@ -38,6 +35,24 @@
 }
 
 #edit-question-wrapper .dp-row .input-title{
-    width: 30%;
+    min-width: 30%;
     text-align: left;
+}
+
+#edit-question-wrapper .dp-row .input-value{
+    width: 60%;
+}
+
+#edit-question-wrapper .dp-row .title-manage-answers{
+    text-align: right;
+}
+
+#edit-question-wrapper .dp-row .input-value label{
+    margin-left: 2%;
+}
+
+#edit-question-wrapper .dp-row .input-value .edit-question-custom-radio{
+    position: inherit;
+    margin-top: 0;
+    margin-left: 0;
 }

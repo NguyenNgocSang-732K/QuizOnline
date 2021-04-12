@@ -13,6 +13,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     @Override
     Page<Question> findAll(Pageable pageable);
 
-    Page<Question> findByContentContainingOrLevel_NameContaining(String searchContent,
+    Page<Question> findByContentContainingOrLevel_NameContainingOrderByIdAsc(String searchContent,
                                                             String searchLevel, Pageable pageable);
 }

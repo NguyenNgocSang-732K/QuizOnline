@@ -48,6 +48,9 @@
     <!-- RichText Editor -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/assets/css/richtext.min.css">
 
+    <!-- Common Css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/common/css/constant.css">
+
     <!-- MDK -->
     <link type="text/css"
           href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
