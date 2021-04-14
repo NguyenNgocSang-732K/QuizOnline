@@ -1,3 +1,7 @@
 :root{
    --border-color: black;
 }
+
+.validate-error{
+   color: red;
+}

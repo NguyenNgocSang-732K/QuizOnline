@@ -1,0 +1,30 @@
+package com.validation;
+
+import com.helper.ParseHtmlTag;
+import com.model.entityModels.QuestionCreateModel;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+@Component("questionCreateValidator")
+public class QuestionCreateModelValidation implements Validator {
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return clazz.equals(QuestionCreateModel.class);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        QuestionCreateModel questionCreate = (QuestionCreateModel) target;
+
+        ValidateContent(questionCreate, errors);
+    }
+
+    private void ValidateContent(QuestionCreateModel questionCreate, Errors errors) {
+
+        String parseContent = ParseHtmlTag.Parse(questionCreate.getContent().trim());
+
+        if (parseContent.isEmpty())
+            errors.rejectValue("content", "QuestionContent_NOTEMPTY");
+    }
+}

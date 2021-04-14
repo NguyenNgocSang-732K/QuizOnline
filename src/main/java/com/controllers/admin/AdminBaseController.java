@@ -3,6 +3,8 @@ package com.controllers.admin;
 import com.constant.AuthenManager;
 import com.controllers.BaseController;
 import java.text.SimpleDateFormat;
+
+import org.springframework.lang.Nullable;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,7 +19,7 @@ public class AdminBaseController{
 		return "admin/" + viewName;
 	}
 
-	protected String Redirect(String viewName) {
-		return "redirect:/admin/" + viewName;
+	protected String Redirect(String viewName, @Nullable String optional) {
+		return "redirect:/admin/" + (optional == null ? viewName : (viewName+"?op="+optional));
 	}
 }

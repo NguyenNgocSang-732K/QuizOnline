@@ -1,17 +1,21 @@
 package com.controllers.admin;
 
+import com.constant.AuthenManager;
 import com.constant.GeneralTypeEnum;
-import com.model.entityModels.AnswerModel;
+import com.model.entityModels.QuestionCreateModel;
+import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
 import com.services.ILevelService;
 import com.services.IQuestionService;
+import com.validation.QuestionCreateModelValidation;
+import com.validation.QuestionUpdateModelValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
 
 @Controller
 public class ManageQuestionController extends AdminBaseController {
@@ -20,6 +24,12 @@ public class ManageQuestionController extends AdminBaseController {
     IQuestionService _questionService;
     private @Autowired
     ILevelService _levelService;
+
+    private @Autowired
+    QuestionCreateModelValidation _questionCreateValidator;
+
+    private @Autowired
+    QuestionUpdateModelValidation _questionUpdateValidator;
 
     // Get All questions from database
     // page: page number
@@ -40,9 +50,14 @@ public class ManageQuestionController extends AdminBaseController {
     // Find question by Id
     // modelMap: initial data to page
     // id: Question's Id
+    // op: status when question updated
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
-    public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id) {
+    public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id, @RequestParam(required =
+            false) String op) {
         QuestionUpdateModel questionUpdate = _questionService.findById(id);
+
+        if (op != null && op.equalsIgnoreCase("success"))
+            modelMap.put("updateStatus", "Update question success!!");
 
         modelMap.put("question", questionUpdate);
         modelMap.put("levels", _levelService.GetAll());
@@ -51,21 +66,58 @@ public class ManageQuestionController extends AdminBaseController {
 
     // Update data for question
     // questionUpdate: data was submited by form
-    @RequestMapping(value = "/updateQuestion", method = RequestMethod.POST)
-    public String EditQuestion(@ModelAttribute("question") QuestionUpdateModel questionUpdate) {
+    // bindingResult: Using for validation model
+    @RequestMapping(value = "/question/update-Question", method = RequestMethod.POST)
+    public String EditQuestion(@ModelAttribute("question") @Valid QuestionUpdateModel questionUpdate,
+                               BindingResult bindingResult) {
+
+        _questionUpdateValidator.validate(questionUpdate, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "admin/EditQuestion";
+        }
+
         int id = _questionService.UpdateQuestion(questionUpdate);
-        return Redirect("question/" + id);
+        return Redirect("question/" + id, "success");
     }
 
-//    // Find question by Id
-//    // modelMap: initial data to page
-//    // id: Question's Id
-//    @RequestMapping(value = "/question/{id}/answers", method = RequestMethod.GET)
-//    public String (ModelMap modelMap, @PathVariable("id") int id) {
-//        QuestionUpdateModel questionUpdate = _questionService.findById(id);
-//
-//        modelMap.put("question", questionUpdate);
-//        modelMap.put("levels", _levelService.GetAll());
-//        return "admin/EditQuestion";
-//    }
+    // Update question's status
+    // questionModel: Include question's id and question's status
+    @RequestMapping(value = "/question/update-status")
+    @ResponseBody
+    public boolean UpdateStatus(@RequestBody QuestionModel questionModel) {
+        boolean updateStatus = _questionService.UpdateStatus(questionModel.getId(), questionModel.isStatus());
+        return updateStatus;
+    }
+
+    // Load and initial data form create question
+    // modelMap: initial data to page
+    @RequestMapping(value = "/question/create-question", method = RequestMethod.GET)
+    public String CreateQuestion(ModelMap modelMap) {
+        QuestionCreateModel questionCreate = new QuestionCreateModel();
+        questionCreate.setContent("");
+
+        modelMap.put("question", questionCreate);
+        modelMap.put("levels", _levelService.GetAll());
+        return "admin/CreateQuestion";
+    }
+
+    // Create new Question
+    // modelMap: initial data to page
+    // questionCreate: Model submited by form
+    // bindingResult: Using for validation
+    @RequestMapping(value = "/question/create-question", method = RequestMethod.POST)
+    public String CreateQuestion(ModelMap modelMap,
+                                 @ModelAttribute("question") @Valid QuestionCreateModel questionCreate,
+                                 BindingResult bindingResult) {
+
+        _questionCreateValidator.validate(questionCreate, bindingResult);
+        if (bindingResult.hasErrors()) {
+            modelMap.put("levels", _levelService.GetAll());
+            return "admin/CreateQuestion";
+        }
+
+        int questionId = _questionService.CreateQuestion(questionCreate, AuthenManager.Current_User.getId());
+
+        return Redirect("question/" + questionId, null);
+    }
 }

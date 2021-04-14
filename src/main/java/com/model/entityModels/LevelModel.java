@@ -7,12 +7,12 @@ public class LevelModel {
     private String name;
     private Date createdDate;
     private int createdBy;
-    private int status;
+    private boolean status;
 
     public LevelModel() {
     }
 
-    public LevelModel(Integer id, String name, Date createdDate, int createdBy, int status) {
+    public LevelModel(Integer id, String name, Date createdDate, int createdBy, boolean status) {
         this.id = id;
         this.name = name;
         this.createdDate = createdDate;
@@ -52,11 +52,11 @@ public class LevelModel {
         this.createdBy = createdBy;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }

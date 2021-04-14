@@ -10,13 +10,14 @@ public class QuestionModel {
     private String image;
     private Date createdDate;
     private int createdBy;
-    private int status;
+    private boolean status;
     private LevelModel levelModel;
     private List<AnswerModel> answerModels;
 
-    public QuestionModel(Integer id, String content, Integer answerType,
-                         String image, Date createdDate, int createdBy, int status,
-                         LevelModel levelModel, List<AnswerModel> answerModels) {
+    public QuestionModel() {
+    }
+
+    public QuestionModel(Integer id, String content, Integer answerType, String image, Date createdDate, int createdBy, boolean status, LevelModel levelModel, List<AnswerModel> answerModels) {
         this.id = id;
         this.content = content;
         this.answerType = answerType;
@@ -25,17 +26,6 @@ public class QuestionModel {
         this.createdBy = createdBy;
         this.status = status;
         this.levelModel = levelModel;
-        this.answerModels = answerModels;
-    }
-
-    public QuestionModel() {
-    }
-
-    public List<AnswerModel> getAnswerModels() {
-        return answerModels;
-    }
-
-    public void setAnswerModels(List<AnswerModel> answerModels) {
         this.answerModels = answerModels;
     }
 
@@ -87,11 +77,11 @@ public class QuestionModel {
         this.createdBy = createdBy;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -101,5 +91,13 @@ public class QuestionModel {
 
     public void setLevelModel(LevelModel levelModel) {
         this.levelModel = levelModel;
+    }
+
+    public List<AnswerModel> getAnswerModels() {
+        return answerModels;
+    }
+
+    public void setAnswerModels(List<AnswerModel> answerModels) {
+        this.answerModels = answerModels;
     }
 }

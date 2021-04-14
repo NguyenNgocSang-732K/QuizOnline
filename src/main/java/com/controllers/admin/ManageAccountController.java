@@ -40,7 +40,7 @@ public class ManageAccountController extends AdminBaseController {
 		account.setPhoto(photo);
 		account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
 		iAccountService.Save(account);
-		return Redirect("profile/" + account.getId());
+		return Redirect("profile/" + account.getId(), null);
 	}
 
 }
