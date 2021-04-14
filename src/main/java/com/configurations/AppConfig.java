@@ -10,6 +10,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
+	
+	@Bean
+	public BasicAuth basicAuth() {
+		// TODO Auto-generated constructor stub
+		return new BasicAuth();
+	}
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/**").addResourceLocations("/uploads/images/");
@@ -24,6 +31,6 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new BasicAuth()).addPathPatterns("/admin/**");;
+		registry.addInterceptor(basicAuth()).addPathPatterns("/**");
 	}
 }
