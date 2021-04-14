@@ -1,7 +1,7 @@
-<%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ attribute name="title" type="java.lang.String" required="true"
-	rtexprvalue="true"%>
-<%@ attribute name="content" fragment="true"%>
+              rtexprvalue="true" %>
+<%@ attribute name="content" fragment="true" %>
 <%@ taglib prefix="auth" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
@@ -11,19 +11,19 @@
 <!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:58 GMT -->
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Instructor - Edit account</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Instructor - Edit account</title>
 
-<!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
-<meta name="robots" content="noindex">
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex">
 
-<!-- Simplebar -->
-<link type="text/css"
-	href="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.css"
-	rel="stylesheet">
+    <!-- Simplebar -->
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.css"
+          rel="stylesheet">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
@@ -42,9 +42,6 @@
             href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
             rel="stylesheet">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- RichText Editor -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/assets/css/richtext.min.css">
 
@@ -56,17 +53,17 @@
           href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
           rel="stylesheet">
 
-<!-- Sidebar Collapse -->
-<link type="text/css"
-	href="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.min.css"
-	rel="stylesheet">
+    <!-- Sidebar Collapse -->
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/resources/admin/assets/vendor/sidebar-collapse.min.css"
+          rel="stylesheet">
 
-<!-- App CSS -->
-<link type="text/css"
-	href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css"
-	rel="stylesheet">
+    <!-- App CSS -->
+    <link type="text/css"
+          href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css"
+          rel="stylesheet">
 
-<%--    Simple Pagination--%>
+    <%--    Simple Pagination--%>
     <link href="${pageContext.request.contextPath}/resources/admin/assets/css/simplePagination.css"
           rel="stylesheet">
 
@@ -91,28 +88,29 @@
 
         <div class="navbar-spacer"></div>
 
-			<!-- Menu -->
-			<ul class="nav navbar-nav">
-				<!-- User dropdown -->
-				<li class="nav-item dropdown"><a
-					class="nav-link active dropdown-toggle" data-toggle="dropdown"
-					href="#" role="button"><img
-						src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
-						alt="Avatar" class="rounded-circle" width="40"></a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item"
-							href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
-							<i class="material-icons">edit</i> Profile
-						</a> <a class="dropdown-item" href="instructor-profile.html"> <i
-							class="material-icons">person</i> Profile Details
-						</a> </a> <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/logout"> <i
-							class="material-icons">lock</i> Logout
-						</a>
-					</div></li>
-				<!-- // END User dropdown -->
-			</ul>
-		</nav>
-		<!-- // END Navbar -->
+        <!-- Menu -->
+        <ul class="nav navbar-nav">
+            <!-- User dropdown -->
+            <li class="nav-item dropdown"><a
+                    class="nav-link active dropdown-toggle" data-toggle="dropdown"
+                    href="#" role="button"><img
+                    src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
+                    alt="Avatar" class="rounded-circle" width="40"></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
+                        <i class="material-icons">edit</i> Profile
+                    </a> <a class="dropdown-item" href="instructor-profile.html"> <i
+                        class="material-icons">person</i> Profile Details
+                </a> </a> <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/logout"> <i
+                        class="material-icons">lock</i> Logout
+                </a>
+                </div>
+            </li>
+            <!-- // END User dropdown -->
+        </ul>
+    </nav>
+    <!-- // END Navbar -->
 
     <div class="mdk-drawer-layout js-mdk-drawer-layout flex"
          data-fullbleed data-push data-has-scrolling-region>
@@ -198,6 +196,9 @@
 <!-- Simple Pagination  -->
 <script src="${pageContext.request.contextPath}/resources/admin/assets/js/simplePagination.js"></script>
 </body>
+
+<!-- Font Awesome  -->
+<script src="https://kit.fontawesome.com/b48db25390.js" crossorigin="anonymous"></script>
 
 <!-- App JS -->
 <script

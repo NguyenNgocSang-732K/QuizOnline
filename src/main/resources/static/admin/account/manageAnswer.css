@@ -7,3 +7,18 @@
 #wrapper-answers{
     padding-top: 2%;
 }
+
+#wrapper-answers .question-content{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.wrapper-answer-table .btn-add{
+    text-align: right;
+}
+
+.wrapper-answer-table .answer-table{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

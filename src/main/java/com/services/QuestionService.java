@@ -1,11 +1,13 @@
 package com.services;
 
-import com.model.entities.Answer;
+import com.constant.StatusEnum;
 import com.model.entities.Level;
 import com.model.entities.Question;
 import com.model.entityModels.PaginationModel;
+import com.model.entityModels.QuestionCreateModel;
 import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
+import com.model.mapper.LevelMapper;
 import com.model.mapper.QuestionMapper;
 import com.repository.AnswerRepository;
 import com.repository.LevelRepository;
@@ -15,9 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,8 +53,8 @@ public class QuestionService implements IQuestionService {
                     paging);
         }
 
-        if (pageTuts.getTotalPages() == 0)
-            return null;
+//        if (pageTuts.getTotalPages() == 0)
+//            return null;
 
         List<QuestionModel> questionModels = pageTuts.getContent()
                 .stream()
@@ -80,24 +82,62 @@ public class QuestionService implements IQuestionService {
     public int UpdateQuestion(QuestionUpdateModel questionUpdate) {
         Level level = _levelRepository.findById(questionUpdate.getLevelModel().getId()).get();
         Question question = _questionRepository.findById(questionUpdate.getId()).get();
-//        List<Answer> answers = _answerRepository.findAllById(questionUpdate.getAnswerUpdateModel());
 
         question.getAnswers().forEach(p -> p.setIscorrect(false));
         question.setLevel(level);
-
-        for (int i: questionUpdate.getAnswerUpdateModel()) {
-            question.getAnswers()
-                    .stream()
-                    .filter(p -> p.getId() == i)
-                    .findFirst()
-                    .get()
-                    .setIscorrect(true);
-        }
-
         question.setContent(questionUpdate.getContent());
+        question.setAnswerType(questionUpdate.getAnswerType());
+
+//        for (int i: questionUpdate.getAnswerUpdateModel()) {
+//            question.getAnswers()
+//                    .stream()
+//                    .filter(p -> p.getId() == i)
+//                    .findFirst()
+//                    .get()
+//                    .setIscorrect(true);
+//        }
 
         QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
 
         return result.getId();
     }
+
+    @Override
+    public int CreateQuestion(QuestionCreateModel questionCreateModel, int adminId) {
+
+        Question question = new Question();
+        question.setContent(questionCreateModel.getContent());
+        question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
+        question.setAnswerType(questionCreateModel.getAnswerType());
+        question.setImage(questionCreateModel.getImage());
+        question.setStatus(StatusEnum.ACTIVE.getKey());
+        question.setCreatedDate(new Date());
+        question.setCreatedBy(adminId);
+
+        _questionRepository.save(question);
+
+        return question.getId();
+    }
+
+    @Override
+    public boolean UpdateStatus(int questionId, boolean status) {
+        Optional<Question> optionalQuestion = _questionRepository.findById(questionId);
+
+        if (!optionalQuestion.empty().isPresent()){
+            Question question = optionalQuestion.get();
+
+            if(status)
+                question.setStatus(StatusEnum.ACTIVE.getKey());
+            else
+                question.setStatus(StatusEnum.INACTIVE.getKey());
+
+            Question questionUpdated = _questionRepository.save(question);
+
+            if(questionUpdated != null)
+                return true;
+        }
+
+        return false;
+    }
+
 }

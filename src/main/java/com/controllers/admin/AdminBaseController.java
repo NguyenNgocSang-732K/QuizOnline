@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.sun.istack.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
@@ -28,7 +29,7 @@ public class AdminBaseController {
 		return "admin/" + viewName;
 	}
 
-	protected String Redirect(String viewName) {
-		return "redirect:/admin/" + viewName;
+	protected String Redirect(String viewName, @Nullable String optional) {
+		return "redirect:/admin/" + (optional == null ? viewName : (viewName+"?op="+optional));
 	}
 }

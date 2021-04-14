@@ -33,4 +33,39 @@ $(document).ready(function () {
         removeStyles: true,
         code: true,
     });
+
+    $('.status-question').on('change', function() {
+        var target = $(this);
+        var isChecked = target.is(':checked');
+        var questionId = target.data('question-id')
+
+        var questionModel = {
+            status: isChecked,
+            id: questionId
+        };
+
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/admin/question/update-status',
+            data : JSON.stringify(questionModel),
+            dataType : 'json',
+            success: function(response){
+                if(response){
+                    alert("Update Question status success!!")
+                }else{
+                    alert("Update Question status fail!!")
+                }
+            }
+        })
+    })
+
+    function updateNotice(){
+        if(typeof(updateStatus) !== 'undefined')
+        {
+            alert(updateStatus);
+        }
+    }
+
+    updateNotice();
 })

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
-<%@page import="com.constant.AnswerTypeEnum" %>
+<%@page import="com.constant.StatusEnum" %>
 <%@ taglib prefix="template" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s-form"
            uri="http://www.springframework.org/tags/form" %>
 
-<template:_admin title="ManageQuestion">
+<template:_admin title="ManageAnswers">
 	<jsp:attribute name="content">
          <link rel="stylesheet"
                href="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.css">
@@ -19,7 +19,8 @@
                                     href="${pageContext.request.contextPath }/dashboard/index">Home</a>
                             </li>
                             <li class="breadcrumb-item"><a
-                                    href="${pageContext.request.contextPath }/admin/question/${questionId}">Question ${questionId}</a>
+                                    href="${pageContext.request.contextPath }/admin/question/${question.id}">Question
+                                    ${question.id}</a>
                             </li>
                             <li class="breadcrumb-item active">Answers</li>
                         </ol>
@@ -49,39 +50,53 @@
                                         class="form-horizontal"
                                         method="POST" modelAttribute="answers"
                                         enctype="multipart/form-data">
-                                    <div class="question-content"></div>
-                                    <div class="content-answer"></div>
-                                    <div class="answer-table">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <input type="text"/>
-                                                </td>
-                                                <td>
-                                                    <input type="checkbox">
-                                                </td>
-                                                <td>
-                                                    <input type="button" value="Edit">
-                                                </td>
-                                                <td>
-                                                    <input type="button" value="Remove">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="text"/>
-                                                </td>
-                                                <td>
-                                                    <input type="checkbox">
-                                                </td>
-                                                <td>
-                                                    <input type="button" value="Edit">
-                                                </td>
-                                                <td>
-                                                    <input type="button" value="Remove">
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <div class="question-content">
+                                        <b>Question:</b>&nbsp; ${question.content}
+                                    </div>
+                                    <div class="wrapper-answer-table">
+                                        <div class="btn-add">
+                                            <button type="button" class="btn btn-primary">Add
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <table class="table answer-table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Content</th>
+                                                    <th>IsCorrect</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <core:forEach items="${answers}" var="answer">
+                                                        <tr>
+                                                            <td>${answer.content}</td>
+                                                            <td>
+                                                                <input type="checkbox" ${answer.iscorrect ? "checked" : ""} />
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                           id="status-answer"
+                                                                        ${StatusEnum.ACTIVE.compareTo(StatusEnum.getKey(answer.status)) == 0 ? "checked": ""}>
+                                                                    <label class="form-check-label" for="status-answer"></label>
+                                                                </div>
+
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-warning" type="button">
+                                                                    <i class="fas fa-edit"></i>
+                                                                </button>
+                                                                <button class="btn btn-danger" type="button">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </core:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </s-form:form>
                             </div>

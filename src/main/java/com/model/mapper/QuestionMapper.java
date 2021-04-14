@@ -1,5 +1,6 @@
 package com.model.mapper;
 
+import com.constant.StatusEnum;
 import com.model.entities.Question;
 import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
@@ -16,7 +17,13 @@ public class QuestionMapper {
         questionModel.setImage(questionEntity.getImage());
         questionModel.setCreatedDate(questionEntity.getCreatedDate());
         questionModel.setCreatedBy(questionEntity.getCreatedBy());
-        questionModel.setStatus(questionEntity.getStatus());
+
+        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()){
+            questionModel.setStatus(true);
+        }else if(StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()){
+            questionModel.setStatus(false);
+        }
+
         questionModel.setLevelModel(LevelMapper.ToLevelModel(questionEntity.getLevel()));
 
         return questionModel;
@@ -31,7 +38,13 @@ public class QuestionMapper {
         questionUpdateModel.setImage(questionEntity.getImage());
         questionUpdateModel.setCreatedDate(questionEntity.getCreatedDate());
         questionUpdateModel.setCreatedBy(questionEntity.getCreatedBy());
-        questionUpdateModel.setStatus(questionEntity.getStatus());
+
+        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()){
+            questionUpdateModel.setStatus(true);
+        }else if(StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()){
+            questionUpdateModel.setStatus(false);
+        }
+
         questionUpdateModel.setLevelModel(LevelMapper.ToLevelModel(questionEntity.getLevel()));
         questionUpdateModel.setAnswerModels(questionEntity.getAnswers()
                 .stream()

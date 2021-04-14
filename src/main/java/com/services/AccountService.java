@@ -43,7 +43,7 @@ public class AccountService implements IAccountService {
 		currentUser.setPhone(account.getPhone());
 		currentUser.setUsername(account.getUsername());
 		currentUser.setPassword(account.getPassword());
-		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getValue(account.getStatus()));
+		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
 		return currentUser;
 	}
 

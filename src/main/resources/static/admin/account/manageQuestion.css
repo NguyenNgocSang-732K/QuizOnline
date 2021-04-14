@@ -5,6 +5,7 @@
 /*Index Question Page*/
 #filter-wrapper {
     padding-top: 2%;
+    text-align: right;
 }
 
 #filter-wrapper .filter-category {
