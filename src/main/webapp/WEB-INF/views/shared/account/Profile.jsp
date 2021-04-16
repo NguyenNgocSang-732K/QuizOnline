@@ -32,6 +32,8 @@
 								class="form-horizontal" method="POST" modelAttribute="profile"
 								enctype="multipart/form-data">
 								<s-form:hidden path="id" />
+								<s-form:hidden path="isActive" />
+								<s-form:hidden path="status" />
                                     <div class="form-group row">
                                         <label for="file_upload"
 										class="col-sm-3 col-form-label">Avatar</label>

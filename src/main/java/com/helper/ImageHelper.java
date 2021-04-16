@@ -63,7 +63,7 @@ public class ImageHelper {
 			return fileSave.getName();
 
 		} catch (Exception e) {
-			return e.getMessage();
+			return null;
 		}
 	}
 
