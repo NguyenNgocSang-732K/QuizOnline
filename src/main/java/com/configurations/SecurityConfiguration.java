@@ -14,13 +14,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
-		String prefix_admin = "/admin/";
-		String prefix_user = "/account/user/";
 		http.authorizeRequests()
-				.antMatchers("/admin/**").permitAll()
+				.antMatchers("/admin/**").access("hasRole('ROLE_Admin')")
+				.antMatchers("/student/**").access("hasRole('ROLE_Student')")
 				.and()
 				.formLogin()
-				.loginPage(prefix_admin+"login")
+				.loginPage("/login")
 				.usernameParameter("username")
 			    .passwordParameter("password")
 				.loginProcessingUrl("/securitylogin")

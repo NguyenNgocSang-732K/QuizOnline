@@ -28,7 +28,7 @@ public class ManageAccountController extends AdminBaseController {
 		Account account = iAccountService.FindById(id);
 		if (account != null) {
 			modelMap.put("profile", account);
-			return View("Profile", modelMap);
+			return "shared/account/Profile";
 		}
 		return null;
 	}

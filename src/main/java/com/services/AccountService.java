@@ -41,7 +41,7 @@ public class AccountService implements IAccountService {
 		currentUser.setId(account.getId());
 		currentUser.setEmail(account.getEmail());
 		currentUser.setPhone(account.getPhone());
-		currentUser.setPhoto(account.getPhoto());
+		currentUser.setPhoto((account.getPhoto().isEmpty() || account.getPhoto() == null) ? "LearnPlus.png" : account.getPhoto());
 		currentUser.setUsername(account.getUsername());
 		currentUser.setPassword(account.getPassword());
 		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
@@ -68,9 +68,9 @@ public class AccountService implements IAccountService {
 			account = edit;
 		} else {
 			account = accountRepository.findById(edit.getId()).get();
-			//--
+			// --
 			account.setUsername(account.getUsername());
-			//--			
+			// --
 			account.setAccountType(edit.getAccountType());
 			account.setAddress(edit.getAddress());
 			account.setCreatedBy(edit.getCreatedBy());
@@ -78,7 +78,10 @@ public class AccountService implements IAccountService {
 			account.setFullname(edit.getFullname());
 			account.setIsActive(edit.getIsActive());
 			account.setPhone(edit.getPhone());
-			account.setPhoto(edit.getPhoto());
+			
+			if(edit.getPhoto()!=null && !edit.getPhoto().isEmpty()) {
+				account.setPhoto(edit.getPhoto());
+			}
 			account.setStatus(edit.getStatus());
 		}
 
