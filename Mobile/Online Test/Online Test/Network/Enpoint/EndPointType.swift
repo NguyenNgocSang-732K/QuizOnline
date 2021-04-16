@@ -19,7 +19,12 @@ protocol EndPointType {
 
 struct DefaultHeader {
     func addAuthHeader() -> [String: String] {
-        let header: [String: String] = ["Content-Type": "application/json"]
+        var header: [String: String] = ["Content-Type": "application/json"]
+        
+        if let token = UserDefaults.standard.object(forKey: "token") as? String {
+           print("Token", token)
+           header["token"] = token
+        }
         return header
     }
 }

@@ -80,30 +80,6 @@ class ExamTestVC: BaseViewControllers {
     }
     
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        var bottomPadding:CGFloat = 0
-//
-//        if #available(iOS 11.0, *) {
-//            if let window = UIApplication.shared.keyWindow{
-//                bottomPadding = window.safeAreaInsets.bottom - 10
-//                if bottomPadding < 0 {
-//                    bottomPadding = 0
-//                }
-//            }
-//        }
-////        let cellSize = UIScreen.main.bounds.size
-//        let contentOffset = clv.contentOffset
-//
-////        let r = CGRect(x: 0, y: contentOffset.y - bottomPadding, width: cellSize.width, height: cellSize.height)
-//        self.clv.setContentOffset(CGPoint(x: 0, y: contentOffset.y - bottomPadding ), animated: false)
-//
-//
-////        let r = CGRect(x: contentOffset.x + cellSize.width, y: contentOffset.y , width: cellSize.width, height: cellSize.height)
-////
-////        self.clv.setContentOffset(CGPoint(x: contentOffset.x + cellSize.width, y: contentOffset.y), animated: true)
-//
-//    }
     
     @objc func updateCounter() {
         
@@ -120,7 +96,7 @@ class ExamTestVC: BaseViewControllers {
             timer?.invalidate()
             timer = nil
             let resultVC = ResultVC()
-            resultVC.modalPresentationStyle = .fullScreen
+            resultVC.modalPresentationStyle = .overFullScreen
             
             self.present(resultVC, animated: true, completion: {
                 self.removeFromParent()
@@ -149,8 +125,13 @@ class ExamTestVC: BaseViewControllers {
         }
         
         if index >= arr.count{
-            index = arr.count - 1
-            return
+            
+            let resultVC = ResultVC()
+            resultVC.modalPresentationStyle = .fullScreen
+            
+            self.present(resultVC, animated: true, completion: {
+                self.removeFromParent()
+            })
         }
         else{
             clv.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)

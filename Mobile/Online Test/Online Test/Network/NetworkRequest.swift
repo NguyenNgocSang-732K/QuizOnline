@@ -10,16 +10,20 @@ import Alamofire
 
 
 //public var BASE_URL = URL(string: "https://www.1secmail.com/api/v1")!
-public var BASE_URL = URL(string: "https://5fd251f68cee610016adf38d.mockapi.io/")!
+
+//public var BASE_URL = URL(string: "https://5fd251f68cee610016adf38d.mockapi.io/")!
+public var BASE_URL = URL(string: "http://172.212.0.215:6969/api/")!
 
 //---
 typealias RequestSuccess = (_ data: Data) -> Void
+typealias RequestTokenSuccess = (_ token: Data) -> Void
 typealias RequestFailure = (_ error: APIError?) -> Void
 
 //---
 typealias NetworkJSONSuccess = (_ data: [String: AnyObject] ) -> Void
 
 typealias NetworkArrJSONSuccess = (_ data: [[String: AnyObject]] ) -> Void
+typealias NetworkTokenJSONSuccess = (_ data: String ) -> Void
 
 //---
 struct SuccessHandler<T> {
@@ -30,11 +34,14 @@ struct SuccessHandler<T> {
 
 // NetworkPotocol
 protocol NetworkRequestProtocol {
-    func getDemoApi(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
+    func getSubject(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
+    func loginAccount(username:String?, password:String?, endPoint: EndPointType, success: @escaping ((String)->Void), failure: @escaping RequestFailure)
+    func getExamBySubject(idSubject:Int?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
 }
 
 //---
 struct NetworkRequest: NetworkRequestProtocol {
+    
     
     
     static let configuration: URLSessionConfiguration = {
@@ -44,7 +51,7 @@ struct NetworkRequest: NetworkRequestProtocol {
         return configuration
     }()
     
-    func getDemoApi(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {
+    func getSubject(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {
         
         let url = makeUrl(path: endPoint.path)
         
@@ -61,6 +68,43 @@ struct NetworkRequest: NetworkRequestProtocol {
             }
         }
         
+    }
+    
+    
+    func getExamBySubject(idSubject: Int?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {
+        let url = makeUrl(path: endPoint.path)
+        
+        let encoding = getAlamofireEncoding(httpMethod: endPoint.httpMethod)
+        
+        let request = Alamofire.request(url, method: endPoint.httpMethod, parameters: endPoint.parameters, encoding: encoding, headers: endPoint.headers)
+        request.responseData { (dataResponse) in
+            switch dataResponse.result {
+            case .success(let data):
+                success(data)
+            case .failure(let error):
+                let apiError = APIError(error: error)
+                failure(apiError)
+            }
+        }
+    }
+    
+    
+    func loginAccount(username: String?, password: String?, endPoint: EndPointType, success: @escaping ((String)->Void), failure: @escaping RequestFailure) {
+        
+        let url = makeUrl(path: endPoint.path)
+        
+        let encoding = getAlamofireEncoding(httpMethod: endPoint.httpMethod)
+        
+        let request = Alamofire.request(url, method: endPoint.httpMethod, parameters: endPoint.parameters, encoding: encoding, headers: endPoint.headers)
+        request.responseString { (dataResponse) in
+            switch dataResponse.result {
+            case .success(let data):
+                success(data)
+            case .failure(let error):
+                let apiError = APIError(error: error)
+                failure(apiError)
+            }
+        }
     }
     
     func uploadImage(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {

@@ -78,6 +78,7 @@
 		7642C4E1261AAD000098413A /* PopHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E0261AAD000098413A /* PopHelper.swift */; };
 		7642C4E4261AAD400098413A /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E3261AAD400098413A /* UIAlertController+Extension.swift */; };
 		7642C4E9261AB8270098413A /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E8261AB8270098413A /* Provider.swift */; };
+		76EBFA3726247FB6000BB796 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EBFA3626247FB6000BB796 /* Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,7 @@
 		7642C4E0261AAD000098413A /* PopHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopHelper.swift; sourceTree = "<group>"; };
 		7642C4E3261AAD400098413A /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		7642C4E8261AB8270098413A /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		76EBFA3626247FB6000BB796 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		953BA14BC07E0ED93095A765 /* Pods-Online Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Online Test.release.xcconfig"; path = "Target Support Files/Pods-Online Test/Pods-Online Test.release.xcconfig"; sourceTree = "<group>"; };
 		A397B0BE6BC5F7A98E596156 /* Pods_Online_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Online_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -470,6 +472,7 @@
 				762C517C2611FA050083B3D4 /* Exam.swift */,
 				7642C4C0261AA9060098413A /* Question.swift */,
 				7642C4C3261AA9380098413A /* Answer.swift */,
+				76EBFA3626247FB6000BB796 /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				7642C4D6261AAC6F0098413A /* MailRandomEndPoint.swift in Sources */,
 				762C526C2615AFE10083B3D4 /* DropDown.swift in Sources */,
 				763B6C9B2611B58B00FD9415 /* BaseViewControllers.swift in Sources */,
+				76EBFA3726247FB6000BB796 /* Token.swift in Sources */,
 				762C5260261580F30083B3D4 /* CellSubjectList.swift in Sources */,
 				763B6CA12611BD2300FD9415 /* CellHome.swift in Sources */,
 				762C522D2614AD260083B3D4 /* AppRoute.swift in Sources */,

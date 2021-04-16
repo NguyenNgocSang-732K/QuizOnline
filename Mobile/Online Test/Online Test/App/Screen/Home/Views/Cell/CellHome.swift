@@ -40,7 +40,7 @@ class CellHome: UICollectionViewCell {
         }
 //        imvSubject.image = subject.imageSubject
         nameSubject.text = subject.name
-        titleTotal.text = subject.createDate
+        titleTotal.text = subject.createdDate
     }
     
 

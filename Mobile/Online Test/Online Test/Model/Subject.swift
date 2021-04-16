@@ -25,19 +25,19 @@ import ObjectMapper
 
 struct Subject: Mappable {
     
-    var createBy: Int?
-    var createDate: String?
-    var exams: [Exam]?
-    var id: String?
-    var name: String?
-    var status: Bool?
+    var createdBy : Int?
+    var createdDate : String?
+    var id : Int?
+    var name : String?
+    var status : Int?
+    var totalExam : Int?
     
     init?(map: Map) { }
     
     mutating func mapping(map: Map) {
-        createBy <- map["create_by"]
-        createDate <- map["create_date"]
-        exams <- map["exams"]
+        createdBy <- map["createdBy"]
+        createdDate <- map["createdDate"]
+        totalExam <- map["totalExam"]
         id <- map["id"]
         name <- map["name"]
         status <- map["status"]

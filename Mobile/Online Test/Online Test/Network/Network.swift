@@ -15,11 +15,17 @@ import KRProgressHUD
  ***/
 
 protocol APINetworkProtocol {
-    func getDemoApi(endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure)
-    
+    func getSubject(endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure)
+    func loginAccount(endPoint: EndPointType, username:String?, password:String?, success: @escaping (String)->Void, failure: @escaping RequestFailure )
+    func getExamBySubject(idSubject: Int? , endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure)
 }
 
 struct APINetwork: APINetworkProtocol {
+    
+    
+    
+    
+   
     
     
     let request: NetworkRequestProtocol
@@ -27,12 +33,89 @@ struct APINetwork: APINetworkProtocol {
     init(request: NetworkRequestProtocol) {
         self.request = request
     }
-    func getDemoApi(endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure){
+    
+    
+    
+    
+    func loginAccount(endPoint: EndPointType, username: String?, password: String?, success: @escaping (String)->Void, failure: @escaping RequestFailure) {
+        
+        request.loginAccount(username: username, password: password, endPoint: endPoint) { token in
+            success(token)
+        } failure: { (err) in
+            failure(err)
+        }
+
+    }
+    
+    
+    func getExamBySubject(idSubject: Int?, endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure) {
+        print("URL: \(BASE_URL)\(endPoint.path)")
+        print(endPoint.parameters)
+        if Reachability.isConnectedToNetwork() {
+            request.getSubject(endPoint: endPoint, success: { data in
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String: AnyObject]] {
+                        print("*******************JSON Result************************")
+                        print(json)
+                        print("*******************END************************")
+                        
+                        self.handleJSONSubjectList(response: json, success: success, failure: failure)
+                        
+                    }
+                } catch let error as NSError {
+                    KRProgressHUD.dismiss {
+                        let popUp = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        
+                        PopupHelper.shared.showPopError(popUp: popUp) { (controller) in
+                            popUp.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                                controller?.dismiss(animated: true, completion: nil)
+                            }))
+                        }
+                        
+                        
+                    }
+                    print(error.localizedDescription)
+                }
+            }) { error in
+                if let _error = error {
+                    if _error.message == "The Internet connection appears to be offline." {
+
+                    } else {
+                        print("APINetwork - requestData: \(String(describing: error?.message?.description))")
+                    }
+                    failure(APIError(error: error))
+                }
+            }
+        } else {
+            KRProgressHUD.dismiss {
+                let popUp = UIAlertController(title: "Error", message: "Internet Disconect", preferredStyle: .alert)
+                
+                PopupHelper.shared.showPopError(popUp: popUp) { (controller) in
+                    popUp.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                        controller?.dismiss(animated: true, completion: nil)
+                    }))
+                }
+                
+                
+            }
+        }
+
+
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    func getSubject(endPoint: EndPointType, success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure){
         
         print("URL: \(BASE_URL)\(endPoint.path)")
         print(endPoint.parameters)
         if Reachability.isConnectedToNetwork() {
-            request.getDemoApi(endPoint: endPoint, success: { data in
+            request.getSubject(endPoint: endPoint, success: { data in
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String: AnyObject]] {
                         print("*******************JSON Result************************")
@@ -94,6 +177,10 @@ extension APINetwork {
     
     
     private func handleJSONSubjectList(response: [[String: AnyObject]], success: @escaping NetworkArrJSONSuccess, failure: @escaping RequestFailure) {
+        success(response)
+    }
+    
+    private func handleJSONToken(response: String, success: @escaping NetworkTokenJSONSuccess, failure: @escaping RequestFailure) {
         success(response)
     }
 }

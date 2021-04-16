@@ -56,7 +56,16 @@ class LoginVC: BaseViewControllers {
     
     @IBAction func clickLogin(_ sender: Any) {
         
-        AppRouter.shared.gotoHome()
+        
+        Provider.shared.getSubject.loginAccount(username: tfUsername.text, password: tfPassword.text) { token in
+            UserDefaults.standard.setValue(token, forKey: "token")
+            AppRouter.shared.gotoHome()
+        } failure: { err in
+            print(err?.code)
+        }
+
+        
+
         
         
     }

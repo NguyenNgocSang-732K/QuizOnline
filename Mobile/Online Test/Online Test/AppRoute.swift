@@ -34,17 +34,17 @@ class AppRouter {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let windowApp = appDelegate.window else { KRProgressHUD.dismiss(); return }
         //---
         
-        Provider.shared.getSubject.getDemoApi { (listSubject) in
-            let homeVC = HomeVC(arrSubject: listSubject)
+        Provider.shared.getSubject.getSubject { (list) in
+            let homeVC = HomeVC(arrSubject: list)
             let navRoot = UINavigationController(rootViewController:homeVC)
         
             windowApp.rootViewController = navRoot
             windowApp.makeKeyAndVisible()
             KRProgressHUD.dismiss()
-        } failure: { err in
+        } failure: { (err) in
             KRProgressHUD.dismiss()
-            return
         }
+
 
         
         

@@ -55,7 +55,8 @@ class BeforeTestVC: BaseViewControllers {
     @IBAction func clickStart(_ sender: Any) {
         let popUp = PopupVC(questions: questions, time: time)
         
-        popUp.modalPresentationStyle = .fullScreen
+        popUp.modalPresentationStyle = .overFullScreen
+        popUp.modalTransitionStyle = .flipHorizontal
         
         self.present(popUp, animated: true, completion: nil)
         

@@ -39,6 +39,6 @@ class CellExam: UITableViewCell {
             return
         }
         titleExam.text = exam.name
-        lbPoint.text = "\(exam.level ?? 9)"
+//        lbPoint.text = "\(exam.level ?? 9)"
     }
 }

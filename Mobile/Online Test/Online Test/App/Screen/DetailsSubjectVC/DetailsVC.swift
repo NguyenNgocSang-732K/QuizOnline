@@ -82,11 +82,11 @@ extension DetailsVC:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let questions = arrExam?[indexPath.item].question
-        let time = arrExam?[indexPath.item].time
-        let beforeVC = BeforeTestVC(questions: questions, time:time)
-        
-        self.push(controller: beforeVC)
+//        let questions = arrExam?[indexPath.item].question
+//        let time = arrExam?[indexPath.item].time
+//        let beforeVC = BeforeTestVC(questions: questions, time:time)
+//
+//        self.push(controller: beforeVC)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

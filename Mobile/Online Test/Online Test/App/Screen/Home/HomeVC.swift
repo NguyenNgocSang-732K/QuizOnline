@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class HomeVC: BaseViewControllers {
 
@@ -114,13 +115,23 @@ extension HomeVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        KRProgressHUD.show()
        
-        let arrExam = arrSubject[indexPath.item].exams
+        let idSubject = arrSubject[indexPath.item].id
         
-        let detailsVC = DetailsVC(arrExam: arrExam)
+        Provider.shared.getSubject.getExamBySubject(idSubject: idSubject) { exams in
+            
+            let detailsVC = DetailsVC(arrExam: exams)
 
-        self.push(controller: detailsVC)
+            self.push(controller: detailsVC)
+            KRProgressHUD.dismiss()
+            
+        } failure: { err in
+            print("Asdasdasd", err)
+            KRProgressHUD.dismiss()
+        }
+        
+        
     }
     
 }

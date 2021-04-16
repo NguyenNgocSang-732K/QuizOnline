@@ -48,6 +48,15 @@ struct MapperData {
             }
             
         }
+        
+    }
+    
+    static func mapTokenJson<T: BaseMappable>(_ successHandler: @escaping SuccessHandler<T>.object) -> NetworkTokenJSONSuccess {
+        return { baseResponse in
+            let obj = Mapper<T>().map(JSONString: baseResponse)
+            successHandler(obj)
+            
+        }
     }
     static func mapArrayNoData<T: BaseMappable>(_ successHandler: @escaping SuccessHandler<T>.array) -> NetworkJSONSuccess {
         return { baseResponse in
