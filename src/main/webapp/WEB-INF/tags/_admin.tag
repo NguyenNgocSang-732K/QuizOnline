@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Instructor - Edit account</title>
+    <title>${title }</title>
 
     <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
     <meta name="robots" content="noindex">
@@ -102,14 +102,24 @@
                     src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
+                
+                <auth:authorize access="hasRole('ROLE_Admin')">
                     <a class="dropdown-item"
                        href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
-                        <i class="material-icons">edit</i> Profile
-                    </a> <a class="dropdown-item" href="instructor-profile.html"> <i
-                        class="material-icons">person</i> Profile Details
-                </a> </a> <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/logout"> <i
-                        class="material-icons">lock</i> Logout
-                </a>
+                        <i class="material-icons">person</i> Profile
+                    </a> 
+                </auth:authorize>
+                
+                <auth:authorize access="hasRole('ROLE_Student')">
+                    <a class="dropdown-item" 
+                    	href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />"> <i
+                        class="material-icons">person</i> Profile
+                	</a> 
+                </auth:authorize>
+
+	                <a class="dropdown-item" href="${pageContext.request.contextPath }/logout"> <i
+	                        class="material-icons">lock</i> Logout
+	                </a>
                 </div>
             </li>
             <!-- // END User dropdown -->
