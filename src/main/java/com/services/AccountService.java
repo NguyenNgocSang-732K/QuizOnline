@@ -87,10 +87,4 @@ public class AccountService implements IAccountService {
 
 		return accountRepository.save(account);
 	}
-
-	@Override
-	public Account FindByUsername(String username) {
-		// TODO Auto-generated method stub
-		return accountRepository.findByUsername(username);
-	}
 }

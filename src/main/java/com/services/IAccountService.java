@@ -9,8 +9,6 @@ public interface IAccountService extends UserDetailsService{
 	
 	public Account FindById(int id);
 	
-	public Account FindByUsername(String username);
-	
 	public Account Save(Account account);
 	
 }
