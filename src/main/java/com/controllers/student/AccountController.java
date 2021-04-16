@@ -1,4 +1,4 @@
-package com.controllers.user;
+package com.controllers.student;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.controllers.user;
+package com.controllers.student;
 
 import java.io.IOException;
 
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping({ "viewCourse" })
-public class ViewCourseController {
+@RequestMapping({ "profile" })
+public class ProfileController {
 	
 	@RequestMapping(value = { "index" }, method = RequestMethod.GET)
 	public String index() throws IOException {
-		return "user/student-view-course/index";
+		return "user/student-profile/index";
 	}
 }
