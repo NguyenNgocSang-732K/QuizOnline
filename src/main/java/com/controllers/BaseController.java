@@ -48,7 +48,7 @@ public class BaseController {
             return "redirect:student/dashboard";
         }
 
-        return "redirect:shared/accessdenied";
+        return "redirect:/accessdenied";
     }
 
     @RequestMapping(value = {"accessdenied"}, method = RequestMethod.GET)
