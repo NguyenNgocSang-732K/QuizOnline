@@ -8,13 +8,7 @@ public enum AccountTypeEnum {
 		}
 	},
 
-	TEACHER(2) {
-		@Override
-		public String toString() {
-			return "ROLE_Techer";
-		}
-	},
-	STUDENT(3) {
+	STUDENT(2) {
 		@Override
 		public String toString() {
 			return "ROLE_Student";
