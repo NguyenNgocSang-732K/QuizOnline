@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 
 import org.springframework.lang.Nullable;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("admin")
@@ -21,5 +22,9 @@ public class AdminBaseController{
 
 	protected String Redirect(String viewName, @Nullable String optional) {
 		return "redirect:/admin/" + (optional == null ? viewName : (viewName+"?op="+optional));
+	}
+
+	protected String PageError(@PathVariable ("title") String title) {
+		return "shared/error";
 	}
 }
