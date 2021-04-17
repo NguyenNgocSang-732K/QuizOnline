@@ -11,7 +11,7 @@
 
  <link rel="stylesheet"
        href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
-<div class="container" >
+<div class="container">
     <div class="row">
         <div class="col">
             <div class="wrapper-breadcrumb">
@@ -55,13 +55,16 @@
                                     <div class="input-title">Image</div>
                                     <div class="input-file">
                                         <div class="media">
-                                            <div class="media-left">
-                                                <div
-                                                        class="icon-block rounded display-image"
-                                                        style="background-image:url(${pageContext.request.contextPath}/images/LearnPlus.png);">
-                                                    <i class="material-icons text-muted-light md-36">photo</i>
-                                                </div>
-                                            </div>
+                                            <core:choose>
+                                                <core:when test="${not empty question.image}">
+                                                    <div class="icon-block rounded display-image"
+                                                         style="background-image: url(${pageContext.request.contextPath}/images/${question.image});background-size: cover">
+                                                    </div>
+                                                </core:when>
+                                                <core:otherwise>
+                                                    <i class="material-icons text-muted-light md-36">image</i>
+                                                </core:otherwise>
+                                            </core:choose>
                                             <div class="media-body media-middle">
                                                 <label class="custom-file m-0">
                                                     <input type="file"
@@ -99,13 +102,13 @@
                                     </div>
                                 </div>
                                 <div class="dp-row">
-                                     <div class="input-title">Answers</div>
-                                     <div class="input-value">
+                                    <div class="input-title">Answers</div>
+                                    <div class="input-value">
                                           <s-form:select path="answerType" cssClass="form-select">
                                                   <s-form:options items="${AnswerTypeEnum.values()}" itemValue="key"
                                                                   itemLabel="value"/>
                                           </s-form:select>
-                                     </div>
+                                    </div>
                                 </div>
                                 <div class="dp-row">
                                     <div class="input-title">&nbsp;</div>

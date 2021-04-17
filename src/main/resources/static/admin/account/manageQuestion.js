@@ -34,7 +34,7 @@ $(document).ready(function () {
         code: true,
     });
 
-    $('.status-question').on('change', function() {
+    $('.status-question').on('change', function () {
         var target = $(this);
         var isChecked = target.is(':checked');
         var questionId = target.data('question-id')
@@ -44,25 +44,39 @@ $(document).ready(function () {
             id: questionId
         };
 
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: '/admin/question/update-status',
-            data : JSON.stringify(questionModel),
-            dataType : 'json',
-            success: function(response){
-                if(response){
-                    alert("Update Question status success!!")
-                }else{
-                    alert("Update Question status fail!!")
+        function processUpdate(){
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: '/admin/question/update-status',
+                data: JSON.stringify(questionModel),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == 200) {
+                        alert(data.dataResponse)
+                    } else if (data.status == 404) {
+                        var url = window.location.protocol + '//' + window.location.host + '/notfound'
+                        window.location.assign(url);
+                    }
                 }
+            })
+        }
+
+        if(questionModel.status){
+            processUpdate();
+        }else{
+            var modalConfirm = confirm("Do you want to disable this Question?");
+
+            if (modalConfirm == true){
+                processUpdate();
+            }else{
+                target.prop('checked', true);
             }
-        })
+        }
     })
 
-    function updateNotice(){
-        if(typeof(updateStatus) !== 'undefined')
-        {
+    function updateNotice() {
+        if (typeof (updateStatus) !== 'undefined') {
             alert(updateStatus);
         }
     }

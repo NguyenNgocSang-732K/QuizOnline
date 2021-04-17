@@ -18,9 +18,9 @@ public class QuestionMapper {
         questionModel.setCreatedDate(questionEntity.getCreatedDate());
         questionModel.setCreatedBy(questionEntity.getCreatedBy());
 
-        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()){
+        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()) {
             questionModel.setStatus(true);
-        }else if(StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()){
+        } else if (StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()) {
             questionModel.setStatus(false);
         }
 
@@ -39,9 +39,9 @@ public class QuestionMapper {
         questionUpdateModel.setCreatedDate(questionEntity.getCreatedDate());
         questionUpdateModel.setCreatedBy(questionEntity.getCreatedBy());
 
-        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()){
+        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()) {
             questionUpdateModel.setStatus(true);
-        }else if(StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()){
+        } else if (StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()) {
             questionUpdateModel.setStatus(false);
         }
 
@@ -50,6 +50,22 @@ public class QuestionMapper {
                 .stream()
                 .map(p -> AnswerMapper.ToAnswerModel(p))
                 .collect(Collectors.toList()));
+
+        return questionUpdateModel;
+    }
+
+    public static QuestionUpdateModel ToQuestionUpdateModel(QuestionModel questionModel) {
+        QuestionUpdateModel questionUpdateModel = new QuestionUpdateModel();
+
+        questionUpdateModel.setId(questionModel.getId());
+        questionUpdateModel.setContent(questionModel.getContent());
+        questionUpdateModel.setAnswerType(questionModel.getAnswerType());
+        questionUpdateModel.setImage(questionModel.getImage());
+        questionUpdateModel.setCreatedDate(questionModel.getCreatedDate());
+        questionUpdateModel.setCreatedBy(questionModel.getCreatedBy());
+        questionUpdateModel.setStatus(questionModel.isStatus());
+        questionUpdateModel.setLevelModel(questionModel.getLevelModel());
+        questionUpdateModel.setAnswerModels(questionModel.getAnswerModels());
 
         return questionUpdateModel;
     }

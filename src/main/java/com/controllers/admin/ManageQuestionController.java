@@ -2,9 +2,11 @@ package com.controllers.admin;
 
 import com.constant.AuthenManager;
 import com.constant.GeneralTypeEnum;
+import com.model.entityModels.AjaxResponse;
 import com.model.entityModels.QuestionCreateModel;
 import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
+import com.model.mapper.QuestionMapper;
 import com.services.ILevelService;
 import com.services.IQuestionService;
 import com.validation.QuestionCreateModelValidation;
@@ -20,11 +22,14 @@ import javax.validation.Valid;
 @Controller
 public class ManageQuestionController extends AdminBaseController {
 
+    // Service
     private @Autowired
     IQuestionService _questionService;
+
     private @Autowired
     ILevelService _levelService;
 
+    // Validator
     private @Autowired
     QuestionCreateModelValidation _questionCreateValidator;
 
@@ -54,7 +59,7 @@ public class ManageQuestionController extends AdminBaseController {
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
     public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id, @RequestParam(required =
             false) String op) {
-        QuestionUpdateModel questionUpdate = _questionService.findById(id);
+        QuestionUpdateModel questionUpdate = QuestionMapper.ToQuestionUpdateModel(_questionService.findById(id));
 
         if (op != null && op.equalsIgnoreCase("success"))
             modelMap.put("updateStatus", "Update question success!!");
@@ -82,11 +87,23 @@ public class ManageQuestionController extends AdminBaseController {
 
     // Update question's status
     // questionModel: Include question's id and question's status
-    @RequestMapping(value = "/question/update-status")
-    @ResponseBody
-    public boolean UpdateStatus(@RequestBody QuestionModel questionModel) {
-        boolean updateStatus = _questionService.UpdateStatus(questionModel.getId(), questionModel.isStatus());
-        return updateStatus;
+    // bindingResult: Using for validation model
+    @RequestMapping(value = "/question/update-status", method = RequestMethod.POST)
+    public @ResponseBody
+    AjaxResponse UpdateStatus(@RequestBody QuestionModel questionModel) {
+        QuestionModel questionValidator = _questionService.findById(questionModel.getId());
+
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        if (questionValidator == null) {
+            ajaxResponse.setStatus(404);
+            return ajaxResponse;
+        }
+
+        _questionService.UpdateStatus(questionModel.getId(), questionModel.isStatus());
+        ajaxResponse.setStatus(200);
+        ajaxResponse.setDataResponse("Update question's status success");
+
+        return ajaxResponse;
     }
 
     // Load and initial data form create question

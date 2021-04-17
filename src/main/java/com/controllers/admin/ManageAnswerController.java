@@ -20,10 +20,10 @@ public class ManageAnswerController extends AdminBaseController{
 
     @RequestMapping(value = {"/question/{id}/answers"}, method = RequestMethod.GET)
     public String IndexAnswer(ModelMap modelmap, @PathVariable("id") int questionId) {
-        QuestionModel questionModel = _questionService.findById(questionId);
-
-        modelmap.put("question", questionModel);
-        modelmap.put("answers", _answerService.GetAll(questionId));
+//        QuestionModel questionModel = _questionService.findById(questionId);
+//
+//        modelmap.put("question", questionModel);
+//        modelmap.put("answers", _answerService.GetAll(questionId));
         return "admin/ManageAnswer";
     }
 

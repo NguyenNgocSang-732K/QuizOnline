@@ -223,11 +223,9 @@
 <script
         src="${pageContext.request.contextPath}/resources/common/js/pagination.js"></script>
 
+<%--Manager Question--%>
 <script
         src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
-
-</body>
-
 
 <!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:59 GMT -->
 
