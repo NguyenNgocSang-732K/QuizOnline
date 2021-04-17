@@ -10,7 +10,6 @@ import com.model.mapper.QuestionMapper;
 import com.services.ILevelService;
 import com.services.IQuestionService;
 import com.validation.QuestionCreateModelValidation;
-import com.validation.QuestionModelValidation;
 import com.validation.QuestionUpdateModelValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,9 +35,6 @@ public class ManageQuestionController extends AdminBaseController {
 
     private @Autowired
     QuestionUpdateModelValidation _questionUpdateValidator;
-
-    private @Autowired
-    QuestionModelValidation _questionModelValidator;
 
     // Get All questions from database
     // page: page number

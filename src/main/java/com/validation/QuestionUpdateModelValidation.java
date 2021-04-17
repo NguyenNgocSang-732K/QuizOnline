@@ -27,7 +27,7 @@ public class QuestionUpdateModelValidation implements Validator {
         QuestionModel question = _questionService.findById(questionUpdate.getId());
 
         if (question == null) {
-            errors.rejectValue("QuestionUpdateModel.id", "Question_NOTEXIST");
+            errors.rejectValue("id", "Question_NOTEXIST");
         }
 
         ValidateContent(questionUpdate, errors);
@@ -37,6 +37,6 @@ public class QuestionUpdateModelValidation implements Validator {
         String parseContent = ParseHtmlTag.Parse(questionUpdate.getContent().trim());
 
         if (parseContent.isEmpty())
-            errors.rejectValue("QuestionUpdateModel.content", "QuestionContent_NOTEMPTY");
+            errors.rejectValue("content", "QuestionContent_NOTEMPTY");
     }
 }

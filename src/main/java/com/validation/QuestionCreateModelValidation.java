@@ -24,6 +24,6 @@ public class QuestionCreateModelValidation implements Validator {
         String parseContent = ParseHtmlTag.Parse(questionCreate.getContent().trim());
 
         if (parseContent.isEmpty())
-            errors.rejectValue("QuestionCreateModel.content", "QuestionContent_NOTEMPTY");
+            errors.rejectValue("content", "QuestionContent_NOTEMPTY");
     }
 }
