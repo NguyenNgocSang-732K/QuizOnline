@@ -5,17 +5,16 @@
 /*Index Question Page*/
 #filter-wrapper {
     padding-top: 2%;
+}
+
+#filter-wrapper .wrapper-btnAdd{
     text-align: right;
 }
 
-#filter-wrapper .filter-category {
-    text-align: right;
-}
-
-#table-wrapper > div > div > div > table > tbody > tr > td{
+#table-wrapper table tbody tr td{
     width: auto;
 }
-#table-wrapper > div > div > div > table > tbody > tr > td:nth-child(1){
+#table-wrapper table tbody tr td:nth-child(1){
     width: 50%;
 }
 

@@ -8,7 +8,7 @@ import com.model.entityModels.QuestionUpdateModel;
 public interface IQuestionService {
     PaginationModel<QuestionModel> GetAll(int page, int pageSize, String searchText);
 
-    QuestionUpdateModel findById(int questionId);
+    QuestionModel findById(int questionId);
 
     int UpdateQuestion(QuestionUpdateModel questionUpdate);
 

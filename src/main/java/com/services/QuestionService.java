@@ -71,11 +71,10 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
-    public QuestionUpdateModel findById(int questionId) {
+    public QuestionModel findById(int questionId) {
         Optional<Question> question = _questionRepository.findById(questionId);
 
-        return question.empty().isPresent() ? null :
-                QuestionMapper.ToQuestionUpdateModel(question.get());
+        return question.isPresent() ? QuestionMapper.ToQuestionModel(question.get()) : null;
     }
 
     @Override
@@ -121,21 +120,17 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public boolean UpdateStatus(int questionId, boolean status) {
-        Optional<Question> optionalQuestion = _questionRepository.findById(questionId);
+        Question question = _questionRepository.findById(questionId).get();
 
-        if (!optionalQuestion.empty().isPresent()){
-            Question question = optionalQuestion.get();
+        if (status)
+            question.setStatus(StatusEnum.ACTIVE.getKey());
+        else
+            question.setStatus(StatusEnum.INACTIVE.getKey());
 
-            if(status)
-                question.setStatus(StatusEnum.ACTIVE.getKey());
-            else
-                question.setStatus(StatusEnum.INACTIVE.getKey());
+        Question questionUpdated = _questionRepository.save(question);
 
-            Question questionUpdated = _questionRepository.save(question);
-
-            if(questionUpdated != null)
-                return true;
-        }
+        if (questionUpdated != null)
+            return true;
 
         return false;
     }

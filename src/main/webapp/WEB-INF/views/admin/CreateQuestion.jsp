@@ -11,7 +11,7 @@
 
  <link rel="stylesheet"
        href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
-<div class="container" >
+<div class="container">
     <div class="row">
         <div class="col">
             <div class="wrapper-breadcrumb">
@@ -57,9 +57,19 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <div class="icon-block rounded display-image"
-                                                        style="background-image:url(${pageContext.request.contextPath}/images/LearnPlus.png);">
-                                                    <i class="material-icons text-muted-light md-36">photo</i>
+                                                    style=${not empty profile.image ?
+                                                    "background-image:url(${pageContext.request.contextPath/images/profile.photo});background-size:cover;" : ""}>
+
                                                 </div>
+
+                                                <core:choose>
+                                                    <core:when test="${not empty question.image}">
+
+                                                    </core:when>
+                                                    <core:otherwise>
+                                                        <i class="material-icons text-muted-light md-36">image</i>
+                                                    </core:otherwise>
+                                                </core:choose>
                                             </div>
                                             <div class="media-body media-middle">
                                                 <label class="custom-file m-0">

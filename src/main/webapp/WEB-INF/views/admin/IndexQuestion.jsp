@@ -17,7 +17,7 @@
         <div id="filter-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-8 wrapper-btnAdd">
                         <a role="button" href="${pageContext.request.contextPath}/admin/question/create-question"
                            class="btn btn-primary" id="btnAddQuestion">
                             Add &nbsp;&nbsp;<i class="fas fa-plus"></i>
