@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.services.IAccountService;
 
@@ -27,5 +28,9 @@ public class AdminBaseController {
 
 	protected String Redirect(String viewName) {
 		return "redirect:/admin/" + viewName;
+	}
+
+	protected String PageError(@PathVariable ("title") String title) {
+		return "shared/error";
 	}
 }
