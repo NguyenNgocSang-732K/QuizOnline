@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,6 +24,7 @@ public class Subject implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
+	private String image;
 	private Date createdDate;
 	private int createdBy;
 	private int status;
@@ -39,8 +40,9 @@ public class Subject implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Subject(String name, Date createdDate, int createdBy, int status, Set<Exam> exams) {
+	public Subject(String name, String image, Date createdDate, int createdBy, int status, Set<Exam> exams) {
 		this.name = name;
+		this.image = image;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
@@ -66,6 +68,15 @@ public class Subject implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Column(name = "image", length = 250)
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Temporal(TemporalType.DATE)
