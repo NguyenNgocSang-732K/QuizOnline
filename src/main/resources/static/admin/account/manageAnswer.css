@@ -22,3 +22,17 @@
     align-items: center;
     justify-content: center;
 }
+
+/*Create Answer*/
+#wrapper-answer-iscorrect{
+    padding: 0;
+}
+
+#wrapper-answer-iscorrect > label{
+    padding: 0;
+}
+
+#wrapper-answer-iscorrect > #iscorrect-answer{
+    margin-left: 2.5rem;
+}
+

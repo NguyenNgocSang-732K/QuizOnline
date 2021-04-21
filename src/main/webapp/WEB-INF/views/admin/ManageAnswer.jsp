@@ -44,66 +44,68 @@
                     <div class="card-body tab-content">
                         <div class="tab-pane active">
                             <div class="wrapper-content">
-                                    <%--@elvariable id="answers" type="za.co.myProject.UserFormObject"--%>
-                                <s-form:form
-                                        action="${pageContext.request.contextPath }/admin/updateQuestion"
-                                        class="form-horizontal"
-                                        method="POST" modelAttribute="answers"
-                                        enctype="multipart/form-data">
-                                    <div class="question-content">
-                                        <b>Question:</b>&nbsp; ${question.content}
+                                <div class="question-content">
+                                    <b>Question:</b>&nbsp; ${question.content}
+                                </div>
+                                <div class="wrapper-answer-table">
+                                    <div class="btn-add">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#add-answer">
+                                            Add &nbsp;
+                                            <i class="fas fa-plus" aria-hidden="true"></i>
+                                        </button>
                                     </div>
-                                    <div class="wrapper-answer-table">
-                                        <div class="btn-add">
-                                            <button type="button" class="btn btn-primary">Add
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <table class="table answer-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Content</th>
-                                                    <th>IsCorrect</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <core:forEach items="${answers}" var="answer">
-                                                        <tr>
-                                                            <td>${answer.content}</td>
-                                                            <td>
-                                                                <input type="checkbox" ${answer.iscorrect ? "checked" : ""} />
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                           id="status-answer"
-                                                                        ${StatusEnum.ACTIVE.compareTo(StatusEnum.getKey(answer.status)) == 0 ? "checked": ""}>
-                                                                    <label class="form-check-label" for="status-answer"></label>
-                                                                </div>
+                                    <div>
 
-                                                            </td>
-                                                            <td>
-                                                                <button class="btn btn-warning" type="button">
-                                                                    <i class="fas fa-edit"></i>
-                                                                </button>
-                                                                <button class="btn btn-danger" type="button">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+                                        <table class="table answer-table">
+                                            <thead>
+                                            <tr>
+                                                <th>Content</th>
+                                                <th>IsCorrect</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <core:forEach items="${answers}" var="answer">
+                                                <tr>
+                                                    <td>${answer.content}</td>
+                                                    <td>
+                                                        <input type="checkbox" ${answer.iscorrect ? "checked" : ""} />
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   id="status-answer"
+                                                                ${StatusEnum.ACTIVE.compareTo(StatusEnum.getKey(answer.status)) == 0 ? "checked": ""}>
+                                                            <label class="form-check-label" for="status-answer"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-warning" type="button" data-toggle="modal"
+                                                                data-target="#edit-answer">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger" type="button">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
                                                     </core:forEach>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </s-form:form>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="wrapper-btnCancel card-body">
+                        <a role="button" class="btn btn-primary"
+                           href="${pageContext.request.contextPath}/admin/question/${question.id}">Cancel</a>
                     </div>
                 </div>
             </div>
         </div>
+
 	</jsp:attribute>
 </template:_admin>
