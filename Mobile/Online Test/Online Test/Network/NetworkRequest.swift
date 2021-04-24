@@ -12,7 +12,8 @@ import Alamofire
 //public var BASE_URL = URL(string: "https://www.1secmail.com/api/v1")!
 
 //public var BASE_URL = URL(string: "https://5fd251f68cee610016adf38d.mockapi.io/")!
-public var BASE_URL = URL(string: "http://172.212.0.215:6969/api/")!
+public var BASE_URL = URL(string: "http://10.69.1.128:6969/api/")!
+public var BASE_URLImage = "http://10.69.1.128:6969/resources/admin/assets/images/"
 
 //---
 typealias RequestSuccess = (_ data: Data) -> Void
@@ -35,12 +36,14 @@ struct SuccessHandler<T> {
 // NetworkPotocol
 protocol NetworkRequestProtocol {
     func getSubject(endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
-    func loginAccount(username:String?, password:String?, endPoint: EndPointType, success: @escaping ((String)->Void), failure: @escaping RequestFailure)
+    func loginAccount(username:String?, password:String?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
     func getExamBySubject(idSubject:Int?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
+    func getQuestion(idExam:Int?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure)
 }
 
 //---
 struct NetworkRequest: NetworkRequestProtocol {
+    
     
     
     
@@ -87,16 +90,32 @@ struct NetworkRequest: NetworkRequestProtocol {
             }
         }
     }
+    func getQuestion(idExam: Int?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {
+        let url = makeUrl(path: endPoint.path)
+        
+        let encoding = getAlamofireEncoding(httpMethod: endPoint.httpMethod)
+        
+        let request = Alamofire.request(url, method: endPoint.httpMethod, parameters: endPoint.parameters, encoding: encoding, headers: endPoint.headers)
+        request.responseData { (dataResponse) in
+            switch dataResponse.result {
+            case .success(let data):
+                success(data)
+            case .failure(let error):
+                let apiError = APIError(error: error)
+                failure(apiError)
+            }
+        }
+    }
     
     
-    func loginAccount(username: String?, password: String?, endPoint: EndPointType, success: @escaping ((String)->Void), failure: @escaping RequestFailure) {
+    func loginAccount(username: String?, password: String?, endPoint: EndPointType, success: @escaping RequestSuccess, failure: @escaping RequestFailure) {
         
         let url = makeUrl(path: endPoint.path)
         
         let encoding = getAlamofireEncoding(httpMethod: endPoint.httpMethod)
         
         let request = Alamofire.request(url, method: endPoint.httpMethod, parameters: endPoint.parameters, encoding: encoding, headers: endPoint.headers)
-        request.responseString { (dataResponse) in
+        request.responseData { dataResponse in
             switch dataResponse.result {
             case .success(let data):
                 success(data)

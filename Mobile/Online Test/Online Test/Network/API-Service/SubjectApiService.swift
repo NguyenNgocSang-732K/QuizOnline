@@ -10,13 +10,16 @@ import Foundation
 protocol SubjectAPIServiceProtocol {
     
     
-    func getSubject(success: @escaping SuccessHandler<Subject>.array, failure: @escaping RequestFailure)
-    func loginAccount(username:String?, password:String?, success: @escaping ((String)->Void), failure: @escaping RequestFailure)
-    func getExamBySubject(idSubject:Int?, success: @escaping  SuccessHandler<Exam>.array, failure: @escaping RequestFailure)
+    func getSubject(success: @escaping SuccessHandler<SubjectBaseModel>.object, failure: @escaping RequestFailure)
+    func loginAccount(username:String?, password:String?, success: @escaping SuccessHandler<LoginBaseModel>.object, failure: @escaping RequestFailure)
+    func getExamBySubject(idSubject:Int?, success: @escaping  SuccessHandler<BaseExamModel>.object, failure: @escaping RequestFailure)
+    func getQuestion(idExam:Int?, success: @escaping  SuccessHandler<QuestionBaseModel>.object, failure: @escaping RequestFailure)
     
 }
 
 class SubjectApiService: SubjectAPIServiceProtocol {
+    
+    
     
     
     
@@ -29,22 +32,25 @@ class SubjectApiService: SubjectAPIServiceProtocol {
     
     
     
-    func getSubject(success: @escaping SuccessHandler<Subject>.array , failure: @escaping RequestFailure) {
+    func getSubject(success: @escaping SuccessHandler<SubjectBaseModel>.object , failure: @escaping RequestFailure) {
         let endPoint = OnlineTestEnpoint.getSubject
-        network.getSubject(endPoint: endPoint, success: MapperData.mapArrayJson(success), failure: failure)
+        network.getSubject(endPoint: endPoint, success: MapperData.mapObject(success), failure: failure)
     }
-    func loginAccount(username: String?, password: String?, success: @escaping ((String)->Void), failure: @escaping RequestFailure) {
+    func loginAccount(username: String?, password: String?, success: @escaping SuccessHandler<LoginBaseModel>.object, failure: @escaping RequestFailure) {
         let endPoint = OnlineTestEnpoint.loginAccount(username: username, password: password)
-        network.loginAccount(endPoint: endPoint, username: username, password: password, success: success, failure: failure)
+        network.loginAccount(endPoint: endPoint, username: username, password: password, success: MapperData.mapObject(success), failure: failure)
     }
     
-    func getExamBySubject(idSubject: Int?, success: @escaping SuccessHandler<Exam>.array, failure: @escaping RequestFailure) {
+    func getExamBySubject(idSubject: Int?, success: @escaping SuccessHandler<BaseExamModel>.object, failure: @escaping RequestFailure) {
         let endPoint = OnlineTestEnpoint.getExamList(idSubject: idSubject)
-        network.getExamBySubject(idSubject: idSubject, endPoint: endPoint, success: MapperData.mapArrayJson(success), failure: failure)
+        network.getExamBySubject(idSubject: idSubject, endPoint: endPoint, success: MapperData.mapObject(success), failure: failure)
     }
     
     
-    
+    func getQuestion(idExam: Int?, success: @escaping SuccessHandler<QuestionBaseModel>.object, failure: @escaping RequestFailure) {
+        let endPoint = OnlineTestEnpoint.getQuestion(idExam: idExam)
+        network.getQuestion(idExam: idExam, endPoint: endPoint, success: MapperData.mapObject(success), failure: failure)
+    }
     
 //    func getRandomMail(count: Int, success: @escaping (([String])->Void), failure: @escaping RequestFailure) {
 //        let endPoint = MailEndPoint.getRandomMail(count: count)

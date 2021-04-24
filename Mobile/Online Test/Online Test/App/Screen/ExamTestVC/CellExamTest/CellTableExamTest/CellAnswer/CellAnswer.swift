@@ -12,6 +12,15 @@ class CellAnswer: UITableViewCell{
     @IBOutlet weak var lbAnswer: UILabel!
     @IBOutlet weak var lbTitleAnswer: UILabel!
     @IBOutlet weak var viewAnswer: UIView!
+    
+   
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -26,12 +35,18 @@ class CellAnswer: UITableViewCell{
         viewAnswer.backgroundColor = #colorLiteral(red: 0.8274509804, green: 0.8784313725, blue: 0.9176470588, alpha: 1)
     }
     
-    func bindData(answer:String?, title:String?){
-        guard let answer = answer, let title = title else {
+    func bindData(answer:Answer?){
+        guard let content = answer?.content, let isSelect = answer?.isSelected else {
             return
         }
-        lbTitleAnswer.text = title
-        lbAnswer.text = answer
+        lbTitleAnswer.text = "A"
+        lbAnswer.text = content
+        if isSelect{
+            viewAnswer.backgroundColor = #colorLiteral(red: 0.1529411765, green: 0.4, blue: 0.4705882353, alpha: 1)
+        }
+        else{
+            viewAnswer.backgroundColor = #colorLiteral(red: 0.8274509804, green: 0.8784313725, blue: 0.9176470588, alpha: 1)
+        }
     }
 
 }

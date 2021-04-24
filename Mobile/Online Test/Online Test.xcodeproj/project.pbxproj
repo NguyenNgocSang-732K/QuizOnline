@@ -11,8 +11,6 @@
 		762C517D2611FA050083B3D4 /* Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C517C2611FA050083B3D4 /* Exam.swift */; };
 		762C519326120B850083B3D4 /* CellExamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C519126120B850083B3D4 /* CellExamTest.swift */; };
 		762C519426120B850083B3D4 /* CellExamTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C519226120B850083B3D4 /* CellExamTest.xib */; };
-		762C519926120C9C0083B3D4 /* CellQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C519726120C9C0083B3D4 /* CellQuestion.swift */; };
-		762C519A26120C9C0083B3D4 /* CellQuestion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C519826120C9C0083B3D4 /* CellQuestion.xib */; };
 		762C51A0261212660083B3D4 /* CellAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C519E261212660083B3D4 /* CellAnswer.swift */; };
 		762C51A1261212660083B3D4 /* CellAnswer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762C519F261212660083B3D4 /* CellAnswer.xib */; };
 		762C51A82612FACB0083B3D4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762C51A72612FACB0083B3D4 /* String+Extension.swift */; };
@@ -78,6 +76,11 @@
 		7642C4E1261AAD000098413A /* PopHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E0261AAD000098413A /* PopHelper.swift */; };
 		7642C4E4261AAD400098413A /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E3261AAD400098413A /* UIAlertController+Extension.swift */; };
 		7642C4E9261AB8270098413A /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7642C4E8261AB8270098413A /* Provider.swift */; };
+		7675ACFC2632E67C00F4B377 /* SubjectBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675ACFB2632E67C00F4B377 /* SubjectBaseModel.swift */; };
+		7675ACFF2632E94700F4B377 /* BaseExamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675ACFE2632E94700F4B377 /* BaseExamModel.swift */; };
+		7675AE2F26344D7A00F4B377 /* BaseLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675AE2E26344D7A00F4B377 /* BaseLoginModel.swift */; };
+		7675AE322634529800F4B377 /* QuestionBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675AE312634529800F4B377 /* QuestionBaseModel.swift */; };
+		7675AE35263458B400F4B377 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675AE34263458B400F4B377 /* UIImage+Extension.swift */; };
 		76EBFA3726247FB6000BB796 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EBFA3626247FB6000BB796 /* Token.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,8 +89,6 @@
 		762C517C2611FA050083B3D4 /* Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exam.swift; sourceTree = "<group>"; };
 		762C519126120B850083B3D4 /* CellExamTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellExamTest.swift; sourceTree = "<group>"; };
 		762C519226120B850083B3D4 /* CellExamTest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellExamTest.xib; sourceTree = "<group>"; };
-		762C519726120C9C0083B3D4 /* CellQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellQuestion.swift; sourceTree = "<group>"; };
-		762C519826120C9C0083B3D4 /* CellQuestion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellQuestion.xib; sourceTree = "<group>"; };
 		762C519E261212660083B3D4 /* CellAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnswer.swift; sourceTree = "<group>"; };
 		762C519F261212660083B3D4 /* CellAnswer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellAnswer.xib; sourceTree = "<group>"; };
 		762C51A72612FACB0083B3D4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -155,6 +156,11 @@
 		7642C4E0261AAD000098413A /* PopHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopHelper.swift; sourceTree = "<group>"; };
 		7642C4E3261AAD400098413A /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		7642C4E8261AB8270098413A /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		7675ACFB2632E67C00F4B377 /* SubjectBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectBaseModel.swift; sourceTree = "<group>"; };
+		7675ACFE2632E94700F4B377 /* BaseExamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseExamModel.swift; sourceTree = "<group>"; };
+		7675AE2E26344D7A00F4B377 /* BaseLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoginModel.swift; sourceTree = "<group>"; };
+		7675AE312634529800F4B377 /* QuestionBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBaseModel.swift; sourceTree = "<group>"; };
+		7675AE34263458B400F4B377 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		76EBFA3626247FB6000BB796 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		953BA14BC07E0ED93095A765 /* Pods-Online Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Online Test.release.xcconfig"; path = "Target Support Files/Pods-Online Test/Pods-Online Test.release.xcconfig"; sourceTree = "<group>"; };
 		A397B0BE6BC5F7A98E596156 /* Pods_Online_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Online_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,7 +198,6 @@
 		762C519626120C640083B3D4 /* CellTableExamTest */ = {
 			isa = PBXGroup;
 			children = (
-				762C51A52612D28A0083B3D4 /* CellQuestion */,
 				762C519D261212520083B3D4 /* CellAnswer */,
 			);
 			path = CellTableExamTest;
@@ -205,15 +210,6 @@
 				762C519F261212660083B3D4 /* CellAnswer.xib */,
 			);
 			path = CellAnswer;
-			sourceTree = "<group>";
-		};
-		762C51A52612D28A0083B3D4 /* CellQuestion */ = {
-			isa = PBXGroup;
-			children = (
-				762C519726120C9C0083B3D4 /* CellQuestion.swift */,
-				762C519826120C9C0083B3D4 /* CellQuestion.xib */,
-			);
-			path = CellQuestion;
 			sourceTree = "<group>";
 		};
 		762C52262614A3330083B3D4 /* LoginVC */ = {
@@ -459,6 +455,7 @@
 				762C5298261708610083B3D4 /* Date+Extension.swift */,
 				762C529B26170BDD0083B3D4 /* UITextField+Extension.swift */,
 				7642C4E3261AAD400098413A /* UIAlertController+Extension.swift */,
+				7675AE34263458B400F4B377 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -473,6 +470,10 @@
 				7642C4C0261AA9060098413A /* Question.swift */,
 				7642C4C3261AA9380098413A /* Answer.swift */,
 				76EBFA3626247FB6000BB796 /* Token.swift */,
+				7675ACFB2632E67C00F4B377 /* SubjectBaseModel.swift */,
+				7675ACFE2632E94700F4B377 /* BaseExamModel.swift */,
+				7675AE2E26344D7A00F4B377 /* BaseLoginModel.swift */,
+				7675AE312634529800F4B377 /* QuestionBaseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -654,7 +655,6 @@
 				762C5261261580F30083B3D4 /* CellSubjectList.xib in Resources */,
 				763B6C822611B2A000FD9415 /* Main.storyboard in Resources */,
 				763B6CA22611BD2300FD9415 /* CellHome.xib in Resources */,
-				762C519A26120C9C0083B3D4 /* CellQuestion.xib in Resources */,
 				762C52962616DB100083B3D4 /* CalendarPopVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -729,7 +729,6 @@
 				762C51A0261212660083B3D4 /* CellAnswer.swift in Sources */,
 				7642C4CC261AAC0F0098413A /* MapperData.swift in Sources */,
 				762C52672615A20F0083B3D4 /* EditVC.swift in Sources */,
-				762C519926120C9C0083B3D4 /* CellQuestion.swift in Sources */,
 				762C517D2611FA050083B3D4 /* Exam.swift in Sources */,
 				7642C4C4261AA9380098413A /* Answer.swift in Sources */,
 				7642C4E1261AAD000098413A /* PopHelper.swift in Sources */,
@@ -741,6 +740,8 @@
 				762C519326120B850083B3D4 /* CellExamTest.swift in Sources */,
 				7642C4DD261AACB90098413A /* APIError.swift in Sources */,
 				763B6CC52611D47300FD9415 /* CellExam.swift in Sources */,
+				7675AE35263458B400F4B377 /* UIImage+Extension.swift in Sources */,
+				7675ACFC2632E67C00F4B377 /* SubjectBaseModel.swift in Sources */,
 				7642C4DE261AACB90098413A /* BaseResponse.swift in Sources */,
 				762C5299261708610083B3D4 /* Date+Extension.swift in Sources */,
 				7642C4E9261AB8270098413A /* Provider.swift in Sources */,
@@ -748,12 +749,15 @@
 				762C526C2615AFE10083B3D4 /* DropDown.swift in Sources */,
 				763B6C9B2611B58B00FD9415 /* BaseViewControllers.swift in Sources */,
 				76EBFA3726247FB6000BB796 /* Token.swift in Sources */,
+				7675AE2F26344D7A00F4B377 /* BaseLoginModel.swift in Sources */,
+				7675AE322634529800F4B377 /* QuestionBaseModel.swift in Sources */,
 				762C5260261580F30083B3D4 /* CellSubjectList.swift in Sources */,
 				763B6CA12611BD2300FD9415 /* CellHome.swift in Sources */,
 				762C522D2614AD260083B3D4 /* AppRoute.swift in Sources */,
 				763B6C7F2611B2A000FD9415 /* ViewController.swift in Sources */,
 				763B6CCB2611DD3F00FD9415 /* BeforeTestVC.swift in Sources */,
 				763B6CB72611C9BF00FD9415 /* Subject.swift in Sources */,
+				7675ACFF2632E94700F4B377 /* BaseExamModel.swift in Sources */,
 				763B6C7B2611B2A000FD9415 /* AppDelegate.swift in Sources */,
 				762C524B26156AFA0083B3D4 /* HeaderProfile.swift in Sources */,
 			);

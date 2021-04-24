@@ -119,12 +119,17 @@ extension HomeVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollect
        
         let idSubject = arrSubject[indexPath.item].id
         
-        Provider.shared.getSubject.getExamBySubject(idSubject: idSubject) { exams in
+        Provider.shared.getSubject.getExamBySubject(idSubject: idSubject) { data in
             
-            let detailsVC = DetailsVC(arrExam: exams)
+            
+            if let exams =  data?.data{
+                let detailsVC = DetailsVC(arrExam: exams)
 
-            self.push(controller: detailsVC)
-            KRProgressHUD.dismiss()
+                self.push(controller: detailsVC)
+                KRProgressHUD.dismiss()
+            }
+            
+            KRProgressHUD.showError(withMessage: data?.statusMessage ?? "")
             
         } failure: { err in
             print("Asdasdasd", err)

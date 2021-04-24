@@ -12,11 +12,85 @@ class ExamTestVC: BaseViewControllers {
     @IBOutlet weak var clv: UICollectionView!
     
     var time:Int?
-    var questions:[Question]?
+//    var questions:[Question]?
     
+    
+    var answerQuestion:[Answer] = []
+    
+    
+    var questions:[Question]? = [
+        Question(
+            answers: [
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 1, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 2, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 3, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 4, iscorrect: true, status: 1)
+            ],
+            answerType: 1,
+            content: "adasdasdasdasd",
+            createdBy: 1,
+            createdDate: "20-10-2011",
+            id: 1,
+            image: "image",
+            level: nil,
+            status: 1,
+            totalAnswer: 4,
+            userAnswer: nil),
+        Question(
+            answers: [
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 1, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 2, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 3, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 4, iscorrect: true, status: 1)
+            ],
+            answerType: 2,
+            content: "adasdasdasdasd",
+            createdBy: 1,
+            createdDate: "20-10-2011",
+            id: 2,
+            image: "image",
+            level: nil,
+            status: 1,
+            totalAnswer: 4,
+            userAnswer: nil),
+        Question(
+            answers: [
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 1, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 2, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 3, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 4, iscorrect: true, status: 1)
+            ],
+            answerType: 1,
+            content: "adasdasdasdasd",
+            createdBy: 1,
+            createdDate: "20-10-2011",
+            id: 3,
+            image: "image",
+            level: nil,
+            status: 1,
+            totalAnswer: 4,
+            userAnswer: nil),
+        Question(
+            answers: [
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 1, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 2, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 3, iscorrect: true, status: 1),
+                Answer(content: "asdasd", createdBy: 1, createdDate: "sadasd", id: 4, iscorrect: true, status: 1)
+            ],
+            answerType: 2,
+            content: "adasdasdasdasd",
+            createdBy: 1,
+            createdDate: "20-10-2011",
+            id: 4,
+            image: "image",
+            level: nil,
+            status: 1,
+            totalAnswer: 4,
+            userAnswer: nil)
+    ]
     init(questions:[Question]?, time:Int?) {
         self.time = time
-        self.questions = questions
+//        self.questions = questions
         super.init(nibName: "ExamTestVC", bundle: nil)
     }
     
@@ -153,7 +227,7 @@ extension ExamTestVC:UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         let question = questions?[indexPath.item]
         
-        cell.question = question
+        cell.bindData(question: question)
         
         
         return cell

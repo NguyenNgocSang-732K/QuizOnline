@@ -56,13 +56,21 @@ class LoginVC: BaseViewControllers {
     
     @IBAction func clickLogin(_ sender: Any) {
         
+        let examVC = UINavigationController(rootViewController: ExamTestVC(questions: nil, time: 40))
         
-        Provider.shared.getSubject.loginAccount(username: tfUsername.text, password: tfPassword.text) { token in
-            UserDefaults.standard.setValue(token, forKey: "token")
-            AppRouter.shared.gotoHome()
-        } failure: { err in
-            print(err?.code)
-        }
+        examVC.modalPresentationStyle = .fullScreen
+        
+        self.present(examVC, animated: true, completion: nil)
+        
+//        Provider.shared.getSubject.loginAccount(username: tfUsername.text, password: tfPassword.text) { loginUser in
+//            if let token = loginUser?.data?.first?.token{
+//
+//                UserDefaults.standard.setValue(token, forKey: "token")
+//                AppRouter.shared.gotoHome()
+//            }
+//        } failure: { err in
+//            print(err?.code)
+//        }
 
         
 

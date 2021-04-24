@@ -13,11 +13,12 @@ enum OnlineTestEnpoint {
     case loginAccount(username: String?, password:String?)
     case getSubject
     case getExamList(idSubject:Int?)
+    case getQuestion(idExam:Int?)
 }
 extension OnlineTestEnpoint: EndPointType {
     var httpMethod: HTTPMethod {
         switch self {
-        case .loginAccount, .getSubject, .getExamList:
+        case .loginAccount, .getSubject, .getExamList, .getQuestion:
             return .post
         }
     }
@@ -45,6 +46,15 @@ extension OnlineTestEnpoint: EndPointType {
             else{
                 return [:]
             }
+        case .getQuestion(let idExam):
+            if let idExam = idExam{
+                let params: NSMutableDictionary = [:]
+                params.addEntries(from: ["id":idExam])
+                return params as! JSONDictionary
+            }
+            else{
+                return [:]
+            }
         }
     }
     
@@ -62,6 +72,9 @@ extension OnlineTestEnpoint: EndPointType {
             return "subject/search"
         case .getExamList:
             return "exam/search/bySubject"
+            
+        case .getQuestion:
+            return "getQuestion/byExam"
         }
         
     }

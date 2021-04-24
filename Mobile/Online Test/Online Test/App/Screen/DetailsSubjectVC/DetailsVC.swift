@@ -82,11 +82,21 @@ extension DetailsVC:UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let questions = arrExam?[indexPath.item].question
-//        let time = arrExam?[indexPath.item].time
-//        let beforeVC = BeforeTestVC(questions: questions, time:time)
-//
-//        self.push(controller: beforeVC)
+        let idExam = arrExam?[indexPath.item].id
+        Provider.shared.getSubject.getQuestion(idExam: idExam) { questions in
+            
+            if let questions = questions?.data{
+                let beforeVC = BeforeTestVC(questions: questions, time:40)
+
+                self.push(controller: beforeVC)
+            }
+            
+            
+        } failure: { (err) in
+            print(err?.localizedDescription)
+        }
+
+       
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
