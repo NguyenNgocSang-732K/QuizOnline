@@ -1,6 +1,7 @@
 package com.model.entityModels;
 
 public class AnswerInputModel {
+    private int answerId;
     private String content;
     private boolean correct;
     private int questionId;
@@ -8,7 +9,8 @@ public class AnswerInputModel {
     public AnswerInputModel() {
     }
 
-    public AnswerInputModel(String content, boolean correct, int questionId) {
+    public AnswerInputModel(int answerId, String content, boolean correct, int questionId) {
+        this.answerId = answerId;
         this.content = content;
         this.correct = correct;
         this.questionId = questionId;
@@ -36,5 +38,13 @@ public class AnswerInputModel {
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
+    }
+
+    public int getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
     }
 }

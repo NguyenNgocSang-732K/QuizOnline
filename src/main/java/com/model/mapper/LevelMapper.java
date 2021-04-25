@@ -12,9 +12,9 @@ public class LevelMapper {
         levelModel.setCreatedDate(levelEntity.getCreatedDate());
         levelModel.setCreatedBy(levelEntity.getCreatedBy());
 
-        if (levelEntity.getStatus() == StatusEnum.ACTIVE.getKey()) {
+        if (levelEntity.getStatus() == StatusEnum.VISIBLE.getKey()) {
             levelModel.setStatus(true);
-        } else if(levelEntity.getStatus() == StatusEnum.INACTIVE.getKey()) {
+        } else if(levelEntity.getStatus() == StatusEnum.INVISIBLE.getKey()) {
             levelModel.setStatus(false);
         }
 
@@ -30,9 +30,9 @@ public class LevelMapper {
         level.setCreatedBy(levelModel.getCreatedBy());
 
         if (levelModel.isStatus()) {
-            level.setStatus(StatusEnum.ACTIVE.getKey());
+            level.setStatus(StatusEnum.VISIBLE.getKey());
         } else {
-            level.setStatus(StatusEnum.INACTIVE.getKey());
+            level.setStatus(StatusEnum.INVISIBLE.getKey());
         }
 
         return level;

@@ -1,8 +1,7 @@
 package com.constant;
 
 public enum StatusEnum {
-	VISIBLE(1, "Valid"), INVISIBLE(2, "InValid"),
-	ACTIVE(3, "Active"), INACTIVE(4, "InActive");
+	VISIBLE(1, "Valid"), INVISIBLE(2, "InValid");
 
 	private int key;
 	private String value;

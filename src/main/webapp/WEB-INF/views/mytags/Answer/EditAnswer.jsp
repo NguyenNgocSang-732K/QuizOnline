@@ -4,7 +4,9 @@
 <%@ taglib prefix="s-form"
            uri="http://www.springframework.org/tags/form" %>
 
-<div class="modal fade" id="edit-answer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade"
+     id="edit-answer" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,28 +16,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                <%--@elvariable id="answerInput" type="za.co.myProject.UserFormObject"--%>
-                <s-form:form
-                        action="${pageContext.request.contextPath}/admin/answer/addAnswer"
-                        cssClass="form-horizontal"
-                        method="post" modelAttribute="answerInput">
-                    <div class="form-group">
-                        <label for="answer-content" class="col-form-label">Content:</label>
-                        <s-form:input path="content" cssClass="form-control" id="answer-content"/>
+                <div class="form-group">
+                    <span class="validate-error edit-questionid-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="edit-answer-content" class="col-form-label">Content:</label>
+                    <input type="text" name="content" class="form-control" id="edit-answer-content">
+                    <span class="validate-error edit-content-error"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-check" id="wrapper-answer-iscorrect">
+                        <label class="form-check-label" name="isCorrect" for="iscorrect-answer">IsCorrect</label>
+                        <input type="checkbox" id="iscorrect-answer"
+                               class="form-check-input iscorrect-answer edit-answer-correct"/>
+                        <div class="validate-error edit-correct-error"></div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-check" id="wrapper-answer-iscorrect">
-                            <label class="form-check-label" for="iscorrect-answer">IsCorrect</label>
-                            <input type="checkbox" name="correct" class="form-check-input iscorrect-answer"
-                                   id="iscorrect-answer">
-                        </div>
-                    </div>
-                </s-form:form>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Create Answer</button>
+                <button type="button" data-question-id="${question.id}" id="update-answer" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+</script>
