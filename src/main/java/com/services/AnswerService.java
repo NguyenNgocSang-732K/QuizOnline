@@ -1,6 +1,7 @@
 package com.services;
 
 import com.model.entities.Answer;
+import com.model.entityModels.AnswerInputModel;
 import com.model.entityModels.AnswerModel;
 import com.model.mapper.AnswerMapper;
 import com.repository.AnswerRepository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("answerService")
-public class AnswerService implements IAnswerService{
+public class AnswerService implements IAnswerService {
     @Qualifier("answerRepository")
     private @Autowired
     AnswerRepository _answerRepository;
@@ -25,5 +26,25 @@ public class AnswerService implements IAnswerService{
                 .stream()
                 .map(AnswerMapper::ToAnswerModel)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public AnswerModel GetById(int answerId) {
+
+        Optional<Answer> optional = _answerRepository.findById(answerId);
+
+        if (optional.isPresent()) {
+            AnswerModel answerModel = AnswerMapper.ToAnswerModel(optional.get());
+
+            return answerModel;
+        }
+
+        return null;
+    }
+
+    @Override
+    public AnswerInputModel Save(int questionId, AnswerInputModel answerInputModel) {
+
+        return null;
     }
 }

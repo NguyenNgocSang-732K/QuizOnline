@@ -4,6 +4,7 @@
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="auth"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="mytag" uri="mytag" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -175,10 +176,10 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
+    <mytag:answer button="Add"/>
+	<mytag:answer button="Edit"/>
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
@@ -227,6 +228,7 @@
 <script
         src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
 
-<!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:59 GMT -->
-
+<%--Manager Answer--%>
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
 </html>

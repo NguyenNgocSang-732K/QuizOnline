@@ -1,9 +1,14 @@
 package com.services;
 
+import com.model.entityModels.AnswerInputModel;
 import com.model.entityModels.AnswerModel;
 
 import java.util.List;
 
 public interface IAnswerService {
     List<AnswerModel> GetAll(int questionId);
+
+    AnswerModel GetById(int answerId);
+
+    AnswerInputModel Save(int questionId, AnswerInputModel answerInputModel);
 }
