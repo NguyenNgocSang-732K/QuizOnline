@@ -82,20 +82,14 @@ public class QuestionService implements IQuestionService {
         Level level = _levelRepository.findById(questionUpdate.getLevelModel().getId()).get();
         Question question = _questionRepository.findById(questionUpdate.getId()).get();
 
-        question.getAnswers().forEach(p -> p.setIscorrect(false));
+        if (questionUpdate.getAnswerType() != question.getAnswerType()) {
+            question.getAnswers().forEach(p -> p.setIscorrect(false));
+        }
+
         question.setLevel(level);
         question.setContent(questionUpdate.getContent());
         question.setAnswerType(questionUpdate.getAnswerType());
         question.setScore(questionUpdate.getScore());
-
-//        for (int i: questionUpdate.getAnswerUpdateModel()) {
-//            question.getAnswers()
-//                    .stream()
-//                    .filter(p -> p.getId() == i)
-//                    .findFirst()
-//                    .get()
-//                    .setIscorrect(true);
-//        }
 
         QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
 

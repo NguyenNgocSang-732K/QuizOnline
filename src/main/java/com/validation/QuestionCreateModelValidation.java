@@ -1,6 +1,5 @@
 package com.validation;
 
-import com.google.common.primitives.Ints;
 import com.helper.ParseHtmlTag;
 import com.model.entityModels.QuestionCreateModel;
 import org.springframework.stereotype.Component;
