@@ -1,7 +1,5 @@
 package com.model.entityModels;
 
-import com.model.entities.Question;
-
 import java.util.Date;
 
 public class AnswerModel {
@@ -10,14 +8,14 @@ public class AnswerModel {
     private boolean iscorrect;
     private Date createdDate;
     private int createdBy;
-    private int status;
+    private boolean status;
 
     private QuestionModel questionModel;
 
     public AnswerModel() {
     }
 
-    public AnswerModel(Integer id, String content, boolean iscorrect, Date createdDate, int createdBy, int status, QuestionModel questionModel) {
+    public AnswerModel(Integer id, String content, boolean iscorrect, Date createdDate, int createdBy, boolean status, QuestionModel questionModel) {
         this.id = id;
         this.content = content;
         this.iscorrect = iscorrect;
@@ -67,11 +65,11 @@ public class AnswerModel {
         this.createdBy = createdBy;
     }
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

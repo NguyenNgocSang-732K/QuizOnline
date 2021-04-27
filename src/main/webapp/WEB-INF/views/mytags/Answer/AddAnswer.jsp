@@ -17,14 +17,18 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <span class="validate-error add-questionid-error"></span>
+                </div>
+                <div class="form-group">
                     <label for="answer-content" class="col-form-label">Content:</label>
                     <input type="text" name="content" class="form-control" id="answer-content">
-                    <span class="validate-error answer-content-error"></span>
+                    <span class="validate-error add-content-error"></span>
                 </div>
                 <div class="form-group">
                     <div class="form-check" id="wrapper-answer-iscorrect">
                         <label class="form-check-label" name="isCorrect" for="iscorrect-answer">IsCorrect</label>
-                        <input type="checkbox" id="iscorrect-answer" class="form-check-input iscorrect-answer">
+                        <input type="checkbox" id="iscorrect-answer" class="form-check-input iscorrect-answer add-answer-correct">
+                        <div class="validate-error add-correct-error"></div>
                     </div>
                 </div>
             </div>
