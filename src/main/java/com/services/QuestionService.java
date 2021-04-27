@@ -97,7 +97,9 @@ public class QuestionService implements IQuestionService {
 //                    .setIscorrect(true);
 //        }
 
-        QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
+        Question questionUpdated = _questionRepository.save(question);
+
+        QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(questionUpdated);
 
         return result.getId();
     }
@@ -110,7 +112,7 @@ public class QuestionService implements IQuestionService {
         question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
         question.setAnswerType(questionCreateModel.getAnswerType());
         question.setImage(questionCreateModel.getImage());
-        question.setStatus(StatusEnum.ACTIVE.getKey());
+        question.setStatus(StatusEnum.VISIBLE.getKey());
         question.setScore(questionCreateModel.getScore());
         question.setCreatedDate(new Date());
         question.setCreatedBy(adminId);
@@ -125,9 +127,9 @@ public class QuestionService implements IQuestionService {
         Question question = _questionRepository.findById(questionId).get();
 
         if (status)
-            question.setStatus(StatusEnum.ACTIVE.getKey());
+            question.setStatus(StatusEnum.VISIBLE.getKey());
         else
-            question.setStatus(StatusEnum.INACTIVE.getKey());
+            question.setStatus(StatusEnum.INVISIBLE.getKey());
 
         Question questionUpdated = _questionRepository.save(question);
 

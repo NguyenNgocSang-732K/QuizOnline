@@ -1,9 +1,13 @@
 package com.controllers.admin;
 
+import com.constant.AnswerTypeEnum;
+import com.constant.AuthenManager;
 import com.constant.ResponseStatusEnum;
 import com.model.entityModels.AjaxResponse;
 import com.model.entityModels.AnswerInputModel;
+import com.model.entityModels.AnswerModel;
 import com.model.entityModels.QuestionModel;
+import com.model.mapper.AnswerMapper;
 import com.services.IAnswerService;
 import com.services.IQuestionService;
 import com.validation.AnswerInputModelValidation;
@@ -16,6 +20,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ManageAnswerController extends AdminBaseController {
@@ -34,9 +39,16 @@ public class ManageAnswerController extends AdminBaseController {
     @RequestMapping(value = {"/question/{id}/answers"}, method = RequestMethod.GET)
     public String IndexAnswer(ModelMap modelmap, @PathVariable("id") int questionId, @RequestParam(required = false) String op) {
         QuestionModel questionModel = _questionService.findById(questionId);
+        List<AnswerModel> answers = _answerService.GetAll(questionId);
+
+        if(questionModel.getAnswerType() == AnswerTypeEnum.CHECKBOX.getKey()){
+            modelmap.put("note", "Choose correct answers");
+        }else if(questionModel.getAnswerType() == AnswerTypeEnum.RADIO.getKey()){
+            modelmap.put("note", "Choose a correct answer");
+        }
 
         modelmap.put("question", questionModel);
-        modelmap.put("answers", _answerService.GetAll(questionId));
+        modelmap.put("answers", answers);
         return "admin/ManageAnswer";
     }
 
@@ -48,13 +60,43 @@ public class ManageAnswerController extends AdminBaseController {
         AjaxResponse response = new AjaxResponse();
         if (bindingResult.hasErrors()) {
             response.setStatus(ResponseStatusEnum.FAIL.getKey());
+            response.setDataResponse(_answerInputValidator.MessageErrors());
 
-            response.setDataResponse(_answerInputValidator.MessageErrors().get(0));
             return response;
         }
-        response.setStatus(ResponseStatusEnum.SUCCESS.getKey());
-        response.setDataResponse("Create Answer Success");
+        _answerService.Save(answerInput.getQuestionId(), answerInput, AuthenManager.Current_User.getId());
 
+        response.setStatus(ResponseStatusEnum.SUCCESS.getKey());
+
+        return response;
+    }
+
+    @RequestMapping(value = "/question/answer/{answerId}", method = RequestMethod.GET)
+    public @ResponseBody AjaxResponse GetById(ModelMap modelMap, @PathVariable int answerId){
+        AnswerInputModel answerInput = AnswerMapper.ToAnswerInputModel(_answerService.GetById(answerId));
+
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        ajaxResponse.setStatus(200);
+        ajaxResponse.setDataResponse(answerInput);
+
+        return ajaxResponse;
+    }
+
+    @RequestMapping(value = "/question/update-answer", method = RequestMethod.POST)
+    public @ResponseBody
+    AjaxResponse UpdateAnswer(@RequestBody AnswerInputModel answerInput, BindingResult bindingResult) {
+        _answerInputValidator.validate(answerInput, bindingResult);
+
+        AjaxResponse response = new AjaxResponse();
+        if (bindingResult.hasErrors()) {
+            response.setStatus(ResponseStatusEnum.FAIL.getKey());
+            response.setDataResponse(_answerInputValidator.MessageErrors());
+
+            return response;
+        }
+        _answerService.Save(answerInput.getQuestionId(), answerInput, AuthenManager.Current_User.getId());
+
+        response.setStatus(ResponseStatusEnum.SUCCESS.getKey());
         return response;
     }
 }

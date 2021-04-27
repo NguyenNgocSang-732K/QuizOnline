@@ -10,5 +10,5 @@ public interface IAnswerService {
 
     AnswerModel GetById(int answerId);
 
-    AnswerInputModel Save(int questionId, AnswerInputModel answerInputModel);
+    AnswerModel Save(int questionId, AnswerInputModel answerInputModel, int userId);
 }
