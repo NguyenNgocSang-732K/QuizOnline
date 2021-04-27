@@ -1,6 +1,7 @@
 package com.model.entities;
-// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,8 +28,9 @@ public class Question implements java.io.Serializable {
 	private Integer id;
 	private Level level;
 	private String content;
-	private Integer answerType;
+	private int answerType;
 	private String image;
+	private BigDecimal score;
 	private Date createdDate;
 	private int createdBy;
 	private int status;
@@ -38,20 +40,24 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
-	public Question(Level level, String content, Date createdDate, int createdBy, int status) {
+	public Question(Level level, String content, int answerType, BigDecimal score, Date createdDate, int createdBy,
+			int status) {
 		this.level = level;
 		this.content = content;
+		this.answerType = answerType;
+		this.score = score;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
 	}
 
-	public Question(Level level, String content, Integer answerType, String image, Date createdDate, int createdBy,
-			int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
+	public Question(Level level, String content, int answerType, String image, BigDecimal score, Date createdDate,
+			int createdBy, int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
 		this.level = level;
 		this.content = content;
 		this.answerType = answerType;
 		this.image = image;
+		this.score = score;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
@@ -81,7 +87,7 @@ public class Question implements java.io.Serializable {
 		this.level = level;
 	}
 
-	@Column(name = "content", nullable = false, length = 250)
+	@Column(name = "content", nullable = false)
 	public String getContent() {
 		return this.content;
 	}
@@ -90,12 +96,12 @@ public class Question implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "answer_Type")
-	public Integer getAnswerType() {
+	@Column(name = "answer_Type", nullable = false)
+	public int getAnswerType() {
 		return this.answerType;
 	}
 
-	public void setAnswerType(Integer answerType) {
+	public void setAnswerType(int answerType) {
 		this.answerType = answerType;
 	}
 
@@ -106,6 +112,15 @@ public class Question implements java.io.Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	@Column(name = "score", nullable = false, precision = 5, scale = 1)
+	public BigDecimal getScore() {
+		return this.score;
+	}
+
+	public void setScore(BigDecimal score) {
+		this.score = score;
 	}
 
 	@Temporal(TemporalType.DATE)

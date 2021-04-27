@@ -86,6 +86,7 @@ public class QuestionService implements IQuestionService {
         question.setLevel(level);
         question.setContent(questionUpdate.getContent());
         question.setAnswerType(questionUpdate.getAnswerType());
+        question.setScore(questionUpdate.getScore());
 
 //        for (int i: questionUpdate.getAnswerUpdateModel()) {
 //            question.getAnswers()
@@ -112,6 +113,7 @@ public class QuestionService implements IQuestionService {
         question.setAnswerType(questionCreateModel.getAnswerType());
         question.setImage(questionCreateModel.getImage());
         question.setStatus(StatusEnum.VISIBLE.getKey());
+        question.setScore(questionCreateModel.getScore());
         question.setCreatedDate(new Date());
         question.setCreatedBy(adminId);
 

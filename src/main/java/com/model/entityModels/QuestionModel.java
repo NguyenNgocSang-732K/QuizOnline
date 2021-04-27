@@ -1,5 +1,6 @@
 package com.model.entityModels;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class QuestionModel {
     private String content;
     private Integer answerType;
     private String image;
+    private BigDecimal score;
     private Date createdDate;
     private int createdBy;
     private boolean status;
@@ -17,11 +19,14 @@ public class QuestionModel {
     public QuestionModel() {
     }
 
-    public QuestionModel(Integer id, String content, Integer answerType, String image, Date createdDate, int createdBy, boolean status, LevelModel levelModel, List<AnswerModel> answerModels) {
+    public QuestionModel(Integer id, String content, Integer answerType, String image,
+                         BigDecimal score, Date createdDate, int createdBy, boolean status,
+                         LevelModel levelModel, List<AnswerModel> answerModels) {
         this.id = id;
         this.content = content;
         this.answerType = answerType;
         this.image = image;
+        this.score = score;
         this.createdDate = createdDate;
         this.createdBy = createdBy;
         this.status = status;
@@ -99,5 +104,13 @@ public class QuestionModel {
 
     public void setAnswerModels(List<AnswerModel> answerModels) {
         this.answerModels = answerModels;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
     }
 }
