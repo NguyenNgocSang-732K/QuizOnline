@@ -59,9 +59,7 @@
                                                 <div class="icon-block rounded display-image"
                                                     style=${not empty profile.image ?
                                                     "background-image:url(${pageContext.request.contextPath/images/profile.photo});background-size:cover;" : ""}>
-
                                                 </div>
-
                                                 <core:choose>
                                                     <core:when test="${not empty question.image}">
 
@@ -100,6 +98,13 @@
                                                             label="${level.name}"/>
                                             </core:forEach>
                                         </s-form:select>
+                                    </div>
+                                </div>
+                                <div class="dp-row">
+                                    <div class="input-title">Number Score</div>
+                                    <div class="input-value">
+                                        <input type="text" class="form-control" name="score">
+                                        <s-form:errors path="score" cssClass="validate-error"></s-form:errors>
                                     </div>
                                 </div>
                                 <div class="dp-row">

@@ -14,6 +14,7 @@ public class QuestionMapper {
         questionModel.setId(questionEntity.getId());
         questionModel.setContent(questionEntity.getContent());
         questionModel.setAnswerType(questionEntity.getAnswerType());
+        questionModel.setScore(questionEntity.getScore());
         questionModel.setImage(questionEntity.getImage());
         questionModel.setCreatedDate(questionEntity.getCreatedDate());
         questionModel.setCreatedBy(questionEntity.getCreatedBy());
@@ -61,6 +62,7 @@ public class QuestionMapper {
         questionUpdateModel.setContent(questionModel.getContent());
         questionUpdateModel.setAnswerType(questionModel.getAnswerType());
         questionUpdateModel.setImage(questionModel.getImage());
+        questionUpdateModel.setScore(questionModel.getScore());
         questionUpdateModel.setCreatedDate(questionModel.getCreatedDate());
         questionUpdateModel.setCreatedBy(questionModel.getCreatedBy());
         questionUpdateModel.setStatus(questionModel.isStatus());
