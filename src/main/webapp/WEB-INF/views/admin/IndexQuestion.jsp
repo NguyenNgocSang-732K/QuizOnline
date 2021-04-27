@@ -48,6 +48,7 @@
                             <thead>
                             <tr>
                                 <th>Content</th>
+                                <th>Score</th>
                                 <th>Level</th>
                                 <th>Created Date</th>
                                 <th>Status</th>
@@ -59,6 +60,7 @@
                                           var="question" varStatus="i">
                                 <tr>
                                     <td>${question.content}</td>
+                                    <td>${question.score}</td>
                                     <td>${question.levelModel.name}</td>
                                     <td>${question.createdDate}</td>
                                     <td>
