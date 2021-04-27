@@ -1,10 +1,13 @@
 package com.validation;
 
+import com.google.common.primitives.Ints;
 import com.helper.ParseHtmlTag;
 import com.model.entityModels.QuestionCreateModel;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import java.text.DecimalFormat;
 
 @Component("questionCreateValidator")
 public class QuestionCreateModelValidation implements Validator {
@@ -18,6 +21,7 @@ public class QuestionCreateModelValidation implements Validator {
         QuestionCreateModel questionCreate = (QuestionCreateModel) target;
 
         ValidateContent(questionCreate, errors);
+        ValdateScore(questionCreate, errors);
     }
 
     private void ValidateContent(QuestionCreateModel questionCreate, Errors errors) {
@@ -25,5 +29,14 @@ public class QuestionCreateModelValidation implements Validator {
 
         if (parseContent.isEmpty())
             errors.rejectValue("content", "QuestionContent_NOTEMPTY");
+    }
+
+    private void ValdateScore(QuestionCreateModel questionCreate, Errors errors) {
+        try {
+            if (questionCreate.getScore() == null || Double.parseDouble(questionCreate.getScore().toString()) < 0) {
+                errors.rejectValue("score", "QuestionScore_INVALID");
+            }
+        } catch (Exception ex) {
+        }
     }
 }
