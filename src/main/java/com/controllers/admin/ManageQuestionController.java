@@ -72,7 +72,7 @@ public class ManageQuestionController extends AdminBaseController {
     // Update data for question
     // questionUpdate: data was submited by form
     // bindingResult: Using for validation model
-    @RequestMapping(value = "/question/update-Question", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/question/update-Question", method = RequestMethod.POST)
     public String EditQuestion(@ModelAttribute("question") @Valid QuestionUpdateModel questionUpdate,
                                BindingResult bindingResult) {
 
