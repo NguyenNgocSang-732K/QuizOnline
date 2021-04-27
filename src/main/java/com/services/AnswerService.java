@@ -67,20 +67,28 @@ public class AnswerService implements IAnswerService {
 
         if (answers.size() == 0) {
             answer.setIscorrect(true);
-        } else {
-            Answer answerOld = null;
-            if (question.getAnswerType() == AnswerTypeEnum.RADIO.getKey() && answerInputModel.isCorrect()) {
-                answerOld = answers.stream().filter(p -> p.isIscorrect()).findFirst().get();
+
+            _answerRepository.save(answer);
+            return AnswerMapper.ToAnswerModel(answer);
+        }
+
+        Answer answerOld = null;
+        if (question.getAnswerType() == AnswerTypeEnum.RADIO.getKey() && answerInputModel.isCorrect()) {
+            Optional<Answer> optional = answers.stream().filter(p -> p.isIscorrect()).findFirst();
+            answerOld = optional.isPresent() ? optional.get() : null;
+
+            if (answerOld != null) {
                 answerOld.setIscorrect(false);
                 answer.setIscorrect(true);
                 _answerRepository.save(answerOld);
             }else{
                 answer.setIscorrect(answerInputModel.isCorrect());
             }
+        } else {
+            answer.setIscorrect(answerInputModel.isCorrect());
         }
 
         _answerRepository.save(answer);
-
         return AnswerMapper.ToAnswerModel(answer);
     }
 }
