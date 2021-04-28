@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 29, 2021, 1:44:15 AM by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,8 +27,9 @@ public class Question implements java.io.Serializable {
 
 	private Integer id;
 	private Level level;
+	private Subject subject;
 	private String content;
-	private int answerType;
+	private Integer answerType;
 	private String image;
 	private BigDecimal score;
 	private Date createdDate;
@@ -40,20 +41,21 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
-	public Question(Level level, String content, int answerType, BigDecimal score, Date createdDate, int createdBy,
+	public Question(Level level, Subject subject, String content, BigDecimal score, Date createdDate, int createdBy,
 			int status) {
 		this.level = level;
+		this.subject = subject;
 		this.content = content;
-		this.answerType = answerType;
 		this.score = score;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
 	}
 
-	public Question(Level level, String content, int answerType, String image, BigDecimal score, Date createdDate,
-			int createdBy, int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
+	public Question(Level level, Subject subject, String content, Integer answerType, String image, BigDecimal score,
+			Date createdDate, int createdBy, int status, Set<Answer> answers, Set<ExamQuestion> examQuestions) {
 		this.level = level;
+		this.subject = subject;
 		this.content = content;
 		this.answerType = answerType;
 		this.image = image;
@@ -87,6 +89,16 @@ public class Question implements java.io.Serializable {
 		this.level = level;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subject_Id", nullable = false)
+	public Subject getSubject() {
+		return this.subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
 	@Column(name = "content", nullable = false)
 	public String getContent() {
 		return this.content;
@@ -96,12 +108,12 @@ public class Question implements java.io.Serializable {
 		this.content = content;
 	}
 
-	@Column(name = "answer_Type", nullable = false)
-	public int getAnswerType() {
+	@Column(name = "answer_Type")
+	public Integer getAnswerType() {
 		return this.answerType;
 	}
 
-	public void setAnswerType(int answerType) {
+	public void setAnswerType(Integer answerType) {
 		this.answerType = answerType;
 	}
 

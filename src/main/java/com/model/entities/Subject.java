@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 29, 2021, 1:44:15 AM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,11 +24,12 @@ public class Subject implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
-	private String image;
 	private Date createdDate;
+	private String image;
 	private int createdBy;
 	private int status;
 	private Set<Exam> exams = new HashSet<Exam>(0);
+	private Set<Question> questions = new HashSet<Question>(0);
 
 	public Subject() {
 	}
@@ -40,13 +41,15 @@ public class Subject implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Subject(String name, String image, Date createdDate, int createdBy, int status, Set<Exam> exams) {
+	public Subject(String name, Date createdDate, String image, int createdBy, int status, Set<Exam> exams,
+			Set<Question> questions) {
 		this.name = name;
-		this.image = image;
 		this.createdDate = createdDate;
+		this.image = image;
 		this.createdBy = createdBy;
 		this.status = status;
 		this.exams = exams;
+		this.questions = questions;
 	}
 
 	@Id
@@ -70,15 +73,6 @@ public class Subject implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "image", length = 250)
-	public String getImage() {
-		return this.image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_Date", nullable = false, length = 10)
 	public Date getCreatedDate() {
@@ -87,6 +81,15 @@ public class Subject implements java.io.Serializable {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	@Column(name = "image", length = 250)
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Column(name = "created_By", nullable = false)
@@ -114,6 +117,15 @@ public class Subject implements java.io.Serializable {
 
 	public void setExams(Set<Exam> exams) {
 		this.exams = exams;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
+	public Set<Question> getQuestions() {
+		return this.questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
 	}
 
 }
