@@ -100,7 +100,7 @@
             <li class="nav-item dropdown"><a
                     class="nav-link active dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button"><img
-                    src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
+                    src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 
@@ -231,4 +231,8 @@
 <%--Manager Answer--%>
 <script
 		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
+
+<%--Upload Image--%>
+<script
+		src="${pageContext.request.contextPath}/resources/common/js/uploadImage.js"></script>
 </html>
