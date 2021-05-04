@@ -82,6 +82,7 @@ public class QuestionService implements IQuestionService {
 		}
 
 		question.setLevel(level);
+		question.setImage(questionUpdate.getImage());
 		question.setContent(questionUpdate.getContent());
 		question.setAnswerType(questionUpdate.getAnswerType());
 		question.setScore(questionUpdate.getScore());
