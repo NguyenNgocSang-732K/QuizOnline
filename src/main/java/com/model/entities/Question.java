@@ -41,8 +41,7 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
-	public Question(Level level, Subject subject, String content, BigDecimal score, Date createdDate, int createdBy,
-			int status) {
+	public Question(Level level, Subject subject, String content, BigDecimal score, Date createdDate, int createdBy, int status) {
 		this.level = level;
 		this.subject = subject;
 		this.content = content;

@@ -27,108 +27,110 @@ import java.util.stream.Collectors;
 @Service("questionService")
 public class QuestionService implements IQuestionService {
 
-    @Qualifier("questionRepository")
-    private @Autowired
-    QuestionRepository _questionRepository;
+	@Qualifier("questionRepository")
+	private @Autowired QuestionRepository _questionRepository;
 
-    @Qualifier("levelRepository")
-    private @Autowired
-    LevelRepository _levelRepository;
+	@Qualifier("levelRepository")
+	private @Autowired LevelRepository _levelRepository;
 
-    @Qualifier("answerRepository")
-    private @Autowired
-    AnswerRepository _answerRepository;
+	@Qualifier("answerRepository")
+	private @Autowired AnswerRepository _answerRepository;
 
-    @Override
-    public PaginationModel<QuestionModel> GetAll(int page, int pageSize, String searchText) {
-        // Declare pageable with page and pageSize
-        Pageable paging = PageRequest.of(page - 1, pageSize);
-        Page<Question> pageTuts;
+	@Override
+	public PaginationModel<QuestionModel> GetAll(int page, int pageSize, String searchText) {
+		// Declare pageable with page and pageSize
+		Pageable paging = PageRequest.of(page - 1, pageSize);
+		Page<Question> pageTuts;
 
-        // Find data with paging and searchText parameter
-        if (searchText.isEmpty()) {
-            pageTuts = _questionRepository.findAll(paging);
-        } else {
-            pageTuts = _questionRepository.findByContentContainingOrLevel_NameContainingOrderByIdAsc(searchText, searchText,
-                    paging);
-        }
+		// Find data with paging and searchText parameter
+		if (searchText.isEmpty()) {
+			pageTuts = _questionRepository.findAll(paging);
+		} else {
+			pageTuts = _questionRepository.findByContentContainingOrLevel_NameContainingOrderByIdAsc(searchText,
+					searchText, paging);
+		}
 
 //        if (pageTuts.getTotalPages() == 0)
 //            return null;
 
-        List<QuestionModel> questionModels = pageTuts.getContent()
-                .stream()
-                .map(QuestionMapper::ToQuestionModel)
-                .collect(Collectors.toList());
+		List<QuestionModel> questionModels = pageTuts.getContent().stream().map(QuestionMapper::ToQuestionModel)
+				.collect(Collectors.toList());
 
-        PaginationModel<QuestionModel> paginationModel = new PaginationModel<QuestionModel>();
-        paginationModel.setCurrentPage(pageTuts.getNumber() + 1);
-        paginationModel.setData(questionModels);
-        paginationModel.setTotalPages(pageTuts.getTotalPages());
-        paginationModel.setTotalItems(pageTuts.getTotalElements());
+		PaginationModel<QuestionModel> paginationModel = new PaginationModel<QuestionModel>();
+		paginationModel.setCurrentPage(pageTuts.getNumber() + 1);
+		paginationModel.setData(questionModels);
+		paginationModel.setTotalPages(pageTuts.getTotalPages());
+		paginationModel.setTotalItems(pageTuts.getTotalElements());
 
-        return paginationModel;
-    }
+		return paginationModel;
+	}
 
-    @Override
-    public QuestionModel findById(int questionId) {
-        Optional<Question> question = _questionRepository.findById(questionId);
+	@Override
+	public QuestionModel findById(int questionId) {
+		Optional<Question> question = _questionRepository.findById(questionId);
 
-        return question.isPresent() ? QuestionMapper.ToQuestionModel(question.get()) : null;
-    }
+		return question.isPresent() ? QuestionMapper.ToQuestionModel(question.get()) : null;
+	}
 
-    @Override
-    public int UpdateQuestion(QuestionUpdateModel questionUpdate) {
-        Level level = _levelRepository.findById(questionUpdate.getLevelModel().getId()).get();
-        Question question = _questionRepository.findById(questionUpdate.getId()).get();
+	@Override
+	public int UpdateQuestion(QuestionUpdateModel questionUpdate) {
+		Level level = _levelRepository.findById(questionUpdate.getLevelModel().getId()).get();
+		Question question = _questionRepository.findById(questionUpdate.getId()).get();
 
-        if (questionUpdate.getAnswerType() != question.getAnswerType()) {
-            question.getAnswers().forEach(p -> p.setIscorrect(false));
-        }
+		if (questionUpdate.getAnswerType() != question.getAnswerType()) {
+			question.getAnswers().forEach(p -> p.setIscorrect(false));
+		}
 
-        question.setLevel(level);
-        question.setContent(questionUpdate.getContent());
-        question.setAnswerType(questionUpdate.getAnswerType());
-        question.setScore(questionUpdate.getScore());
+		question.setLevel(level);
+		question.setContent(questionUpdate.getContent());
+		question.setAnswerType(questionUpdate.getAnswerType());
+		question.setScore(questionUpdate.getScore());
 
-        QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
+		QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
 
-        return result.getId();
-    }
+		return result.getId();
+	}
 
-    @Override
-    public int CreateQuestion(QuestionCreateModel questionCreateModel, int adminId) {
+	@Override
+	public int CreateQuestion(QuestionCreateModel questionCreateModel, int adminId) {
+		Question question = new Question();
+		question.setContent(questionCreateModel.getContent());
+		question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
+		question.setAnswerType(questionCreateModel.getAnswerType());
+		question.setImage(questionCreateModel.getImage());
+		question.setStatus(StatusEnum.VISIBLE.getKey());
+		question.setScore(questionCreateModel.getScore());
+		question.setCreatedDate(new Date());
+		question.setCreatedBy(adminId);
 
-        Question question = new Question();
-        question.setContent(questionCreateModel.getContent());
-        question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
-        question.setAnswerType(questionCreateModel.getAnswerType());
-        question.setImage(questionCreateModel.getImage());
-        question.setStatus(StatusEnum.VISIBLE.getKey());
-        question.setScore(questionCreateModel.getScore());
-        question.setCreatedDate(new Date());
-        question.setCreatedBy(adminId);
+		_questionRepository.save(question);
+		
+		return question.getId();
+	}
 
-        _questionRepository.save(question);
+	@Override
+	public boolean UpdateStatus(int questionId, boolean status) {
+		Question question = _questionRepository.findById(questionId).get();
 
-        return question.getId();
-    }
+		if (status)
+			question.setStatus(StatusEnum.VISIBLE.getKey());
+		else
+			question.setStatus(StatusEnum.INVISIBLE.getKey());
 
-    @Override
-    public boolean UpdateStatus(int questionId, boolean status) {
-        Question question = _questionRepository.findById(questionId).get();
+		Question questionUpdated = _questionRepository.save(question);
+		return false;
+	}
 
-        if (status)
-            question.setStatus(StatusEnum.VISIBLE.getKey());
-        else
-            question.setStatus(StatusEnum.INVISIBLE.getKey());
+	@Override
+	public List<Question> FindRandomQuestionbySubjectLevel(int subjectId, int levelId, int quantityQuestion) {
+		// TODO Auto-generated method stub
+		return _questionRepository.FindRandomQuestionBySubjectLevel(subjectId, levelId, quantityQuestion);
+	}
 
-        Question questionUpdated = _questionRepository.save(question);
-
-        if (questionUpdated != null)
-            return true;
-
-        return false;
-    }
+	@Override
+	public List<Question> FindAllQuestionByExam(int examId) {
+		// TODO Auto-generated method stub
+		return _questionRepository.FindAllQuestionByExam(examId);
+	}
 
 }

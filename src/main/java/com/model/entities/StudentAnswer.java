@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 29, 2021, 1:44:15 AM by Hibernate Tools 5.1.10.Final
+// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -24,6 +24,7 @@ public class StudentAnswer implements java.io.Serializable {
 	private Integer id;
 	private Account account;
 	private Answer answer;
+	private String answerIds;
 	private ExamQuestion examQuestion;
 	private Date createdDate;
 	private int createdBy;
@@ -31,16 +32,18 @@ public class StudentAnswer implements java.io.Serializable {
 	public StudentAnswer() {
 	}
 
-	public StudentAnswer(Account account, ExamQuestion examQuestion, Date createdDate, int createdBy) {
+	public StudentAnswer(Account account,String answerIds, ExamQuestion examQuestion, Date createdDate, int createdBy) {
 		this.account = account;
+		this.answerIds = answerIds;
 		this.examQuestion = examQuestion;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 	}
 
-	public StudentAnswer(Account account, Answer answer, ExamQuestion examQuestion, Date createdDate, int createdBy) {
+	public StudentAnswer(Account account, Answer answer,String answerIds, ExamQuestion examQuestion, Date createdDate, int createdBy) {
 		this.account = account;
 		this.answer = answer;
+		this.answerIds = answerIds;
 		this.examQuestion = examQuestion;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
@@ -76,6 +79,15 @@ public class StudentAnswer implements java.io.Serializable {
 
 	public void setAnswer(Answer answer) {
 		this.answer = answer;
+	}
+	
+	@Column(name = "answer_Ids")
+	public String getAnswerIds() {
+		return answerIds;
+	}
+
+	public void setAnswerIds(String answerIds) {
+		this.answerIds = answerIds;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

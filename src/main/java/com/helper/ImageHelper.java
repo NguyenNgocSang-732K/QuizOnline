@@ -49,7 +49,7 @@ public class ImageHelper {
 	public static String saveImage(HttpServletRequest request, MultipartFile multipartFile, String path) {
 
 		try {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmmss");
 			String date = "_" + dateFormat.format(new Date()) + ".";
 			String[] names = multipartFile.getOriginalFilename().split("\\.");
 			String fileName = names[0] + date + names[1];

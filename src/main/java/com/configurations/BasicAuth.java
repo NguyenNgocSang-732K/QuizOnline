@@ -29,7 +29,7 @@ public class BasicAuth implements HandlerInterceptor {
             AuthenManager.Current_Account = iAccountService.FindById(AuthenManager.Current_User.getId());
         }
 
-        if (currentURI.startsWith("/resources")) {
+        if (currentURI.startsWith("/resources") || currentURI.startsWith("/api")) {
             return true;
         }
 
@@ -40,8 +40,8 @@ public class BasicAuth implements HandlerInterceptor {
             }
         } else {
             if (!userIsNull) {
-                String area = AuthenManager.IsMod() ? "admin" : "student";
-                response.sendRedirect("/" + area + "/dashboard");
+				/* String area = AuthenManager.IsMod() ? "admin" : "student"; */
+                response.sendRedirect("/dashboard");
                 return false;
             }
         }

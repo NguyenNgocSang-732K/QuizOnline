@@ -6,7 +6,9 @@
 	uri="http://www.springframework.org/tags/form"%>
 
 <template:_admin title="Dashboard">
-	<jsp:attribute name="content">
-          	<h1>Student Dashboard</h1>    
-	</jsp:attribute>
+    <jsp:attribute name="content">
+        <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+            <h1>Student Dashboard</h1>
+        </div>
+    </jsp:attribute>
 </template:_admin>
