@@ -171,5 +171,3 @@
             
 	</jsp:attribute>
 </template:_admin>
-<script
-	src="${pageContext.request.contextPath}/resources/admin/account/profile.js"></script>

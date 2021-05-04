@@ -1,5 +1,6 @@
 :root{
    --border-color: black;
+   --text-color: #0d6efd;
 }
 
 .validate-error{

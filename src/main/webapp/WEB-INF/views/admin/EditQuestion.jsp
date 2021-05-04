@@ -102,6 +102,13 @@
                                     </div>
                                 </div>
                                 <div class="dp-row">
+                                    <div class="input-title">Number Score</div>
+                                    <div class="input-value">
+                                        <input type="text" class="form-control" name="score" value="${question.score}">
+                                        <s-form:errors path="score" cssClass="validate-error"></s-form:errors>
+                                    </div>
+                                </div>
+                                <div class="dp-row">
                                     <div class="input-title">Answers</div>
                                     <div class="input-value">
                                           <s-form:select path="answerType" cssClass="form-select">

@@ -134,7 +134,6 @@ public class Question implements java.io.Serializable {
 		this.score = score;
 	}
 
-
 	@Temporal(TemporalType.DATE)
 	@Column(name = "created_Date", nullable = false, length = 10)
 	public Date getCreatedDate() {

@@ -1,10 +1,14 @@
 package com.model.mapper;
 
 import com.constant.StatusEnum;
+import com.model.entities.Answer;
 import com.model.entities.Question;
+import com.model.entityModels.AnswerModel;
 import com.model.entityModels.QuestionModel;
 import com.model.entityModels.QuestionUpdateModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class QuestionMapper {
@@ -14,13 +18,14 @@ public class QuestionMapper {
         questionModel.setId(questionEntity.getId());
         questionModel.setContent(questionEntity.getContent());
         questionModel.setAnswerType(questionEntity.getAnswerType());
+        questionModel.setScore(questionEntity.getScore());
         questionModel.setImage(questionEntity.getImage());
         questionModel.setCreatedDate(questionEntity.getCreatedDate());
         questionModel.setCreatedBy(questionEntity.getCreatedBy());
 
-        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()) {
+        if (StatusEnum.VISIBLE.getKey() == questionEntity.getStatus()) {
             questionModel.setStatus(true);
-        } else if (StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()) {
+        } else if (StatusEnum.INVISIBLE.getKey() == questionEntity.getStatus()) {
             questionModel.setStatus(false);
         }
 
@@ -39,9 +44,9 @@ public class QuestionMapper {
         questionUpdateModel.setCreatedDate(questionEntity.getCreatedDate());
         questionUpdateModel.setCreatedBy(questionEntity.getCreatedBy());
 
-        if (StatusEnum.ACTIVE.getKey() == questionEntity.getStatus()) {
+        if (StatusEnum.VISIBLE.getKey() == questionEntity.getStatus()) {
             questionUpdateModel.setStatus(true);
-        } else if (StatusEnum.INACTIVE.getKey() == questionEntity.getStatus()) {
+        } else if (StatusEnum.INVISIBLE.getKey() == questionEntity.getStatus()) {
             questionUpdateModel.setStatus(false);
         }
 
@@ -61,6 +66,7 @@ public class QuestionMapper {
         questionUpdateModel.setContent(questionModel.getContent());
         questionUpdateModel.setAnswerType(questionModel.getAnswerType());
         questionUpdateModel.setImage(questionModel.getImage());
+        questionUpdateModel.setScore(questionModel.getScore());
         questionUpdateModel.setCreatedDate(questionModel.getCreatedDate());
         questionUpdateModel.setCreatedBy(questionModel.getCreatedBy());
         questionUpdateModel.setStatus(questionModel.isStatus());

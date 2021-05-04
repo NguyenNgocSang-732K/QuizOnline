@@ -13,12 +13,46 @@
     margin-bottom: 2%;
 }
 
-.wrapper-answer-table .btn-add{
+.wrapper-answer-table .wrapper-btnadd{
     text-align: right;
+    display: inline-flex;
+    width: 100%;
+}
+
+.wrapper-answer-table .wrapper-btnadd .note{
+    text-align: left;
+    color: red;
+    width: 50%;
+}
+
+.wrapper-answer-table .wrapper-btnadd .btn-add{
+    width: 50%;
+
 }
 
 .wrapper-answer-table .answer-table{
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+.answer-table .icon-answer-correct{
+    color: var(--text-color);
+}
+
+/*Create Answer*/
+#wrapper-answer-iscorrect{
+    padding: 0;
+}
+
+#wrapper-answer-iscorrect > label{
+    padding: 0;
+}
+
+#wrapper-answer-iscorrect > .iscorrect-answer{
+    margin-left: 2.5rem;
+}
+
+#wrapper-answer-iscorrect > #edit-iscorrect-answer{
+    margin-left: 2.5rem;
 }

@@ -45,8 +45,7 @@ public class AccountService implements IAccountService {
 		currentUser.setId(account.getId());
 		currentUser.setEmail(account.getEmail());
 		currentUser.setPhone(account.getPhone());
-		currentUser.setPhoto(
-				(account.getPhoto().isEmpty() || account.getPhoto() == null) ? "LearnPlus.png" : account.getPhoto());
+		currentUser.setPhoto((account.getPhoto() == null || account.getPhoto().isEmpty()) ? "LearnPlus.png" : account.getPhoto());
 		currentUser.setUsername(account.getUsername());
 		currentUser.setPassword(account.getPassword());
 		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));

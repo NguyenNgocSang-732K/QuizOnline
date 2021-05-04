@@ -4,6 +4,7 @@
 <%@ attribute name="content" fragment="true"%>
 <%@ taglib prefix="auth"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="mytag" uri="mytag" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +99,7 @@
             <li class="nav-item dropdown"><a
                     class="nav-link active dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button"><img
-                    src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
+                    src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 
@@ -170,10 +171,10 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
+    <mytag:answer button="Add"/>
+	<mytag:answer button="Edit"/>
 	<!-- jQuery -->
 	<script
 		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
@@ -229,10 +230,17 @@
 <%--Manager Question--%>
 <script
         src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
- <script
-        src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
-  <script
-        src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
-        
-</body>
+
+<%--Manager Answer--%>
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
+
+<%--Upload Image--%>
+<script
+		src="${pageContext.request.contextPath}/resources/common/js/uploadImage.js"></script>
+
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
 </html>

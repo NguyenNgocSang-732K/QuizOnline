@@ -2,7 +2,12 @@ package com.controllers.admin;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.model.entityModels.CurrentUserProfile;
+import com.model.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +44,18 @@ public class ManageAccountController extends AdminBaseController {
 		String photo = ImageHelper.saveImage(request, file, "uploads/images/");
 		account.setPhoto(photo);
 		//account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
-		iAccountService.Save(account);
+		Account accountUpdated = iAccountService.Save(account);
+
+		AuthenManager.Current_User = AccountMapper.ToCurrentUserProfile(accountUpdated);
+
+		Authentication authentication = new UsernamePasswordAuthenticationToken(AuthenManager.Current_User, AuthenManager.Current_User.getPassword(),
+				AuthenManager.Current_User.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+//		AuthenManager.Current_User = (CurrentUserProfile) SecurityContextHolder.getContext().getAuthentication()
+//				.getPrincipal();
+//		AuthenManager.Current_Account = iAccountService.FindById(AuthenManager.Current_User.getId());
+
 		return Redirect("profile/" + account.getId(), null);
 	}
 
