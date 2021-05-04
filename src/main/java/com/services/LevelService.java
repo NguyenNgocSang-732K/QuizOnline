@@ -33,7 +33,7 @@ public class LevelService implements ILevelService {
 	public Level FindById(int id) {
 		// TODO Auto-generated method stub
 		Optional<Level> level = _levelRepository.findById(id);
-		if (level.isEmpty()) {
+		if (!level.isPresent()) {
 			return null;
 		}
 		return level.get();

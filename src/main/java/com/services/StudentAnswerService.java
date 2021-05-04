@@ -33,7 +33,7 @@ public class StudentAnswerService implements IStudentAnswerService {
 	public StudentAnswer FindById(int id) {
 		// TODO Auto-generated method stub
 		Optional<StudentAnswer> studentAnswer = _studentAnswerRepository.findById(id);
-		if (studentAnswer.isEmpty())
+		if (!studentAnswer.isPresent())
 			return null;
 		return studentAnswer.get();
 	}

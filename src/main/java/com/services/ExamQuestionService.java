@@ -25,7 +25,7 @@ public class ExamQuestionService implements IExamQuestionService {
 	@Override
 	public ExamQuestion FindById(int id) {
 		Optional<ExamQuestion> examQuestion = _examQuestionRepository.findById(id);
-		if (examQuestion.isEmpty())
+		if (!examQuestion.isPresent())
 			return null;
 		return examQuestion.get();
 	}

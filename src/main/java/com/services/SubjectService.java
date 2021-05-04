@@ -40,7 +40,7 @@ public class SubjectService implements ISubjectService {
 	@Override
 	public Subject FindById(int id) {
 		Optional<Subject> subject = _subjectRepository.findById(id);
-		if (subject.isEmpty())
+		if (!subject.isPresent())
 			return null;
 		return subject.get();
 	}

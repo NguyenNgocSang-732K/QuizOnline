@@ -23,7 +23,7 @@ public class AccountExamService implements IAccountExamService {
 	public AccountExam FindById(int id) {
 		// TODO Auto-generated method stub
 		Optional<AccountExam> accountExam = _accountExamRepository.findById(id);
-		if (accountExam.isEmpty())
+		if (!accountExam.isPresent())
 			return null;
 		return accountExam.get();
 	}

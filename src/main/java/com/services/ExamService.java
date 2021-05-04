@@ -39,7 +39,7 @@ public class ExamService implements IExamService {
 	@Override
 	public Exam FindById(int id) {
 		Optional<Exam> exam = _examRepository.findById(id);
-		if (exam.isEmpty())
+		if (!exam.isPresent())
 			return null;
 		return exam.get();
 	}
