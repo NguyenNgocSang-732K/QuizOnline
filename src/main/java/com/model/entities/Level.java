@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 9, 2021, 9:14:06 PM by Hibernate Tools 5.1.10.Final
+// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,24 +27,27 @@ public class Level implements java.io.Serializable {
 	private Date createdDate;
 	private int createdBy;
 	private int status;
+	private int stt;
 	private Set<Question> questions = new HashSet<Question>(0);
 	private Set<Exam> exams = new HashSet<Exam>(0);
 
 	public Level() {
 	}
 
-	public Level(String name, Date createdDate, int createdBy, int status) {
+	public Level(String name, Date createdDate, int createdBy, int status,int stt) {
 		this.name = name;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
+		this.stt=stt;
 	}
 
-	public Level(String name, Date createdDate, int createdBy, int status, Set<Question> questions, Set<Exam> exams) {
+	public Level(String name, Date createdDate, int createdBy, int status,int stt, Set<Question> questions, Set<Exam> exams) {
 		this.name = name;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.status = status;
+		this.stt=stt;
 		this.questions = questions;
 		this.exams = exams;
 	}
@@ -68,6 +71,15 @@ public class Level implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Column(name = "stt", nullable = false, length = 100)
+	public int getStt() {
+		return stt;
+	}
+
+	public void setStt(int stt) {
+		this.stt = stt;
 	}
 
 	@Temporal(TemporalType.DATE)

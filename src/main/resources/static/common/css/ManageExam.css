@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.body-exam {
+	height: 70%;
+}
+
+.btn-page {
+	position: absolute;
+	right: 100px;
+	top: 70%;
+}
+
+.question_item{
+	display: none
+}
+
+.animate__backInRight{
+  --animate-duration: 2s;
+}

@@ -38,7 +38,7 @@ public class ManageAccountController extends AdminBaseController {
 			ModelMap modelMap, HttpServletRequest request) {
 		String photo = ImageHelper.saveImage(request, file, "uploads/images/");
 		account.setPhoto(photo);
-		account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
+		//account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
 		iAccountService.Save(account);
 		return Redirect("profile/" + account.getId(), null);
 	}

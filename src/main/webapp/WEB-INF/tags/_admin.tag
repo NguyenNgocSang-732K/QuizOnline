@@ -9,7 +9,6 @@
 <html lang="en">
 
 
-<!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:58 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -52,7 +51,7 @@
 
     <!-- Common Css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/common/css/constant.css">
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/common/css/ManageSubject.css">
     <!-- MDK -->
     <link type="text/css"
           href="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.css"
@@ -103,7 +102,7 @@
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 
-                <auth:authorize access="hasRole('ROLE_Admin')">
+                <%-- <auth:authorize access="hasRole('ROLE_Admin')">
                     <a class="dropdown-item"
                        href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
                         <i class="material-icons">person</i> Profile
@@ -113,6 +112,13 @@
                 <auth:authorize access="hasRole('ROLE_Student')">
                     <a class="dropdown-item" 
                     	href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />"> <i
+                        class="material-icons">person</i> Profile
+                	</a> 
+                </auth:authorize> --%>
+
+				<auth:authorize access="hasRole('ROLE_Student') OR hasRole('ROLE_Admin')">
+                    <a class="dropdown-item" 
+                    	href="${pageContext.request.contextPath }/profile/<auth:authentication property="principal.id" />"> <i
                         class="material-icons">person</i> Profile
                 	</a> 
                 </auth:authorize>
@@ -129,10 +135,9 @@
 
 		<div class="mdk-drawer-layout js-mdk-drawer-layout flex"
 			data-fullbleed data-push data-has-scrolling-region>
-			<div
-				class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+		
 				<jsp:invoke fragment="content"></jsp:invoke>
-			</div>
+			
 			<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
 				<div class="mdk-drawer__content ">
 					<div
@@ -150,27 +155,17 @@
 							</ul>
 							<div class="sidebar-heading">Management</div>
 							<ul class="sidebar-menu">
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-statement.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
-										Students
-								</a></li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-courses.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
-										Courses
-								</a></li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button"
-									href="${pageContext.request.contextPath}/admin/questions">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-										Questions
-								</a></li>
+							
+							<auth:authorize access="hasRole('ROLE_Student') or hasRole('ROLE_Admin')">
+								<li class="sidebar-menu-item">
+									<a class="sidebar-menu-button" 
+										<%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
+										href="${pageContext.request.contextPath }/student/subject">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Subjects
+									</a>
+								</li>
+							</auth:authorize>
 							</ul>
-
 						</div>
 					</div>
 				</div>
@@ -210,7 +205,7 @@
 
 <!-- Simple Pagination  -->
 <script src="${pageContext.request.contextPath}/resources/admin/assets/js/simplePagination.js"></script>
-</body>
+
 
 <!-- Font Awesome  -->
 <script src="https://kit.fontawesome.com/b48db25390.js" crossorigin="anonymous"></script>
@@ -219,6 +214,14 @@
 <script
         src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
 
+<!-- Required by countdown -->
+<script src="${pageContext.request.contextPath}/resources/admin/assets/vendor/moment.min.js"></script>
+<!-- Easy Countdown -->
+<script src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.countdown.min.js"></script>
+<!-- Init -->
+<script src="${pageContext.request.contextPath}/resources/admin/assets/js/countdown.js"></script>
+
+
 <!-- Pagination Common -->
 <script
         src="${pageContext.request.contextPath}/resources/common/js/pagination.js"></script>
@@ -226,7 +229,10 @@
 <%--Manager Question--%>
 <script
         src="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.js"></script>
-
-<!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:59 GMT -->
-
+ <script
+        src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
+  <script
+        src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
+        
+</body>
 </html>

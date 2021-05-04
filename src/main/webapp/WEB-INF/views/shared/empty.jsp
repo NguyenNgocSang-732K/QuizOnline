@@ -7,8 +7,6 @@
 
 <template:_admin title="Dashboard">
 	<jsp:attribute name="content">
-		<div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-         	<h1>Student Dashboard</h1>    
-       	</div>
+          	<h1>${message }</h1>    
 	</jsp:attribute>
 </template:_admin>

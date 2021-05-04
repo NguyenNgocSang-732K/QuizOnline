@@ -32,7 +32,11 @@ public class AccountService implements IAccountService {
 		}
 
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-		String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
+		AccountTypeEnum role = AccountTypeEnum.getValue(account.getAccountType());
+		String role_name = "AnonymousUser";
+		if (role != null) {
+			role_name = role.toString();
+		}
 		roles.add(new SimpleGrantedAuthority(role_name));
 
 		CurrentUserProfile currentUser = new CurrentUserProfile();
@@ -41,7 +45,8 @@ public class AccountService implements IAccountService {
 		currentUser.setId(account.getId());
 		currentUser.setEmail(account.getEmail());
 		currentUser.setPhone(account.getPhone());
-		currentUser.setPhoto((account.getPhoto().isEmpty() || account.getPhoto() == null) ? "LearnPlus.png" : account.getPhoto());
+		currentUser.setPhoto(
+				(account.getPhoto().isEmpty() || account.getPhoto() == null) ? "LearnPlus.png" : account.getPhoto());
 		currentUser.setUsername(account.getUsername());
 		currentUser.setPassword(account.getPassword());
 		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
@@ -78,8 +83,8 @@ public class AccountService implements IAccountService {
 			account.setFullname(edit.getFullname());
 			account.setIsActive(edit.getIsActive());
 			account.setPhone(edit.getPhone());
-			
-			if(edit.getPhoto()!=null && !edit.getPhoto().isEmpty()) {
+
+			if (edit.getPhoto() != null && !edit.getPhoto().isEmpty()) {
 				account.setPhoto(edit.getPhoto());
 			}
 			account.setStatus(edit.getStatus());
