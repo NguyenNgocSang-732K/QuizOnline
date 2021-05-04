@@ -15,7 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 		http.authorizeRequests()
-				.antMatchers("/admin/**").access("hasRole('ROLE_Admin')")
+				.antMatchers("/admin/**").permitAll()
 				.antMatchers("/student/**").access("hasRole('ROLE_Student')")
 				.and()
 				.formLogin()

@@ -40,8 +40,8 @@ public class BasicAuth implements HandlerInterceptor {
             }
         } else {
             if (!userIsNull) {
-                String area = AuthenManager.IsMod() ? "admin" : "student";
-                response.sendRedirect("/" + area + "/dashboard");
+				/* String area = AuthenManager.IsMod() ? "admin" : "student"; */
+                response.sendRedirect("/dashboard");
                 return false;
             }
         }

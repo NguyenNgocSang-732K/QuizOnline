@@ -1,5 +1,5 @@
 package com.model.entities;
-// Generated Apr 29, 2021, 1:44:15 AM by Hibernate Tools 5.1.10.Final
+// Generated Apr 21, 2021, 6:14:42 PM by Hibernate Tools 5.1.10.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,16 +26,21 @@ public class AccountExam implements java.io.Serializable {
 	private Account account;
 	private Exam exam;
 	private BigDecimal score;
+	private int answer_correct;
+	private int answer_uncorrect;
 	private Date createdDate;
 	private int status;
 
 	public AccountExam() {
 	}
 
-	public AccountExam(Account account, Exam exam, BigDecimal score, Date createdDate, int status) {
+	public AccountExam(Account account, Exam exam, BigDecimal score, int answer_correct,
+			int answer_uncorrect, Date createdDate, int status) {
 		this.account = account;
 		this.exam = exam;
 		this.score = score;
+		this.answer_correct = answer_correct;
+		this.answer_uncorrect = answer_uncorrect;
 		this.createdDate = createdDate;
 		this.status = status;
 	}
@@ -79,6 +84,24 @@ public class AccountExam implements java.io.Serializable {
 
 	public void setScore(BigDecimal score) {
 		this.score = score;
+	}
+	
+	@Column(name = "answer_correct")
+	public int getAnswer_correct() {
+		return answer_correct;
+	}
+
+	public void setAnswer_correct(int answer_correct) {
+		this.answer_correct = answer_correct;
+	}
+
+	@Column(name = "answer_uncorrect")
+	public int getAnswer_uncorrect() {
+		return answer_uncorrect;
+	}
+
+	public void setAnswer_uncorrect(int answer_uncorrect) {
+		this.answer_uncorrect = answer_uncorrect;
 	}
 
 	@Temporal(TemporalType.DATE)
