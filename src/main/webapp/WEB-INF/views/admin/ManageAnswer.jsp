@@ -63,15 +63,14 @@
                                     <div>
                                         <table class="table answer-table">
                                             <thead>
-                                                <tr>
-                                                    <th>Content</th>
-                                                    <th>IsCorrect</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
+                                            <tr>
+                                                <th>Content</th>
+                                                <th>IsCorrect</th>
+                                                <th>Action</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                <core:forEach items="${answers}" var="answer">
+                                            <core:forEach items="${answers}" var="answer">
                                                     <tr>
                                                         <td>${answer.content}</td>
                                                         <td>
@@ -80,20 +79,15 @@
                                                             </core:if>
                                                         </td>
                                                         <td>
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                       id="status-answer"
-                                                                    ${answer.status ? "checked": ""}>
-                                                                <label class="form-check-label" for="status-answer"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
                                                             <button class="btn btn-warning btn-edit-answer" type="button"
                                                                     data-toggle="modal"
-                                                                    data-target="#edit-answer" data-answer-id="${answer.id}">
+                                                                    data-target="#edit-answer" data-answer-id="${answer.id}"
+                                                            >
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class="btn btn-danger" type="button">
+                                                            <button class="btn btn-danger btn-remove-answer" type="button"
+                                                                    data-question-id="${question.id}"
+                                                                    data-answer-id="${answer.id}">
                                                                 <i class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </td>

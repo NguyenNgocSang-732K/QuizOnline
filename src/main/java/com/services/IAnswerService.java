@@ -11,4 +11,8 @@ public interface IAnswerService {
     AnswerModel GetById(int answerId);
 
     AnswerModel Save(int questionId, AnswerInputModel answerInputModel, int userId);
+
+    boolean RemoveAnswer(int answerId, int questionId);
+
+    boolean UpdateStatus(int answerId, boolean status);
 }

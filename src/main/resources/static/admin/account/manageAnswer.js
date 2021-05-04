@@ -105,4 +105,80 @@ $(document).ready(function(){
         })
     }
     editAnswer();
+
+    function removeAnswer(){
+        $('.btn-remove-answer').on('click', function(){
+            var modalConfirm = confirm("Do you want to disable this Question?");
+            var target = $(this);
+
+            if (modalConfirm == true){
+                var answerId = target.data('answer-id');
+                var questionId = target.data('question-id');
+
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: '/admin/question/remove-answer',
+                    data: JSON.stringify({answerId, questionId}),
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.status == 200){
+                            alert(data.dataResponse);
+                            location.reload()
+                        }else if(data.status == 400){
+                            alert(data.dataResponse);
+                        }
+                    },error: function(x, h, j){
+                        console.log(x)
+                    }
+                });
+            }else{
+                target.prop('checked', true);
+            }
+        })
+    };
+    removeAnswer();
+
+    function updateStatusAnswer(){
+        $('.tatus-answer').on('change', function () {
+            var target = $(this);
+            var isChecked = target.is(':checked');
+            var answerId = target.data('answer-id')
+
+            var answerModel = {
+                status: isChecked,
+                id: answerId
+            };
+
+            function processUpdate(){
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: '/admin/question/update-status',
+                    data: JSON.stringify(answerModel),
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.status == 200) {
+                            alert(data.dataResponse)
+                        } else if (data.status == 404) {
+                            var url = window.location.protocol + '//' + window.location.host + '/notfound'
+                            window.location.assign(url);
+                        }
+                    }
+                })
+            }
+
+            if(questionModel.status){
+                processUpdate();
+            }else{
+                var modalConfirm = confirm("Do you want to disable this Question?");
+
+                if (modalConfirm == true){
+                    processUpdate();
+                }else{
+                    target.prop('checked', true);
+                }
+            }
+        })
+    }
 })
