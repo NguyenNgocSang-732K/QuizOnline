@@ -77,14 +77,14 @@ public class QuestionService implements IQuestionService {
 		Level level = _levelRepository.findById(questionUpdate.getLevelModel().getId()).get();
 		Question question = _questionRepository.findById(questionUpdate.getId()).get();
 
-        if (questionUpdate.getAnswerType() != question.getAnswerType()) {
-            question.getAnswers().forEach(p -> p.setIscorrect(false));
-        }
+		if (questionUpdate.getAnswerType() != question.getAnswerType()) {
+			question.getAnswers().forEach(p -> p.setIscorrect(false));
+		}
 
-        question.setLevel(level);
-        question.setContent(questionUpdate.getContent());
-        question.setAnswerType(questionUpdate.getAnswerType());
-        question.setScore(questionUpdate.getScore());
+		question.setLevel(level);
+		question.setContent(questionUpdate.getContent());
+		question.setAnswerType(questionUpdate.getAnswerType());
+		question.setScore(questionUpdate.getScore());
 
 		QuestionUpdateModel result = QuestionMapper.ToQuestionUpdateModel(_questionRepository.save(question));
 
@@ -93,36 +93,29 @@ public class QuestionService implements IQuestionService {
 
 	@Override
 	public int CreateQuestion(QuestionCreateModel questionCreateModel, int adminId) {
-
 		Question question = new Question();
 		question.setContent(questionCreateModel.getContent());
 		question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
 		question.setAnswerType(questionCreateModel.getAnswerType());
 		question.setImage(questionCreateModel.getImage());
-		question.setStatus(StatusEnum.ACTIVE.getKey());
+		question.setStatus(StatusEnum.VISIBLE.getKey());
+		question.setScore(questionCreateModel.getScore());
 		question.setCreatedDate(new Date());
 		question.setCreatedBy(adminId);
 
 		_questionRepository.save(question);
-
-        Question question = new Question();
-        question.setContent(questionCreateModel.getContent());
-        question.setLevel(LevelMapper.ToLevelEntity(questionCreateModel.getLevelModel()));
-        question.setAnswerType(questionCreateModel.getAnswerType());
-        question.setImage(questionCreateModel.getImage());
-        question.setStatus(StatusEnum.VISIBLE.getKey());
-        question.setScore(questionCreateModel.getScore());
-        question.setCreatedDate(new Date());
-        question.setCreatedBy(adminId);
+		
+		return question.getId();
+	}
 
 	@Override
 	public boolean UpdateStatus(int questionId, boolean status) {
 		Question question = _questionRepository.findById(questionId).get();
 
 		if (status)
-		question.setStatus(StatusEnum.VISIBLE.getKey());
-	else
-		question.setStatus(StatusEnum.INVISIBLE.getKey());
+			question.setStatus(StatusEnum.VISIBLE.getKey());
+		else
+			question.setStatus(StatusEnum.INVISIBLE.getKey());
 
 		Question questionUpdated = _questionRepository.save(question);
 		return false;

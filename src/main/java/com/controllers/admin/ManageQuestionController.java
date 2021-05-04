@@ -9,6 +9,7 @@ import com.model.entityModels.QuestionUpdateModel;
 import com.model.mapper.QuestionMapper;
 import com.services.ILevelService;
 import com.services.IQuestionService;
+import com.services.ISubjectService;
 import com.validation.QuestionCreateModelValidation;
 import com.validation.QuestionUpdateModelValidation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,119 +23,116 @@ import javax.validation.Valid;
 @Controller
 public class ManageQuestionController extends AdminBaseController {
 
-    // Service
-    private @Autowired
-    IQuestionService _questionService;
+	// Service
+	private @Autowired IQuestionService _questionService;
 
-    private @Autowired
-    ILevelService _levelService;
+	private @Autowired ILevelService _levelService;
 
-    // Validator
-    private @Autowired
-    QuestionCreateModelValidation _questionCreateValidator;
+	private @Autowired ISubjectService _iSubjectService;
 
-    private @Autowired
-    QuestionUpdateModelValidation _questionUpdateValidator;
+	// Validator
+	private @Autowired QuestionCreateModelValidation _questionCreateValidator;
 
-    // Get All questions from database
-    // page: page number
-    // searchText: search question by Content column, Level column
-    // modelMap: initial data to page
-    @RequestMapping(value = {"questions"}, method = RequestMethod.GET)
-    public String IndexQuestion(ModelMap modelmap,
-                                @RequestParam(required = false, defaultValue = "1") String page,
-                                @RequestParam(required = false, defaultValue = "") String searchText) {
+	private @Autowired QuestionUpdateModelValidation _questionUpdateValidator;
 
-        modelmap.put("questionModels", _questionService.GetAll(Integer.parseInt(page),
-                GeneralTypeEnum.PAGESIZE,
-                searchText));
-        modelmap.put("searchText", searchText);
-        return "admin/IndexQuestion";
-    }
+	// Get All questions from database
+	// page: page number
+	// searchText: search question by Content column, Level column
+	// modelMap: initial data to page
+	@RequestMapping(value = { "admin/questions" }, method = RequestMethod.GET)
+	public String IndexQuestion(ModelMap modelmap, @RequestParam(required = false, defaultValue = "1") String page,
+			@RequestParam(required = false, defaultValue = "") String searchText) {
 
-    // Find question by Id
-    // modelMap: initial data to page
-    // id: Question's Id
-    // op: status when question updated
-    @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
-    public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id, @RequestParam(required =
-            false) String op) {
-        QuestionUpdateModel questionUpdate = QuestionMapper.ToQuestionUpdateModel(_questionService.findById(id));
+		modelmap.put("questionModels",
+				_questionService.GetAll(Integer.parseInt(page), GeneralTypeEnum.PAGESIZE, searchText));
+		modelmap.put("searchText", searchText);
+		return "admin/IndexQuestion";
+	}
 
-        if (op != null && op.equalsIgnoreCase("success"))
-            modelMap.put("updateStatus", "Update question success!!");
+	// Find question by Id
+	// modelMap: initial data to page
+	// id: Question's Id
+	// op: status when question updated
+	@RequestMapping(value = "admin/question/{id}", method = RequestMethod.GET)
+	public String EditQuestion(ModelMap modelMap, @PathVariable("id") int id,
+			@RequestParam(required = false) String op) {
+		QuestionUpdateModel questionUpdate = QuestionMapper.ToQuestionUpdateModel(_questionService.findById(id));
 
-        modelMap.put("question", questionUpdate);
-        modelMap.put("levels", _levelService.GetAll());
-        return "admin/EditQuestion";
-    }
+		if (op != null && op.equalsIgnoreCase("success"))
+			modelMap.put("updateStatus", "Update question success!!");
 
-    // Update data for question
-    // questionUpdate: data was submited by form
-    // bindingResult: Using for validation model
-    @RequestMapping(value = "/question/update-Question", method = RequestMethod.POST)
-    public String EditQuestion(@ModelAttribute("question") @Valid QuestionUpdateModel questionUpdate,
-                               BindingResult bindingResult) {
+		modelMap.put("question", questionUpdate);
+		modelMap.put("levels", _levelService.GetAll());
+		modelMap.put("subjects", _iSubjectService.FindAllValid());
+		return "admin/EditQuestion";
+	}
 
-        _questionUpdateValidator.validate(questionUpdate, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return "admin/EditQuestion";
-        }
+	// Update data for question
+	// questionUpdate: data was submited by form
+	// bindingResult: Using for validation model
+	@RequestMapping(value = "admin/question/update-Question", method = RequestMethod.POST)
+	public String EditQuestion(@ModelAttribute("question") @Valid QuestionUpdateModel questionUpdate,
+			BindingResult bindingResult) {
 
-        int id = _questionService.UpdateQuestion(questionUpdate);
-        return Redirect("question/" + id, "success");
-    }
+		_questionUpdateValidator.validate(questionUpdate, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "admin/EditQuestion";
+		}
 
-    // Update question's status
-    // questionModel: Include question's id and question's status
-    // bindingResult: Using for validation model
-    @RequestMapping(value = "/question/update-status", method = RequestMethod.POST)
-    public @ResponseBody
-    AjaxResponse UpdateStatus(@RequestBody QuestionModel questionModel) {
-        QuestionModel questionValidator = _questionService.findById(questionModel.getId());
+		int id = _questionService.UpdateQuestion(questionUpdate);
+		return Redirect("question/" + id, "success");
+	}
 
-        AjaxResponse ajaxResponse = new AjaxResponse();
-        if (questionValidator == null) {
-            ajaxResponse.setStatus(404);
-            return ajaxResponse;
-        }
+	// Update question's status
+	// questionModel: Include question's id and question's status
+	// bindingResult: Using for validation model
+	@RequestMapping(value = "admin/question/update-status", method = RequestMethod.POST)
+	public @ResponseBody AjaxResponse UpdateStatus(@RequestBody QuestionModel questionModel) {
+		QuestionModel questionValidator = _questionService.findById(questionModel.getId());
 
-        _questionService.UpdateStatus(questionModel.getId(), questionModel.isStatus());
-        ajaxResponse.setStatus(200);
-        ajaxResponse.setDataResponse("Update question's status success");
+		AjaxResponse ajaxResponse = new AjaxResponse();
+		if (questionValidator == null) {
+			ajaxResponse.setStatus(404);
+			return ajaxResponse;
+		}
 
-        return ajaxResponse;
-    }
+		_questionService.UpdateStatus(questionModel.getId(), questionModel.isStatus());
+		ajaxResponse.setStatus(200);
+		ajaxResponse.setDataResponse("Update question's status success");
 
-    // Load and initial data form create question
-    // modelMap: initial data to page
-    @RequestMapping(value = "/question/create-question", method = RequestMethod.GET)
-    public String CreateQuestion(ModelMap modelMap) {
-        QuestionCreateModel questionCreate = new QuestionCreateModel();
-        questionCreate.setContent("");
+		return ajaxResponse;
+	}
 
-        modelMap.put("question", questionCreate);
-        modelMap.put("levels", _levelService.GetAll());
-        return "admin/CreateQuestion";
-    }
+	// Load and initial data form create question
+	// modelMap: initial data to page
+	@RequestMapping(value = "admin/question/create-question", method = RequestMethod.GET)
+	public String CreateQuestion(ModelMap modelMap) {
+		QuestionCreateModel questionCreate = new QuestionCreateModel();
+		questionCreate.setContent("");
 
-    // Create new Question
-    // modelMap: initial data to page
-    // questionCreate: Model submited by form
-    // bindingResult: Using for validation
-    @RequestMapping(value = "/question/create-question", method = RequestMethod.POST)
-    public String CreateQuestion(ModelMap modelMap,
-                                 @ModelAttribute("question") @Valid QuestionCreateModel questionCreate,
-                                 BindingResult bindingResult) {
+		modelMap.put("question", questionCreate);
+		modelMap.put("levels", _levelService.GetAll());
+		modelMap.put("subjects", _iSubjectService.FindAllValid());
+		return "admin/CreateQuestion";
+	}
 
-        _questionCreateValidator.validate(questionCreate, bindingResult);
-        if (bindingResult.hasErrors()) {
-            modelMap.put("levels", _levelService.GetAll());
-            return "admin/CreateQuestion";
-        }
+	// Create new Question
+	// modelMap: initial data to page
+	// questionCreate: Model submited by form
+	// bindingResult: Using for validation
+	@RequestMapping(value = "admin/question/create-question", method = RequestMethod.POST)
+	public String CreateQuestion(ModelMap modelMap,
+			@ModelAttribute("question") @Valid QuestionCreateModel questionCreate, BindingResult bindingResult) {
 
-        int questionId = _questionService.CreateQuestion(questionCreate, AuthenManager.Current_User.getId());
+		_questionCreateValidator.validate(questionCreate, bindingResult);
+		if (bindingResult.hasErrors()) {
+			modelMap.put("levels", _levelService.GetAll());
+			modelMap.put("subjects", _iSubjectService.FindAllValid());
+			return "admin/CreateQuestion";
+		}
 
-        return Redirect("question/" + questionId, null);
-    }
+		int questionId = _questionService.CreateQuestion(questionCreate, AuthenManager.Current_User.getId());
+
+		return Redirect("question/" + questionId + "/answers", null);
+	}
 }

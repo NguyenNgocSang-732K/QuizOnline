@@ -45,12 +45,12 @@
                     </div>
                 </core:if>
                 <core:set var="indexQuestion" value="0" />
-                
+
                 <form action="${pageContext.request.contextPath }/student/exam" method="post" id="formExam">
                     <!-- Body exam -->
                     <input type="hidden" name="examId" value="${exam.id }" />
                     <core:forEach var="question" items="${lstQuestion }" varStatus="loop">
-                    <%-- <input type="hidden" name="questions[${indexQuestion }].question_id" value="${question.id }" /> --%>
+                        <%-- <input type="hidden" name="questions[${indexQuestion }].question_id" value="${question.id }" /> --%>
                         <div class="card">
                             <div id="10" class="card-header bg-white">
                                 <div class="media align-items-center">
@@ -178,12 +178,11 @@
     </jsp:attribute>
 </template:_admin>
 <script>
-	setInterval(function(){  
-	    if ($('.countdown').children().children().length == 0) 
-	    {
-	        //window.location.href = '/dashboard';
-	        $("#formExam").submit();
-		}
-		console.log("loading..."); 
-	}, 1000);
+    setInterval(function () {
+        if ($('.countdown').children().children().length == 0) {
+            //window.location.href = '/dashboard';
+            $("#formExam").submit();
+        }
+        console.log("loading...");
+    }, 1000);
 </script>

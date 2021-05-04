@@ -6,6 +6,8 @@ import com.model.entities.Subject;
 
 public interface ISubjectService {
     List<Subject> GetAll(int page, int pageSize, String searchText);
+    
+    List<Subject> FindAllValid();
 
     Subject FindById(int id);
 

@@ -1,5 +1,6 @@
 package com.services;
 
+import com.constant.StatusEnum;
 import com.model.entities.Subject;
 import com.model.entityModels.PaginationModel;
 import com.repository.SubjectRepository;
@@ -50,10 +51,9 @@ public class SubjectService implements ISubjectService {
 		if (subject == null) {
 			return null;
 		}
-		//--
-		
-		
-		//--
+		// --
+
+		// --
 		Subject subjectSaved = _subjectRepository.save(subject);
 		return subjectSaved;
 	}
@@ -61,6 +61,12 @@ public class SubjectService implements ISubjectService {
 	@Override
 	public Subject Create(Subject subject) {
 		return _subjectRepository.save(subject);
+	}
+
+	@Override
+	public List<Subject> FindAllValid() {
+		// TODO Auto-generated method stub
+		return _subjectRepository.findByStatus(StatusEnum.VISIBLE.getKey());
 	}
 
 }
