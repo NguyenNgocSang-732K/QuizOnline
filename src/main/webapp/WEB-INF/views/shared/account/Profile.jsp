@@ -28,7 +28,7 @@
                             <div class="tab-pane active" id="first">
                                     <%--@elvariable id="profile" type="za.co.myProject.UserFormObject"--%>
                                 <s-form:form
-								action="${pageContext.request.contextPath }/admin/profile"
+								action="${pageContext.request.contextPath }/profile"
 								class="form-horizontal" method="POST" modelAttribute="profile"
 								enctype="multipart/form-data">
 								<s-form:hidden path="id" />
@@ -44,8 +44,7 @@
 													class="icon-block rounded display-image"
 													style="background-image:
                                                             url(${pageContext.request.contextPath}/images/${profile.photo}); background-size:cover;">
-                                                       <core:if
-														test="${empty profile.photo}">
+                                                       <core:if test="${empty profile.photo}">
                                                        <i class="material-icons text-muted-light md-36">photo</i>
                                                        </core:if>
                                                         
@@ -172,5 +171,3 @@
             
 	</jsp:attribute>
 </template:_admin>
-<script
-	src="${pageContext.request.contextPath}/resources/admin/account/profile.js"></script>

@@ -33,7 +33,7 @@ public class ManageAnswerController extends AdminBaseController {
     AnswerInputModelValidation _answerInputValidator;
 
 
-    @RequestMapping(value = {"/question/{id}/answers"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"admin/question/{id}/answers"}, method = RequestMethod.GET)
     public String IndexAnswer(ModelMap modelmap, @PathVariable("id") int questionId, @RequestParam(required = false) String op) {
         QuestionModel questionModel = _questionService.findById(questionId);
         List<AnswerModel> answers = _answerService.GetAll(questionId);
@@ -49,7 +49,7 @@ public class ManageAnswerController extends AdminBaseController {
         return "admin/ManageAnswer";
     }
 
-    @RequestMapping(value = "/question/create-answer", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/question/create-answer", method = RequestMethod.POST)
     public @ResponseBody
     AjaxResponse CreateAnswer(@RequestBody AnswerInputModel answerInput, BindingResult bindingResult) {
         _answerInputValidator.validate(answerInput, bindingResult);
@@ -68,9 +68,8 @@ public class ManageAnswerController extends AdminBaseController {
         return response;
     }
 
-    @RequestMapping(value = "/question/answer/{answerId}", method = RequestMethod.GET)
-    public @ResponseBody
-    AjaxResponse GetById(ModelMap modelMap, @PathVariable int answerId) {
+    @RequestMapping(value = "admin/question/answer/{answerId}", method = RequestMethod.GET)
+    public @ResponseBody AjaxResponse GetById(ModelMap modelMap, @PathVariable int answerId){
         AnswerInputModel answerInput = AnswerMapper.ToAnswerInputModel(_answerService.GetById(answerId));
 
         AjaxResponse ajaxResponse = new AjaxResponse();
@@ -80,7 +79,7 @@ public class ManageAnswerController extends AdminBaseController {
         return ajaxResponse;
     }
 
-    @RequestMapping(value = "/question/update-answer", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/question/update-answer", method = RequestMethod.POST)
     public @ResponseBody
     AjaxResponse UpdateAnswer(@RequestBody AnswerInputModel answerInput, BindingResult bindingResult) {
         _answerInputValidator.validate(answerInput, bindingResult);

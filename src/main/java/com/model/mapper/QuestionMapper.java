@@ -22,6 +22,7 @@ public class QuestionMapper {
         questionModel.setImage(questionEntity.getImage());
         questionModel.setCreatedDate(questionEntity.getCreatedDate());
         questionModel.setCreatedBy(questionEntity.getCreatedBy());
+        questionModel.setSubject(questionEntity.getSubject());
 
         if (StatusEnum.VISIBLE.getKey() == questionEntity.getStatus()) {
             questionModel.setStatus(true);

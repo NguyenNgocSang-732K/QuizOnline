@@ -72,6 +72,14 @@
     <%--    Simple Pagination--%>
     <link href="${pageContext.request.contextPath}/resources/admin/assets/css/simplePagination.css"
           rel="stylesheet">
+          
+    <link href="${pageContext.request.contextPath}/resources/admin/account/manageExam.css"
+         rel="stylesheet">
+         
+    <link href="${pageContext.request.contextPath}/resources/admin/account/manageSubject.css"
+		 rel="stylesheet">
+  	<link rel="stylesheet"
+       href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
 
 </head>
 
@@ -100,7 +108,7 @@
             <li class="nav-item dropdown"><a
                     class="nav-link active dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button"><img
-                    src="${pageContext.request.contextPath}/resources/admin/assets/images/people/50/guy-6.jpg"
+                    src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 
@@ -150,25 +158,34 @@
 								</a></li>
 							</ul>
 							<div class="sidebar-heading">Management</div>
-							<ul class="sidebar-menu">
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-statement.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">receipt</i>
-										Students
-								</a></li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-courses.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
-										Courses
-								</a></li>
+							<ul class="sidebar-menu">						
+								<li class="sidebar-menu-item">
+									<a class="sidebar-menu-button" 
+										<%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
+										href="${pageContext.request.contextPath }/student/subject">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Subjects
+									</a>
+								</li>
 								<li class="sidebar-menu-item"><a
 									class="sidebar-menu-button"
 									href="${pageContext.request.contextPath}/admin/questions">
 										<i
 										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
 										Questions
+								</a></li>
+								<li class="sidebar-menu-item"><a
+										class="sidebar-menu-button"
+										href="${pageContext.request.contextPath}/admin/subjects">
+									<i
+											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+									Subjects
+								</a></li>
+								<li class="sidebar-menu-item"><a
+										class="sidebar-menu-button"
+										href="${pageContext.request.contextPath}/admin/levels">
+									<i
+											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+									Levels
 								</a></li>
 							</ul>
 
@@ -231,4 +248,19 @@
 <%--Manager Answer--%>
 <script
 		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
+		
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
+
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageLevel.js"></script>
+
+<script
+		src="${pageContext.request.contextPath}/resources/common/js/general.js"></script>
+
+<%--Upload Image--%>
+<script
+		src="${pageContext.request.contextPath}/resources/common/js/uploadImage.js"></script>
 </html>
