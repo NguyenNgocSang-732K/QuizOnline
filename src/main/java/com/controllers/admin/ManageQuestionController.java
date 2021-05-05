@@ -134,7 +134,9 @@ public class ManageQuestionController extends AdminBaseController {
     // bindingResult: Using for validation
     @RequestMapping(value = "admin/question/create-question", method = RequestMethod.POST)
     public String CreateQuestion(ModelMap modelMap,
-                                 @ModelAttribute("question") @Valid QuestionCreateModel questionCreate, BindingResult bindingResult) {
+                                 @ModelAttribute("question") @Valid QuestionCreateModel questionCreate,
+                                 @RequestParam("file_upload") MultipartFile file,
+                                 HttpServletRequest request, BindingResult bindingResult) {
 
         _questionCreateValidator.validate(questionCreate, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -142,6 +144,9 @@ public class ManageQuestionController extends AdminBaseController {
             modelMap.put("subjects", _iSubjectService.FindAllValid());
             return "admin/CreateQuestion";
         }
+
+        String photo = ImageHelper.saveImage(request, file, "uploads/images/");
+        questionCreate.setImage(photo);
 
         int questionId = _questionService.CreateQuestion(questionCreate, AuthenManager.Current_User.getId());
 

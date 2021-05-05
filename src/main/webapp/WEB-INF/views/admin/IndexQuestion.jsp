@@ -61,6 +61,7 @@
                                             <th>Content</th>
                                             <th>Score</th>
                                             <th>Level</th>
+                                            <th>Subject</th>
                                             <th>Created Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -73,6 +74,7 @@
                                                 <td>${question.content}</td>
                                                 <td>${question.score}</td>
                                                 <td>${question.levelModel.name}</td>
+                                                <td>${question.subject.name}</td>
                                                 <td>${question.createdDate}</td>
                                                 <td>
                                                     <div class="form-check form-switch">
