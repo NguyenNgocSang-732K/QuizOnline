@@ -97,7 +97,7 @@ public class ManageAnswerController extends AdminBaseController {
         return response;
     }
 
-    @RequestMapping(value = "/question/remove-answer", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/question/remove-answer", method = RequestMethod.POST)
     public @ResponseBody
     AjaxResponse RemoveAnswer(@RequestBody AnswerInputModel answerInputModel) {
         boolean result = _answerService.RemoveAnswer(answerInputModel.getAnswerId(), answerInputModel.getQuestionId());
