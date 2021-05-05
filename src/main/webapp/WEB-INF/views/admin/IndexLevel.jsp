@@ -48,7 +48,7 @@
                                     <core:forEach items="${levelModels}"
                                                   var="level" varStatus="i">
                                             <tr>
-                                                <td>${level.name}</td>
+                                                <td style="width: 20%">${level.name}</td>
                                                 <td>${level.stt}</td>
                                                 <td>${level.createdDate}</td>
                                                 <td>

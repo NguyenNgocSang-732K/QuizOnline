@@ -57,6 +57,7 @@
                                         <tr>
                                             <th>UserName</th>
                                             <th>Fullname</th>
+                                            <th>Photo</th>
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Address</th>
@@ -67,8 +68,11 @@
                                         <core:forEach items="${students.data}"
                                                       var="student" varStatus="i">
                                             <tr>
-                                                <td>${student.username}</td>
+                                                <td style="width: 20%">${student.username}</td>
                                                 <td>${student.fullname}</td>
+                                                <td>
+                                                	<img src="${pageContext.request.contextPath}/images/${student.photo==null?'profile.png':student.photo}" alt="" width="50" height="50">
+                                                </td>
                                                 <td>${student.email}</td>
                                                 <td>${student.phone}</td>
                                                 <td>${student.address}</td>

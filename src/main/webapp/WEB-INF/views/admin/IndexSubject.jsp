@@ -60,6 +60,7 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Photo</th>
                                         <th>Created Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -69,7 +70,10 @@
                                     <core:forEach items="${subjectModels.data}"
                                                   var="subject" varStatus="i">
                                             <tr>
-                                                <td>${subject.name}</td>
+                                                <td style="width: 20%">${subject.name}</td>
+                                                <td>
+                                                	<img src="${pageContext.request.contextPath}/images/${subject.image}" alt="" width="50" height="50">
+                                                </td>
                                                 <td>${subject.createdDate}</td>
                                                 <td>
                                                     <div class="form-check form-switch">

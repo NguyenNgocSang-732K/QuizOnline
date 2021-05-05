@@ -140,10 +140,10 @@
                         <div class="sidebar-heading">APPLICATIONS</div>
                         <ul class="sidebar-menu">
                             <li class="sidebar-menu-item"><a
-                                    class="sidebar-menu-button" href="instructor-dashboard.html">
+                                    class="sidebar-menu-button" href="${pageContext.request.contextPath }/dashboard">
                                 <i
                                         class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
-                                Instructor
+                                DASHBOARD
                             </a></li>
                         </ul>
                         <div class="sidebar-heading">Management</div>
