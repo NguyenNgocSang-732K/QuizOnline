@@ -12,15 +12,12 @@ import com.services.IAnswerService;
 import com.services.IQuestionService;
 import com.validation.AnswerInputModelValidation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ManageAnswerController extends AdminBaseController {
@@ -41,9 +38,9 @@ public class ManageAnswerController extends AdminBaseController {
         QuestionModel questionModel = _questionService.findById(questionId);
         List<AnswerModel> answers = _answerService.GetAll(questionId);
 
-        if(questionModel.getAnswerType() == AnswerTypeEnum.CHECKBOX.getKey()){
+        if (questionModel.getAnswerType() == AnswerTypeEnum.CHECKBOX.getKey()) {
             modelmap.put("note", "Choose correct answers");
-        }else if(questionModel.getAnswerType() == AnswerTypeEnum.RADIO.getKey()){
+        } else if (questionModel.getAnswerType() == AnswerTypeEnum.RADIO.getKey()) {
             modelmap.put("note", "Choose a correct answer");
         }
 
@@ -98,5 +95,49 @@ public class ManageAnswerController extends AdminBaseController {
 
         response.setStatus(ResponseStatusEnum.SUCCESS.getKey());
         return response;
+    }
+
+    @RequestMapping(value = "admin/question/remove-answer", method = RequestMethod.POST)
+    public @ResponseBody
+    AjaxResponse RemoveAnswer(@RequestBody AnswerInputModel answerInputModel) {
+        boolean result = _answerService.RemoveAnswer(answerInputModel.getAnswerId(), answerInputModel.getQuestionId());
+
+        AjaxResponse response = new AjaxResponse();
+
+        if (result) {
+            response.setStatus(ResponseStatusEnum.SUCCESS.getKey());
+            response.setDataResponse("Remove answer success");
+        } else {
+            response.setStatus(ResponseStatusEnum.FAIL.getKey());
+            response.setDataResponse("InCorrect Answer is required");
+        }
+
+        return response;
+    }
+
+    @RequestMapping(value = "/question/answer/update-status", method = RequestMethod.POST)
+    public @ResponseBody
+    AjaxResponse UpdateStatus(@RequestBody AnswerModel answerModel) {
+        AnswerModel answerValidator = _answerService.GetById(answerModel.getId());
+
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        if (answerValidator == null) {
+            ajaxResponse.setStatus(404);
+            ajaxResponse.setDataResponse("Answer is not exist");
+
+            return ajaxResponse;
+        }
+
+        boolean result = _answerService.UpdateStatus(answerModel.getId(), answerModel.isStatus());
+
+        if (result) {
+            ajaxResponse.setStatus(200);
+            ajaxResponse.setDataResponse("Update answer's status success");
+        } else {
+            ajaxResponse.setStatus(400);
+            ajaxResponse.setDataResponse("Update answer's status fail");
+        }
+
+        return ajaxResponse;
     }
 }

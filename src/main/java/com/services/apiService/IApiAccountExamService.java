@@ -15,5 +15,5 @@ public interface IApiAccountExamService {
 
 	AccountExam createAccountExam(AccountExam accountExam);
 
-	public List<AccountExam> getExamByAccount(int account_id);
+	List<AccountExam> getExamByAccount(int account_id);
 }

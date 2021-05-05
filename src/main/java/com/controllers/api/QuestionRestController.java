@@ -130,7 +130,7 @@ public class QuestionRestController extends ApiBaseController {
 				List<Integer> integers = new ArrayList<Integer>();
 
 				int count = questions.size();
-				count = count + 10;
+				count = count + 30;
 
 				int exam_id;
 				if (checkExam == null) {
@@ -160,7 +160,7 @@ public class QuestionRestController extends ApiBaseController {
 							BigDecimal score = question.getScore();
 							Integer totalAnswer = iApiAnswerService.countTotalAnswer(id);
 							List<ApiAnswerModel> anwers = iApiAnswerService.getAnswer(id);
-
+							
 							ApiQuestionModel apiQuestionModel = new ApiQuestionModel(id, exam_id, content, answer_Type,
 									image, createdDate, createdBy, status, score, totalAnswer, anwers);
 							apiQuestionModels.add(apiQuestionModel);
@@ -169,24 +169,6 @@ public class QuestionRestController extends ApiBaseController {
 				}
 
 				if (checkExam == null) {
-
-					// insert vao trong bang account_exam luon
-					AccountExam accountExam = new AccountExam();
-
-					Account account = new Account();
-					account.setId(Integer.parseInt(decodedString));
-
-					accountExam.setAccount(account);
-
-					Exam exam3 = new Exam();
-					exam3.setId(examNew.getId());
-
-					accountExam.setExam(exam3);
-					accountExam.setCreatedDate(new Date());
-					accountExam.setStatus(1);
-					accountExam.setScore(BigDecimal.valueOf(100));
-					iApiAccountExamService.createAccountExam(accountExam);
-					// the end
 
 					// cập nhật exam_question
 					for (int i = 0; i < apiQuestionModels.size(); i++) {
@@ -280,12 +262,15 @@ public class QuestionRestController extends ApiBaseController {
 							.countTotalQuestion(accountExams.get(i).getExam().getId());
 					apiExamModel.setTotalQuestion(totalQuestion);
 					//total question true
-					List<ExamQuestion> examQuestions = iApiQuestionExamService.getQuestion(accountExams.get(i).getExam().getId());
+//					List<ExamQuestion> examQuestions = iApiQuestionExamService.getQuestion(accountExams.get(i).getExam().getId());
 					
-					apiExamModel.setTotalQuestionTrue(1);
+					AccountExam accountExam = iApiAccountExamService.fetchAllExamOfAccount(Integer.parseInt(decodedString), accountExams.get(i).getExam().getId());
+					
+					apiExamModel.setTotalQuestionTrue(accountExam.getAnswer_correct());
 					//-------------------
 					apiExamModel.setTimeExam(45);
-					apiExamModel.setScoreExam(100);
+					
+					apiExamModel.setScoreExam(accountExams.get(i).getScore().doubleValue());
 
 					apiExamModel.setSubject_id(accountExams.get(i).getExam().getSubject().getId());
 
