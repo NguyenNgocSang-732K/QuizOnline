@@ -62,7 +62,7 @@ public class StudentAnswerService implements IStudentAnswerService {
 		try {
 			for (int i = 0; i < studentAnswers.size(); i++) {
 				StudentAnswer item = studentAnswers.get(i);
-				if (FindStudentAnswerByAccountExamQuestion(item.getAccount().getId(),item.getExamQuestion().getId()) != null) {
+				if (CheckStudentAnswerByAccountExamQuestionAnswer(item.getAccount().getId(),item.getExamQuestion().getId(),item.getAnswer().getId()).size()>0) {
 					studentAnswers.remove(i);
 				}
 			}
@@ -75,9 +75,16 @@ public class StudentAnswerService implements IStudentAnswerService {
 	}
 
 	@Override
-	public StudentAnswer FindStudentAnswerByAccountExamQuestion(int accountId, int examQuestionId) {
+	public List<StudentAnswer> FindStudentAnswerByAccountExamQuestion(int accountId, int examQuestionId) {
 		// TODO Auto-generated method stub
 		return _studentAnswerRepository.FindStudentAnswerByAccountExamQuestion(accountId, examQuestionId);
+	}
+
+	@Override
+	public List<StudentAnswer> CheckStudentAnswerByAccountExamQuestionAnswer(int accountId, int examQuestionId,
+			int answerId) {
+		// TODO Auto-generated method stub
+		return _studentAnswerRepository.FindStudentAnswerByAccountExamQuestionAnswer(accountId, examQuestionId, answerId);
 	}
 
 }

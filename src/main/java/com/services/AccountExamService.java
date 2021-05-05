@@ -1,6 +1,7 @@
 package com.services;
 
 import com.model.entities.AccountExam;
+import com.model.entities.Exam;
 import com.repository.AccountExamRepository;
 import java.util.List;
 import java.util.Optional;
@@ -34,10 +35,9 @@ public class AccountExamService implements IAccountExamService {
 		if (accountExam == null) {
 			return null;
 		}
-		//--
-		
-		
-		//--
+		// --
+
+		// --
 		AccountExam subjectSaved = _accountExamRepository.save(accountExam);
 		return subjectSaved;
 	}
@@ -48,5 +48,15 @@ public class AccountExamService implements IAccountExamService {
 		return _accountExamRepository.save(accountExam);
 	}
 
+	@Override
+	public List<AccountExam> FindExamByAccount(int accountId) {
+		// TODO Auto-generated method stub
+		return _accountExamRepository.FindExamByAccount(accountId);
+	}
 
+	@Override
+	public AccountExam FindExamByAccountExam(int accountId, int examId) {
+		// TODO Auto-generated method stub
+		return _accountExamRepository.FindExamByAccountExam(accountId, examId);
+	}
 }

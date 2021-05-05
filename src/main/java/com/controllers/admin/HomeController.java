@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.constant.AuthenManager;
 import com.model.entityModels.AccountLoginModel;
+import com.model.entityModels.AccountSignupModel;
 
 @Controller
 public class HomeController extends AdminBaseController {
@@ -28,6 +29,17 @@ public class HomeController extends AdminBaseController {
 		 */
         modelMap.put("account", new AccountLoginModel("", ""));
         return "shared/login/index";
+    }
+    
+    @RequestMapping(value = {"signup"}, method = RequestMethod.GET)
+    public String Register(ModelMap modelMap) {
+		/*
+		 * BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); String
+		 * encodedPassword = passwordEncoder.encode("123");
+		 * System.out.println(encodedPassword);
+		 */
+        modelMap.put("account", new AccountSignupModel());
+        return "shared/register/index";
     }
 
     @RequestMapping(value = {"accessdenied"}, method = RequestMethod.GET)

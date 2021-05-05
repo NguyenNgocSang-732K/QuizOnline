@@ -15,5 +15,7 @@ public interface IStudentAnswerService {
     
     List<StudentAnswer> CreateRange(List<StudentAnswer> studentAnswers);
     
-    StudentAnswer FindStudentAnswerByAccountExamQuestion(int accountId, int examQuestionId);
+    List<StudentAnswer> FindStudentAnswerByAccountExamQuestion(int accountId, int examQuestionId);
+    
+    List<StudentAnswer> CheckStudentAnswerByAccountExamQuestionAnswer(int accountId, int examQuestionId, int answerId);
 }

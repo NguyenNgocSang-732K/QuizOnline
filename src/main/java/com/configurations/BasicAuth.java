@@ -29,7 +29,7 @@ public class BasicAuth implements HandlerInterceptor {
             AuthenManager.Current_Account = iAccountService.FindById(AuthenManager.Current_User.getId());
         }
 
-        if (currentURI.startsWith("/resources") || currentURI.startsWith("/api")) {
+        if (currentURI.startsWith("/resources") || currentURI.startsWith("/api") || currentURI.contains("/signup")) {
             return true;
         }
 

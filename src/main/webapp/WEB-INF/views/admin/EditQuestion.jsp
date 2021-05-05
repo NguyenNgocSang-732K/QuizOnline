@@ -16,7 +16,7 @@
                         <div class="wrapper-breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="${pageContext.request.contextPath }/dashboard/index">Home</a>
+                                    <a href="${pageContext.request.contextPath }/dashboard">Home</a>
                                 </li>
                                 <li class="breadcrumb-item">
                                     <a href="${pageContext.request.contextPath }/admin/questions">Questions</a>

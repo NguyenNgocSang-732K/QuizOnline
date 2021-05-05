@@ -32,10 +32,10 @@ public class AccountService implements IAccountService {
 		}
 
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-		AccountTypeEnum role = AccountTypeEnum.getValue(account.getAccountType());
+		AccountTypeEnum role = AccountTypeEnum.getKey(account.getAccountType());
 		String role_name = "AnonymousUser";
 		if (role != null) {
-			role_name = role.toString();
+			role_name = role.getValue();
 		}
 		roles.add(new SimpleGrantedAuthority(role_name));
 

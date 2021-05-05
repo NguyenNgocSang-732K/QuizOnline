@@ -12,6 +12,7 @@ public class LevelModel {
 	private String color;
 
 	public LevelModel() {
+		
 	}
 
 	public LevelModel(Integer id, String name, Date createdDate, int createdBy, boolean status, int stt) {

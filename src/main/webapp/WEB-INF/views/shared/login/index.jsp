@@ -84,7 +84,7 @@
             </div>
             <div class="card-footer text-center bg-white">
                 Not have account student? <a
-                    href="${pageContext.request.contextPath }/account/register">Sign up</a>
+                    href="${pageContext.request.contextPath }/signup">Sign up</a>
             </div>
         </div>
     </div>

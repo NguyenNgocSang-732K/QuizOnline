@@ -12,13 +12,13 @@ public class AuthenManager {
 	public static boolean IsStudent() {
 		if (Current_Account == null)
 			return false;
-		return AccountTypeEnum.STUDENT == AccountTypeEnum.getValue(Current_Account.getAccountType());
+		return AccountTypeEnum.STUDENT == AccountTypeEnum.getKey(Current_Account.getAccountType());
 	}
 
 	public static boolean IsMod() {
 		if (Current_Account == null)
 			return false;
-		return AccountTypeEnum.ADMINISTRATOR == AccountTypeEnum.getValue(Current_Account.getAccountType());
+		return AccountTypeEnum.ADMINISTRATOR == AccountTypeEnum.getKey(Current_Account.getAccountType());
 	}
 
 }

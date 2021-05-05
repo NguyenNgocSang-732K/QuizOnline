@@ -84,6 +84,10 @@ public class ExamService implements IExamService {
 		List<Question> radomQuestions = _iQuestionService.FindRandomQuestionbySubjectLevel(subjectId, levelId,
 				quantityQuestion);
 
+		if(radomQuestions==null || radomQuestions.size()==0) {
+			return null;
+		}
+		
 		Exam exam = new Exam();
 		exam.setCode("");
 		exam.setCreatedBy(1);
@@ -113,6 +117,12 @@ public class ExamService implements IExamService {
 		code = "EX" + code;
 		exam.setCode(code);
 		_examRepository.save(exam);
+	}
+
+	@Override
+	public List<Exam> FindExamByAccount(int accountId) {
+		// TODO Auto-generated method stub
+		return _examRepository.FindExamByAccount(accountId);
 	}
 
 }

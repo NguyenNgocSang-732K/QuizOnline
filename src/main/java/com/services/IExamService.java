@@ -17,5 +17,7 @@ public interface IExamService {
 	Exam Update(Exam exam);
 
 	Exam Create(Exam exam);
+	
+	List<Exam> FindExamByAccount(int accountId);
 
 }

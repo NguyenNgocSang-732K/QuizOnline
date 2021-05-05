@@ -43,7 +43,7 @@ public class ManageAccountController extends AdminBaseController {
 			ModelMap modelMap, HttpServletRequest request) {
 		String photo = ImageHelper.saveImage(request, file, "uploads/images/");
 		account.setPhoto(photo);
-		//account.setAccountType(AccountTypeEnum.STUDENT.ordinal());
+		account.setAccountType(AccountTypeEnum.STUDENT.getKey());
 		Account accountUpdated = iAccountService.Save(account);
 
 		AuthenManager.Current_User = AccountMapper.ToCurrentUserProfile(accountUpdated);

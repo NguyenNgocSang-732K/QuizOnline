@@ -14,9 +14,11 @@
 
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="student-dashboard.html">Home</a>
+                        <a href="${pageContext.request.contextPath }/dashboard">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Manage Questions</li>
+                    <li class="breadcrumb-item active">
+                    	<a href="${pageContext.request.contextPath }/admin/questions">Manage Question</a>
+                    </li>
                 </ol>
 
                 <div class="row">

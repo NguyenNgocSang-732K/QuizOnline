@@ -80,7 +80,10 @@
 		 rel="stylesheet">
   	<link rel="stylesheet"
        href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
-
+       
+       
+<link rel="stylesheet"
+       href="${pageContext.request.contextPath}/resources/admin/account/FreeStyle.css">
 </head>
 
 <body>
@@ -96,7 +99,7 @@
 			</button>
 
 			<!-- Brand -->
-			<a href="${pageContext.request.contextPath}/dashboard/index"
+			<a href="${pageContext.request.contextPath}/dashboard"
 				class="navbar-brand"><i class="material-icons">school</i>
 				LearnPlus</a>
 
@@ -109,19 +112,19 @@
                     class="nav-link active dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button"><img
                     src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
-                    alt="Avatar" class="rounded-circle" width="40"></a>
+                    alt="Avatar" class="rounded-circle" width="50" height="50"></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 
                 <auth:authorize access="hasRole('ROLE_Admin')">
                     <a class="dropdown-item"
-                       href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
+                       href="${pageContext.request.contextPath }/profile/<auth:authentication property="principal.id" />">
                         <i class="material-icons">person</i> Profile
                     </a> 
                 </auth:authorize>
                 
                 <auth:authorize access="hasRole('ROLE_Student')">
                     <a class="dropdown-item" 
-                    	href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />"> <i
+                    	href="${pageContext.request.contextPath }/profile/<auth:authentication property="principal.id" />"> <i
                         class="material-icons">person</i> Profile
                 	</a> 
                 </auth:authorize>
@@ -136,12 +139,8 @@
     </nav>
     <!-- // END Navbar -->
 
-		<div class="mdk-drawer-layout js-mdk-drawer-layout flex"
-			data-fullbleed data-push data-has-scrolling-region>
-			<div
-				class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+		<div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
 				<jsp:invoke fragment="content"></jsp:invoke>
-			</div>
 			<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
 				<div class="mdk-drawer__content ">
 					<div
@@ -151,30 +150,37 @@
 							<div class="sidebar-heading">APPLICATIONS</div>
 							<ul class="sidebar-menu">
 								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-dashboard.html">
+									class="sidebar-menu-button" href="${pageContext.request.contextPath }/dashboard">
 										<i
 										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
-										Instructor
+										Dashboard
 								</a></li>
 							</ul>
 							<div class="sidebar-heading">Management</div>
-							<ul class="sidebar-menu">						
-								<li class="sidebar-menu-item">
+							<ul class="sidebar-menu">	
+							<auth:authorize access="hasRole('ROLE_Student')">	
+							 <li class="sidebar-menu-item">
 									<a class="sidebar-menu-button" 
-										<%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
-										href="${pageContext.request.contextPath }/student/subject">
-										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Subjects
+										href="${pageContext.request.contextPath }/student/TakeAQuiz">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Take a Quiz
 									</a>
 								</li>
-								<li class="sidebar-menu-item"><a
+								 <li class="sidebar-menu-item">
+									<a class="sidebar-menu-button" 
+										href="${pageContext.request.contextPath }/student/HistoryExam">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> History Quiz
+									</a>
+								</li>
+							 </auth:authorize>			
+							 <auth:authorize access="hasRole('ROLE_Admin')">	
+							 <li class="sidebar-menu-item"><a
 									class="sidebar-menu-button"
 									href="${pageContext.request.contextPath}/admin/questions">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
 										Questions
 								</a></li>
+							 </auth:authorize>			
 							</ul>
-
 						</div>
 					</div>
 				</div>
@@ -234,11 +240,6 @@
 <%--Manager Answer--%>
 <script
 		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
-<script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
-		
-<script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
 
 <%--Upload Image--%>
 <script

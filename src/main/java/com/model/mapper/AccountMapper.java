@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountMapper {
-    public static CurrentUserProfile ToCurrentUserProfile(Account account) {
+	public static CurrentUserProfile ToCurrentUserProfile(Account account) {
 
-        List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-        String role_name = AccountTypeEnum.getValue(account.getAccountType()).toString();
-        roles.add(new SimpleGrantedAuthority(role_name));
+		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+		String role_name = AccountTypeEnum.getKey(account.getAccountType()).getValue();
+		roles.add(new SimpleGrantedAuthority(role_name));
 
-        CurrentUserProfile currentUser = new CurrentUserProfile();
-        currentUser.setAuthorities(roles);
-        currentUser.setId(account.getId());
-        currentUser.setEmail(account.getEmail());
-        currentUser.setPhone(account.getPhone());
-        currentUser.setPhoto((account.getPhoto() == null || account.getPhoto().isEmpty()) ? "LearnPlus.png" : account.getPhoto());
-        currentUser.setUsername(account.getUsername());
-        currentUser.setPassword(account.getPassword());
-        currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
+		CurrentUserProfile currentUser = new CurrentUserProfile();
+		currentUser.setAuthorities(roles);
+		currentUser.setId(account.getId());
+		currentUser.setEmail(account.getEmail());
+		currentUser.setPhone(account.getPhone());
+		currentUser.setPhoto(
+				(account.getPhoto() == null || account.getPhoto().isEmpty()) ? "LearnPlus.png" : account.getPhoto());
+		currentUser.setUsername(account.getUsername());
+		currentUser.setPassword(account.getPassword());
+		currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
 
-        return currentUser;
-    }
+		return currentUser;
+	}
 }
