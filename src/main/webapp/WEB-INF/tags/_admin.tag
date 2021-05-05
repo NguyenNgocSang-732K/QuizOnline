@@ -1,9 +1,9 @@
 <%@ tag language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ attribute name="title" type="java.lang.String" required="true"
-	rtexprvalue="true"%>
-<%@ attribute name="content" fragment="true"%>
+              rtexprvalue="true" %>
+<%@ attribute name="content" fragment="true" %>
 <%@ taglib prefix="auth"
-	uri="http://www.springframework.org/security/tags"%>
+           uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="mytag" uri="mytag" %>
 
 <!DOCTYPE html>
@@ -27,26 +27,26 @@
           href="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.css"
           rel="stylesheet">
 
-<!-- Bootstrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-	crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+            crossorigin="anonymous">
 
-<!-- Material Design Icons  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-<!-- Material Design Components  -->
-<link
-	href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
-	rel="stylesheet">
+    <!-- Material Design Components  -->
+    <link
+            href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+            rel="stylesheet">
 
-<!-- Roboto Web Font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
-	rel="stylesheet">
+    <!-- Roboto Web Font -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
+            rel="stylesheet">
 
     <!-- RichText Editor -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/assets/css/richtext.min.css">
@@ -72,35 +72,35 @@
     <%--    Simple Pagination--%>
     <link href="${pageContext.request.contextPath}/resources/admin/assets/css/simplePagination.css"
           rel="stylesheet">
-          
+
     <link href="${pageContext.request.contextPath}/resources/admin/account/manageExam.css"
-         rel="stylesheet">
-         
+          rel="stylesheet">
+
     <link href="${pageContext.request.contextPath}/resources/admin/account/manageSubject.css"
-		 rel="stylesheet">
-  	<link rel="stylesheet"
-       href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/admin/account/manageQuestion.css">
 
 </head>
 
 <body>
 
-	<div class="d-flex flex-column h-100">
-		<!-- Navbar -->
-		<nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+<div class="d-flex flex-column h-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
 
-			<!-- Toggle sidebar -->
-			<button class="navbar-toggler d-block" data-toggle="sidebar"
-				type="button">
-				<span class="material-icons">menu</span>
-			</button>
+        <!-- Toggle sidebar -->
+        <button class="navbar-toggler d-block" data-toggle="sidebar"
+                type="button">
+            <span class="material-icons">menu</span>
+        </button>
 
-			<!-- Brand -->
-			<a href="${pageContext.request.contextPath}/dashboard/index"
-				class="navbar-brand"><i class="material-icons">school</i>
-				LearnPlus</a>
+        <!-- Brand -->
+        <a href="${pageContext.request.contextPath}/dashboard/index"
+           class="navbar-brand"><i class="material-icons">school</i>
+            LearnPlus</a>
 
-			<div class="navbar-spacer"></div>
+        <div class="navbar-spacer"></div>
 
         <!-- Menu -->
         <ul class="nav navbar-nav">
@@ -111,24 +111,25 @@
                     src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
                     alt="Avatar" class="rounded-circle" width="40"></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                
-                <auth:authorize access="hasRole('ROLE_Admin')">
-                    <a class="dropdown-item"
-                       href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
-                        <i class="material-icons">person</i> Profile
-                    </a> 
-                </auth:authorize>
-                
-                <auth:authorize access="hasRole('ROLE_Student')">
-                    <a class="dropdown-item" 
-                    	href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />"> <i
-                        class="material-icons">person</i> Profile
-                	</a> 
-                </auth:authorize>
 
-	                <a class="dropdown-item" href="${pageContext.request.contextPath }/logout"> <i
-	                        class="material-icons">lock</i> Logout
-	                </a>
+                    <auth:authorize access="hasRole('ROLE_Admin')">
+                        <a class="dropdown-item"
+                           href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
+                            <i class="material-icons">person</i> Profile
+                        </a>
+                    </auth:authorize>
+
+                    <auth:authorize access="hasRole('ROLE_Student')">
+                        <a class="dropdown-item"
+                           href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />">
+                            <i
+                                    class="material-icons">person</i> Profile
+                        </a>
+                    </auth:authorize>
+
+                    <a class="dropdown-item" href="${pageContext.request.contextPath }/logout"> <i
+                            class="material-icons">lock</i> Logout
+                    </a>
                 </div>
             </li>
             <!-- // END User dropdown -->
@@ -136,87 +137,86 @@
     </nav>
     <!-- // END Navbar -->
 
-		<div class="mdk-drawer-layout js-mdk-drawer-layout flex"
-			data-fullbleed data-push data-has-scrolling-region>
-			<div
-				class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-				<jsp:invoke fragment="content"></jsp:invoke>
-			</div>
-			<div class="mdk-drawer js-mdk-drawer" id="default-drawer">
-				<div class="mdk-drawer__content ">
-					<div
-						class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
-						<div class="sidebar-p-y" data-simplebar
-							data-simplebar-force-enabled="true">
-							<div class="sidebar-heading">APPLICATIONS</div>
-							<ul class="sidebar-menu">
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button" href="instructor-dashboard.html">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
-										Instructor
-								</a></li>
-							</ul>
-							<div class="sidebar-heading">Management</div>
-							<ul class="sidebar-menu">						
-								<li class="sidebar-menu-item">
-									<a class="sidebar-menu-button" 
-										<%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
-										href="${pageContext.request.contextPath }/student/subject">
-										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Subjects
-									</a>
-								</li>
-								<li class="sidebar-menu-item"><a
-									class="sidebar-menu-button"
-									href="${pageContext.request.contextPath}/admin/questions">
-										<i
-										class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-										Questions
-								</a></li>
-								<li class="sidebar-menu-item"><a
-										class="sidebar-menu-button"
-										href="${pageContext.request.contextPath}/admin/subjects">
-									<i
-											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-									Subjects
-								</a></li>
-								<li class="sidebar-menu-item"><a
-										class="sidebar-menu-button"
-										href="${pageContext.request.contextPath}/admin/levels">
-									<i
-											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
-									Levels
-								</a></li>
-							</ul>
+    <div class="mdk-drawer-layout js-mdk-drawer-layout flex"
+         data-fullbleed data-push data-has-scrolling-region>
+        <div
+                class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+            <jsp:invoke fragment="content"></jsp:invoke>
+        </div>
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+            <div class="mdk-drawer__content ">
+                <div
+                        class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
+                    <div class="sidebar-p-y" data-simplebar
+                         data-simplebar-force-enabled="true">
+                        <div class="sidebar-heading">APPLICATIONS</div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button" href="instructor-dashboard.html">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i>
+                                Instructor
+                            </a></li>
+                        </ul>
+                        <div class="sidebar-heading">Management</div>
+                        <ul class="sidebar-menu">
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button"
+                                <%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
+                                   href="${pageContext.request.contextPath }/admin/students">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i>
+                                    Students
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button"
+                                    href="${pageContext.request.contextPath}/admin/questions">
+                                <i
+                                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+                                Questions
+                            </a></li>
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button"
+                                    href="${pageContext.request.contextPath}/admin/subjects">
+									<span class="material-icons">subject</span>
+                                Subjects
+                            </a></li>
+                            <li class="sidebar-menu-item"><a
+                                    class="sidebar-menu-button"
+                                    href="${pageContext.request.contextPath}/admin/levels">
+                                <span class="material-icons">military_tech</span>
+								Levels
+                            </a></li>
+                        </ul>
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-    <mytag:answer button="Add"/>
-	<mytag:answer button="Edit"/>
-	<!-- jQuery -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<mytag:answer button="Add"/>
+<mytag:answer button="Edit"/>
+<!-- jQuery -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/jquery.min.js"></script>
 
-	<!-- Bootstrap -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/bootstrap.min.js"></script>
+<!-- Bootstrap -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/popper.min.js"></script>
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/bootstrap.min.js"></script>
 
-	<!-- Simplebar -->
-	<!-- Used for adding a custom scrollbar to the drawer -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.js"></script>
+<!-- Simplebar -->
+<!-- Used for adding a custom scrollbar to the drawer -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/simplebar.js"></script>
 
-	<!-- MDK -->
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/dom-factory.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.js"></script>
+<!-- MDK -->
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/dom-factory.js"></script>
+<script
+        src="${pageContext.request.contextPath}/resources/admin/assets/vendor/material-design-kit.js"></script>
 
 <!-- Sidebar Collapse -->
 <script
@@ -247,20 +247,23 @@
 
 <%--Manager Answer--%>
 <script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
+        src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
 <script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
-		
-<script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
+        src="${pageContext.request.contextPath}/resources/admin/account/manageExam.js"></script>
 
 <script
-		src="${pageContext.request.contextPath}/resources/admin/account/manageLevel.js"></script>
+        src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
 
 <script
-		src="${pageContext.request.contextPath}/resources/common/js/general.js"></script>
+        src="${pageContext.request.contextPath}/resources/admin/account/manageLevel.js"></script>
+
+<script
+        src="${pageContext.request.contextPath}/resources/admin/account/manageAccount.js"></script>
+
+<script
+        src="${pageContext.request.contextPath}/resources/common/js/general.js"></script>
 
 <%--Upload Image--%>
 <script
-		src="${pageContext.request.contextPath}/resources/common/js/uploadImage.js"></script>
+        src="${pageContext.request.contextPath}/resources/common/js/uploadImage.js"></script>
 </html>
