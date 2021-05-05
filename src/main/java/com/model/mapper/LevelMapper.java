@@ -2,6 +2,7 @@ package com.model.mapper;
 
 import com.constant.StatusEnum;
 import com.model.entities.Level;
+import com.model.entityModels.LevelInputModel;
 import com.model.entityModels.LevelModel;
 
 public class LevelMapper {
@@ -38,4 +39,15 @@ public class LevelMapper {
 
 		return level;
 	}
+
+	public static LevelInputModel ToLevelInputModel(Level levelEntity) {
+		LevelInputModel levelModel = new LevelInputModel();
+		levelModel.setId(levelEntity.getId());
+		levelModel.setName(levelEntity.getName());
+		levelModel.setCreatedBy(levelEntity.getCreatedBy());
+		levelModel.setStt(levelEntity.getStt());
+
+		return levelModel;
+	}
+
 }

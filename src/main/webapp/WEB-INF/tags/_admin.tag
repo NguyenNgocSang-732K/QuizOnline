@@ -179,7 +179,20 @@
 										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
 										Questions
 								</a></li>
-							 </auth:authorize>			
+								<li class="sidebar-menu-item"><a
+										class="sidebar-menu-button"
+										href="${pageContext.request.contextPath}/admin/subjects">
+									<i
+											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+									Subjects
+								</a></li>
+								<li class="sidebar-menu-item"><a
+										class="sidebar-menu-button"
+										href="${pageContext.request.contextPath}/admin/levels">
+									<i
+											class="sidebar-menu-icon sidebar-menu-icon--left material-icons">help</i>
+									Levels
+								</a></li>
 							</ul>
 						</div>
 					</div>
@@ -240,6 +253,12 @@
 <%--Manager Answer--%>
 <script
 		src="${pageContext.request.contextPath}/resources/admin/account/manageAnswer.js"></script>
+
+<script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageLevel.js"></script>
+
+<script
+		src="${pageContext.request.contextPath}/resources/common/js/general.js"></script>
 
 <%--Upload Image--%>
 <script

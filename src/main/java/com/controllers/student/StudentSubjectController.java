@@ -1,23 +1,23 @@
 package com.controllers.student;
 
-import java.util.List;
-
+import com.constant.AuthenManager;
+import com.constant.GeneralTypeEnum;
+import com.helper.ImageHelper;
+import com.model.entityModels.AjaxResponse;
+import com.model.entityModels.SubjectInputModel;
+import com.model.entityModels.SubjectModel;
+import com.model.mapper.SubjectMapper;
+import com.services.ISubjectService;
+import com.validation.SubjectInputModelValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.constant.AuthenManager;
-import com.model.entities.Account;
-import com.model.entities.Level;
-import com.model.entities.Subject;
-import com.model.entityModels.LevelModel;
-import com.services.IAccountService;
-import com.services.ILevelService;
-import com.services.ISubjectService;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 public class StudentSubjectController {
