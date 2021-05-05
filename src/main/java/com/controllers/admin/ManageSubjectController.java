@@ -56,8 +56,11 @@ public class ManageSubjectController extends AdminBaseController {
                               @RequestParam(required = false) String op) {
         SubjectInputModel subjectUpdate = SubjectMapper.ToSubjectInputModel(iSubjectService.FindById(id));
 
-        if (op != null && op.equalsIgnoreCase("success"))
+        if (op != null && op.equalsIgnoreCase("update"))
             modelMap.put("updateStatus", "Update subject success!!");
+
+        if (op != null && op.equalsIgnoreCase("create"))
+            modelMap.put("updateStatus", "Create subject success!!");
 
         modelMap.put("subjectInput", subjectUpdate);
         modelMap.put("breadCrumb", "Edit Subject");
@@ -79,10 +82,10 @@ public class ManageSubjectController extends AdminBaseController {
 
         if (subjectInput.getId() == null) {
             int id = iSubjectService.Create(subjectInput, AuthenManager.Current_User.getId());
-            return Redirect("admin/subject/" + id, null);
+            return Redirect("admin/subject/" + id, "create");
         } else {
             iSubjectService.Update(subjectInput);
-            return Redirect("admin/subject/" + subjectInput.getId(), "success");
+            return Redirect("admin/subject/" + subjectInput.getId(), "update");
         }
     }
 
