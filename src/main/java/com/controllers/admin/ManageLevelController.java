@@ -49,8 +49,11 @@ public class ManageLevelController extends AdminBaseController {
                             @RequestParam(required = false) String op) {
         LevelInputModel levelUpdate = LevelMapper.ToLevelInputModel(ilevelService.FindById(id));
 
-        if (op != null && op.equalsIgnoreCase("success"))
+        if (op != null && op.equalsIgnoreCase("update"))
             modelMap.put("updateLevel", "Update Level success!!");
+
+        if (op != null && op.equalsIgnoreCase("create"))
+            modelMap.put("updateLevel", "Create Level success!!");
 
         modelMap.put("levelInput", levelUpdate);
         modelMap.put("breadCrumb", "Edit Level");
@@ -65,10 +68,10 @@ public class ManageLevelController extends AdminBaseController {
 
         if (levelInput.getId() == null) {
             int id = ilevelService.Create(levelInput, AuthenManager.Current_User.getId());
-            return Redirect("admin/level/" + id, null);
+            return Redirect("admin/level/" + id, "create");
         } else {
             ilevelService.Update(levelInput);
-            return Redirect("admin/level/" + levelInput.getId(), "success");
+            return Redirect("admin/level/" + levelInput.getId(), "update");
         }
     }
 
