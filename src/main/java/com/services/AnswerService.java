@@ -39,7 +39,6 @@ public class AnswerService implements IAnswerService {
 
     @Override
     public AnswerModel GetById(int answerId) {
-
         Optional<Answer> optional = _answerRepository.findById(answerId);
 
         if (optional.isPresent()) {
@@ -69,18 +68,49 @@ public class AnswerService implements IAnswerService {
             answer.setIscorrect(true);
         } else {
             Answer answerOld = null;
-            if (question.getAnswerType() == AnswerTypeEnum.RADIO.getKey() && answerInputModel.isCorrect()) {
-                answerOld = answers.stream().filter(p -> p.isIscorrect()).findFirst().get();
+            Optional<Answer> optionalAnswer = answers.stream().filter(p -> p.isIscorrect()).findFirst();
+            if (question.getAnswerType() == AnswerTypeEnum.RADIO.getKey()
+                    && answerInputModel.isCorrect()
+                    && optionalAnswer.isPresent()) {
+                answerOld = optionalAnswer.get();
                 answerOld.setIscorrect(false);
                 answer.setIscorrect(true);
                 _answerRepository.save(answerOld);
-            }else{
+            } else {
                 answer.setIscorrect(answerInputModel.isCorrect());
             }
         }
 
         _answerRepository.save(answer);
-
         return AnswerMapper.ToAnswerModel(answer);
+    }
+
+    @Override
+    public boolean RemoveAnswer(int answerId, int questionId) {
+        List<Answer> answers = _answerRepository.findAnswerByQuestion_IdOrderById(questionId);
+        Answer answer = answers.stream().filter(p -> p.getId() == answerId).findFirst().get();
+
+        if (answers.stream().filter(p -> p.isIscorrect()).count() == answers.size() - 1 && !answer.isIscorrect())
+            return false;
+
+        _answerRepository.delete(answer);
+        return true;
+    }
+
+    @Override
+    public boolean UpdateStatus(int answerId, boolean status) {
+        Answer answer = _answerRepository.findById(answerId).get();
+
+        if (status)
+            answer.setStatus(StatusEnum.VISIBLE.getKey());
+        else
+            answer.setStatus(StatusEnum.INVISIBLE.getKey());
+
+        Answer answerUpdated = _answerRepository.save(answer);
+
+        if (answerUpdated != null)
+            return true;
+
+        return false;
     }
 }
