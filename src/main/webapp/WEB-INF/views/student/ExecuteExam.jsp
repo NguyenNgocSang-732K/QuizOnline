@@ -58,7 +58,7 @@
                 </core:if>
                 <core:set var="indexQuestion" value="0" />
 
-                <form action="${pageContext.request.contextPath }/student/ExecuteExam"
+                <form action="${pageContext.request.contextPath }/student/executeexam"
                       method="post" id="formExam">
                     <!-- Body exam -->
                     <input type="hidden" name="examId"
@@ -146,7 +146,7 @@
                              data-simplebar-force-enabled="true">
                             <div class="sidebar-heading">Time left</div>
                             <div class="countdown sidebar-p-x"
-                                 data-value="${timer }" data-unit="minute"></div>
+                                 data-value="0.5" data-unit="minute"></div>
 
                             <div class="sidebar-heading">Pending</div>
                             <ul class="list-group list-group-fit">

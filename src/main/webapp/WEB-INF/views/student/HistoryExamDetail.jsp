@@ -54,7 +54,7 @@
                 <core:set var="indexQuestion" value="0" />
 
                 <form
-					action="${pageContext.request.contextPath }/student/ExecuteExam"
+					action="${pageContext.request.contextPath }/student/executeexam"
 					method="post" id="formExam">
                     <!-- Body exam -->
                     <input type="hidden" name="examId"

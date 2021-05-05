@@ -128,10 +128,9 @@
 
     <div class="mdk-drawer-layout js-mdk-drawer-layout flex"
          data-fullbleed data-push data-has-scrolling-region>
-        <div
-                class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+        
             <jsp:invoke fragment="content"></jsp:invoke>
-        </div>
+        
         <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
             <div class="mdk-drawer__content ">
                 <div
@@ -149,7 +148,7 @@
                         </ul>
                         <div class="sidebar-heading">Management</div>
                         <ul class="sidebar-menu">
-                        <auth:authorize access="hasRole('ROLE_Student')">	
+                        	<auth:authorize access="hasRole('ROLE_Student')">	
 							 <li class="sidebar-menu-item">
 									<a class="sidebar-menu-button" 
 										href="${pageContext.request.contextPath }/student/takeaquiz">

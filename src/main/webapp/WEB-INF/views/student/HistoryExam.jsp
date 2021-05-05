@@ -50,7 +50,7 @@
                                     		<td> <h5><span class="badge badge-primary">${accountExam.answer_uncorrect }</span></h5></td>
                                     	</tr>
                                     </table>
-                                        <a href="${pageContext.request.contextPath}/student/HistoryExamDetail?accountExamId=${accountExam.id}" class="btn btn-primary btn-md btn-exam btn-start-exam" role="button" aria-pressed="true">Detail</a>
+                                        <a href="${pageContext.request.contextPath}/student/historyexamdetail?accountExamId=${accountExam.id}" class="btn btn-primary btn-md btn-exam btn-start-exam" role="button" aria-pressed="true">Detail</a>
                                     </div>
                                 </div>
                             </div>

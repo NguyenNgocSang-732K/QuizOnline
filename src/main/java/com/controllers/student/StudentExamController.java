@@ -158,12 +158,13 @@ public class StudentExamController {
 				}
 			}
 		}
+		AccountExam accountExam = new AccountExam();
 		if (studentAnswers != null && studentAnswers.size() > 0) {
 //			Lưu danh sách câu trả lời mà User chọn
 			studentAnswers = _iStudentAnswerService.CreateRange(studentAnswers);
 
 //			Lưu kết quả thi
-			AccountExam accountExam = new AccountExam();
+			
 			accountExam.setAccount(AuthenManager.Current_Account);
 			accountExam.setAnswer_correct(ans_correct);
 			accountExam.setAnswer_uncorrect(ans_uncorrect);
@@ -174,7 +175,7 @@ public class StudentExamController {
 			accountExam = _iAccountExamService.Create(accountExam);
 		}
 
-		return "redirect:/student/takeaquiz";
+		return "redirect:/student/historyexamdetail?accountExamId="+accountExam.getId();
 	}
 
 	private Answer getAnswerById(Question question, int answerId) {
