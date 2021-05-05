@@ -3,6 +3,7 @@ package com.model.mapper;
 import com.constant.AccountTypeEnum;
 import com.constant.StatusEnum;
 import com.model.entities.Account;
+import com.model.entityModels.AccountModel;
 import com.model.entityModels.CurrentUserProfile;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,5 +29,19 @@ public class AccountMapper {
         currentUser.setStatus(StatusEnum.VISIBLE == StatusEnum.getKey(account.getStatus()));
 
         return currentUser;
+    }
+
+    public static AccountModel ToAccountModel(Account account) {
+        AccountModel model = new AccountModel();
+        model.setId(account.getId());
+        model.setUsername(account.getUsername());
+        model.setFullname(account.getFullname());
+        model.setPhoto(account.getPhoto());
+        model.setEmail(account.getEmail());
+        model.setPhone(account.getPhone());
+        model.setAddress(account.getAddress());
+        model.setStatus(account.getStatus());
+
+        return model;
     }
 }

@@ -11,21 +11,17 @@
 
         <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
             <div class="container-fluid">
-
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="student-dashboard.html">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Manage Questions</li>
+                    <li class="breadcrumb-item active">Manage Students</li>
                 </ol>
 
                 <div class="row">
-                    <div class="col-md-9"><h3>Manage Questions</h3></div>
+                    <div class="col-md-9"><h3>Manage Students</h3></div>
                     <div class="col-md-3">
-                        <a role="button" href="${pageContext.request.contextPath}/admin/question/create-question"
-                           class="btn btn-success float-right" id="btnAddQuestion">
-                            CREATE &nbsp;&nbsp;<i class="fas fa-plus"></i>
-                        </a>
+                        &nbsp;
                     </div>
                 </div>
 
@@ -37,13 +33,14 @@
                             <div class="col-10">
                                 <input name="search" id="searchText"
                                        class="form-control"
-                                       placeholder="Search by Content, Level"
+                                       placeholder="Search by Username, Fullname, Email, Phone"
                                        size="4"
                                        value="${searchText == null ? '': searchText}" />
                             </div>
                             <div class="col-2">
                                 <button type="button"
-                                        class="btn btn-primary float-right" style="width: 100%; height: 100%" id="btnSearchQuestion">
+                                        class="btn btn-primary float-right" style="width: 100%; height: 100%"
+                                        id="btnSearchQuestion">
                                     <span class="material-icons">search</span>
                                 </button>
                             </div>
@@ -58,39 +55,31 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Content</th>
-                                            <th>Score</th>
-                                            <th>Level</th>
-                                            <th>Subject</th>
-                                            <th>Created Date</th>
+                                            <th>UserName</th>
+                                            <th>Fullname</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
                                             <th>Status</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <core:forEach items="${questionModels.data}"
-                                                      var="question" varStatus="i">
+                                        <core:forEach items="${students.data}"
+                                                      var="student" varStatus="i">
                                             <tr>
-                                                <td>${question.content}</td>
-                                                <td>${question.score}</td>
-                                                <td>${question.levelModel.name}</td>
-                                                <td>${question.subject.name}</td>
-                                                <td>${question.createdDate}</td>
+                                                <td>${student.username}</td>
+                                                <td>${student.fullname}</td>
+                                                <td>${student.email}</td>
+                                                <td>${student.phone}</td>
+                                                <td>${student.address}</td>
                                                 <td>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input status-question" type="checkbox"
-                                                               data-question-id="${question.id}"
-                                                               id="status-question"
-                                                               ${question.status ? "checked" : "" }>
-                                                        <label class="form-check-label" for="status-question"></label>
+                                                        <input class="form-check-input status-student" type="checkbox"
+                                                               data-student-id="${student.id}"
+                                                               id="status-student"
+                                                            ${student.status == 1 ? "checked" : "" }>
+                                                        <label class="form-check-label" for="status-student"></label>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <a role="button"
-                                                       href="${pageContext.request.contextPath}/admin/question/${question.id}"
-                                                       class="btn btn-primary">
-                                                        <span class="material-icons">edit</span>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         </core:forEach>
@@ -102,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <core:if test="${questionModels.data != null}">
+        <core:if test="${students.data != null}">
             <div class="pagination-wrapper">
                 <div class="container-fluid">
                     <div class="row">
@@ -114,9 +103,9 @@
             </div>
 
             <script>
-                var currentPage = [[${ questionModels.currentPage }]]
-                var data = [[${ questionModels.totalItems }]]
-                var itemsOnPage = [[${ questionModels.pageSize }]]
+                var currentPage = [[${ students.currentPage }]]
+                var data = [[${ students.totalItems }]]
+                var itemsOnPage = [[${ students.pageSize }]]
             </script>
         </core:if>
     </jsp:attribute>

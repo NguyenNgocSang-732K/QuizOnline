@@ -57,23 +57,18 @@
                                                     <div class="media">
                                                         <div class="media-left">
                                                             <div class="icon-block rounded display-image"
-                                                                 style=${not empty profile.image ?
-                                                                 "background-image:url(${pageContext.request.contextPath/images/profile.photo});background-size:cover;" : "" }>
+                                                                 style="background-image:
+                                                                         url(${pageContext.request.contextPath}/images/${subjectInput.image}); background-size:cover;">
+                                                                    <core:if test="${empty question.image}">
+                                                                    <i class="material-icons text-muted-light md-36">photo</i>
+                                                                    </core:if>
                                                             </div>
-                                                            <core:choose>
-                                                                <core:when test="${not empty question.image}">
-
-                                                                </core:when>
-                                                                <core:otherwise>
-                                                                    <i class="material-icons text-muted-light md-36">image</i>
-                                                                </core:otherwise>
-                                                            </core:choose>
                                                         </div>
                                                         <div class="media-body media-middle">
                                                             <label class="custom-file m-0">
                                                                 <input type="file"
                                                                        id="file_upload"
-                                                                       name="file_upload" />
+                                                                       name="file_upload"/>
                                                                 <span class="custom-file-control"></span>
                                                             </label>
                                                         </div>
