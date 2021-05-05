@@ -4,11 +4,22 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s-form"
 	uri="http://www.springframework.org/tags/form"%>
-
 <template:_admin title="Dashboard">
     <jsp:attribute name="content">
         <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
-            <h1>Student Dashboard</h1>
+            <div class="container-fluid">
+                 <div class="row">
+                    <div class="col">
+                        <div class="wrapper-breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active">
+                                    <a href="${pageContext.request.contextPath }/dashboard">Dashboard</a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </jsp:attribute>
 </template:_admin>

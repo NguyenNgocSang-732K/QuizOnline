@@ -47,6 +47,17 @@ public class AccountExamService implements IAccountExamService {
 		// TODO Auto-generated method stub
 		return _accountExamRepository.save(accountExam);
 	}
+	
+	@Override
+	public List<AccountExam> FindExamByAccount(int accountId) {
+		// TODO Auto-generated method stub
+		return _accountExamRepository.FindExamByAccount(accountId);
+	}
 
+	@Override
+	public AccountExam FindExamByAccountExam(int accountId, int examId) {
+		// TODO Auto-generated method stub
+		return _accountExamRepository.FindExamByAccountExam(accountId, examId);
+	}
 
 }

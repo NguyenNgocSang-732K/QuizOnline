@@ -109,24 +109,13 @@
                     class="nav-link active dropdown-toggle" data-toggle="dropdown"
                     href="#" role="button"><img
                     src="${pageContext.request.contextPath}/images/<auth:authentication property="principal.photo" />"
-                    alt="Avatar" class="rounded-circle" width="40"></a>
+                    alt="Avatar" class="rounded-circle" width="50" height="50"></a>
                 <div class="dropdown-menu dropdown-menu-right">
 
-                    <auth:authorize access="hasRole('ROLE_Admin')">
                         <a class="dropdown-item"
-                           href="${pageContext.request.contextPath }/admin/profile/<auth:authentication property="principal.id" />">
+                           href="${pageContext.request.contextPath }/profile/<auth:authentication property="principal.id" />">
                             <i class="material-icons">person</i> Profile
                         </a>
-                    </auth:authorize>
-
-                    <auth:authorize access="hasRole('ROLE_Student')">
-                        <a class="dropdown-item"
-                           href="${pageContext.request.contextPath }/student/profile/<auth:authentication property="principal.id" />">
-                            <i
-                                    class="material-icons">person</i> Profile
-                        </a>
-                    </auth:authorize>
-
                     <a class="dropdown-item" href="${pageContext.request.contextPath }/logout"> <i
                             class="material-icons">lock</i> Logout
                     </a>
@@ -160,6 +149,21 @@
                         </ul>
                         <div class="sidebar-heading">Management</div>
                         <ul class="sidebar-menu">
+                        <auth:authorize access="hasRole('ROLE_Student')">	
+							 <li class="sidebar-menu-item">
+									<a class="sidebar-menu-button" 
+										href="${pageContext.request.contextPath }/student/takeaquiz">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Take a Quiz
+									</a>
+								</li>
+								 <li class="sidebar-menu-item">
+									<a class="sidebar-menu-button" 
+										href="${pageContext.request.contextPath }/student/historyexam">
+										<i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> History Quiz
+									</a>
+								</li>
+							 </auth:authorize>
+                        <auth:authorize access="hasRole('ROLE_Admin')">
                             <li class="sidebar-menu-item">
                                 <a class="sidebar-menu-button"
                                 <%-- href="${pageContext.request.contextPath }/student/subject/<auth:authentication property="principal.id" />"> --%>
@@ -187,6 +191,7 @@
                                 <span class="material-icons">military_tech</span>
 								Levels
                             </a></li>
+                            </auth:authorize>
                         </ul>
 
                     </div>

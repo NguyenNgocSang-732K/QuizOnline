@@ -83,7 +83,9 @@ public class ExamService implements IExamService {
 		Subject subject = _iSubjectService.FindById(subjectId);
 		List<Question> radomQuestions = _iQuestionService.FindRandomQuestionbySubjectLevel(subjectId, levelId,
 				quantityQuestion);
-
+		if (radomQuestions == null || radomQuestions.size() == 0) {
+			return null;
+		}
 		Exam exam = new Exam();
 		exam.setCode("");
 		exam.setCreatedBy(1);

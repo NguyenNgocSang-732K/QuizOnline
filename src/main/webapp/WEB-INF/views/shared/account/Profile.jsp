@@ -34,6 +34,7 @@
 								<s-form:hidden path="id" />
 								<s-form:hidden path="isActive" />
 								<s-form:hidden path="status" />
+								<s-form:hidden path="accountType" />
                                     <div class="form-group row">
                                         <label for="file_upload"
 										class="col-sm-3 col-form-label">Avatar</label>
