@@ -21,7 +21,7 @@
                                     <a href="${pageContext.request.contextPath }/dashboard/index">Home</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="${pageContext.request.contextPath }/admin/subjects">Subjects</a>
+                                    <a href="${pageContext.request.contextPath }/admin/subjects">Manage Subjects</a>
                                 </li>
                                 <li class="breadcrumb-item active">${breadCrumb}</li>
                             </ol>
