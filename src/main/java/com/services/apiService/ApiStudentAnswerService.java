@@ -1,6 +1,8 @@
 package com.services.apiService;
 
+
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,25 @@ public class ApiStudentAnswerService implements IApiStudentAnswerService {
 	public List<StudentAnswer> getStudentAnswer(int account_id, int exam_question_Id) {
 		return apiStudentAnswerRepository.getStudentAnswer(account_id, exam_question_Id);
 	}
-	
-	
+
+	@Override
+	public boolean delete(int id) {
+		
+		
+		Optional<StudentAnswer> optional = apiStudentAnswerRepository.findById(id);
+		
+		if(!optional.isPresent()) {
+			return false;
+		}
+		
+		StudentAnswer studa = optional.get();
+		apiStudentAnswerRepository.delete(studa);
+		return true;
+	}
+
+	@Override
+	public List<StudentAnswer> removeStudentAnswer(int id) {
+		return apiStudentAnswerRepository.removeStudentAnswer(id);
+	}
+
 }

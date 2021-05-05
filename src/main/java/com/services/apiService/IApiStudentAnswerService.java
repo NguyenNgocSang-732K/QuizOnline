@@ -13,5 +13,8 @@ public interface IApiStudentAnswerService {
 	StudentAnswer checkStudentAnswer(int account_id, int exam_question_Id);
 
 	List<StudentAnswer> getStudentAnswer(int account_id, int exam_question_Id);
-
+	
+	boolean delete(int id);
+	
+	List<StudentAnswer> removeStudentAnswer(int id);
 }
