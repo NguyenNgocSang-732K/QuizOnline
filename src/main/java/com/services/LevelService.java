@@ -70,4 +70,17 @@ public class LevelService implements ILevelService {
 		}
 		return level.get();
 	}
+
+	@Override
+	public boolean UpdateStatus(int levelId, boolean status) {
+		Level level = this.FindById(levelId);
+
+		if (status)
+			level.setStatus(StatusEnum.VISIBLE.getKey());
+		else
+			level.setStatus(StatusEnum.INVISIBLE.getKey());
+
+		Level levelUpdated = _levelRepository.save(level);
+		return levelUpdated != null ? true : false;
+	}
 }

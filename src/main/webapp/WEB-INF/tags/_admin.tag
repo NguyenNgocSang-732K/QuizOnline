@@ -255,6 +255,9 @@
 		src="${pageContext.request.contextPath}/resources/admin/account/manageSubject.js"></script>
 
 <script
+		src="${pageContext.request.contextPath}/resources/admin/account/manageLevel.js"></script>
+
+<script
 		src="${pageContext.request.contextPath}/resources/common/js/general.js"></script>
 
 <%--Upload Image--%>

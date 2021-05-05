@@ -66,10 +66,13 @@ public class ManageSubjectController extends AdminBaseController {
 
     @RequestMapping(value = "admin/subject/process", method = RequestMethod.POST)
     public String Process(ModelMap modelMap,
-                          @ModelAttribute("subject") @Valid SubjectInputModel subjectInput,
+                          @ModelAttribute("subjectInput") @Valid SubjectInputModel subjectInput,
                           BindingResult bindingResult, @RequestParam("file_upload") MultipartFile file,
                           HttpServletRequest request) {
         _subjectInputValidator.validate(subjectInput, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "admin/Create_EditSubject";
+        }
 
         String photo = ImageHelper.saveImage(request, file, "uploads/images/");
         subjectInput.setImage(photo);

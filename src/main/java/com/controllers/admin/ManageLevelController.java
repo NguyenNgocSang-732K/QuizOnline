@@ -1,7 +1,9 @@
 package com.controllers.admin;
 
 import com.constant.AuthenManager;
+import com.model.entityModels.AjaxResponse;
 import com.model.entityModels.LevelInputModel;
+import com.model.entityModels.LevelModel;
 import com.model.mapper.LevelMapper;
 import com.services.ILevelService;
 import com.validation.LevelInputModelValidation;
@@ -69,26 +71,26 @@ public class ManageLevelController extends AdminBaseController {
             return Redirect("admin/level/" + levelInput.getId(), "success");
         }
     }
-//
-//    @RequestMapping(value = "admin/subject/update-status", method = RequestMethod.POST)
-//    public @ResponseBody
-//    AjaxResponse UpdateStatus(@RequestBody SubjectModel subjectModel) {
-//        SubjectModel subjectValidator = SubjectMapper.ToSubjectModel(iSubjectService.FindById(subjectModel.getId()));
-//
-//        AjaxResponse ajaxResponse = new AjaxResponse();
-//        if (subjectValidator == null) {
-//            ajaxResponse.setStatus(404);
-//            return ajaxResponse;
-//        }
-//
-//        boolean result = iSubjectService.UpdateStatus(subjectModel.getId(), subjectModel.isStatus());
-//        if (result) {
-//            ajaxResponse.setStatus(200);
-//            ajaxResponse.setDataResponse("Update subject's status success");
-//        } else {
-//            ajaxResponse.setStatus(404);
-//        }
-//
-//        return ajaxResponse;
-//    }
+
+    @RequestMapping(value = "admin/level/update-status", method = RequestMethod.POST)
+    public @ResponseBody
+    AjaxResponse UpdateStatus(@RequestBody LevelModel levelModel) {
+        LevelModel levelValidator = LevelMapper.ToLevelModel(ilevelService.FindById(levelModel.getId()));
+
+        AjaxResponse ajaxResponse = new AjaxResponse();
+        if (levelValidator == null) {
+            ajaxResponse.setStatus(404);
+            return ajaxResponse;
+        }
+
+        boolean result = ilevelService.UpdateStatus(levelModel.getId(), levelModel.isStatus());
+        if (result) {
+            ajaxResponse.setStatus(200);
+            ajaxResponse.setDataResponse("Update level's status success");
+        } else {
+            ajaxResponse.setStatus(404);
+        }
+
+        return ajaxResponse;
+    }
 }

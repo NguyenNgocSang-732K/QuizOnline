@@ -17,4 +17,6 @@ public interface ILevelService {
     int Create(LevelInputModel model, int userId);
 
     Level Update(LevelInputModel model);
+
+    boolean UpdateStatus(int levelId, boolean status);
 }

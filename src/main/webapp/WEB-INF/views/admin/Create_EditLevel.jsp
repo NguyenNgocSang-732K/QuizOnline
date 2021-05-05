@@ -62,7 +62,7 @@
                                             <div class="dp-row">
                                                 <div class="input-title">Priority position</div>
                                                 <div class="input-value">
-                                                    <input type="text" class="form-control" name="stt"
+                                                    <input type="number" min="0" class="form-control" name="stt"
                                                            value="${levelInput.stt}">
                                                     <s-form:errors path="stt" cssClass="validate-error"></s-form:errors>
                                                 </div>
