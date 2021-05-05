@@ -52,6 +52,7 @@ public class QuestionMapper {
         }
 
         questionUpdateModel.setLevelModel(LevelMapper.ToLevelModel(questionEntity.getLevel()));
+        questionUpdateModel.setSubject(questionEntity.getSubject());
         questionUpdateModel.setAnswerModels(questionEntity.getAnswers()
                 .stream()
                 .map(p -> AnswerMapper.ToAnswerModel(p))
@@ -72,6 +73,7 @@ public class QuestionMapper {
         questionUpdateModel.setCreatedBy(questionModel.getCreatedBy());
         questionUpdateModel.setStatus(questionModel.isStatus());
         questionUpdateModel.setLevelModel(questionModel.getLevelModel());
+        questionUpdateModel.setSubject(questionModel.getSubject());
         questionUpdateModel.setAnswerModels(questionModel.getAnswerModels());
 
         return questionUpdateModel;

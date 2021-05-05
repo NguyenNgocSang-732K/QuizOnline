@@ -104,6 +104,8 @@
                                                 <div class="input-value">
                                                     <s-form:select path="subject.id"
                                                                    class="form-select">
+                                                          <s-form:option value="${question.subject.id}"
+                                                                         label="${question.subject.name}" />
                                                         <core:forEach items="${subjects}" var="subject">
                                                             <s-form:option value="${subject.id}"
                                                                            label="${subject.name}" />
