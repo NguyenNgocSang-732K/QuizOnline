@@ -25,4 +25,7 @@ public interface ApiStudentAnswerRepository extends CrudRepository<StudentAnswer
 	public List<StudentAnswer> getStudentAnswer(@Param("account_id") int account_id,
 			@Param("exam_question_Id") int exam_question_Id);
 
+	@Query("from StudentAnswer where exam_question_Id=:id")
+	public List<StudentAnswer> removeStudentAnswer(@Param("id") int id);
+	
 }

@@ -22,5 +22,7 @@ public interface ApiAccountExamRepository extends CrudRepository<AccountExam, In
 
 	@Query("from AccountExam where account_Id=:account_id")
 	public List<AccountExam> getExamByAccount(@Param("account_id") int account_id);
+	
+	
 
 }
