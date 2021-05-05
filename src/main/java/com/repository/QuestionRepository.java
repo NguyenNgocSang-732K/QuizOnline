@@ -16,7 +16,9 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	@Override
 	Page<Question> findAll(Pageable pageable);
 
-	Page<Question> findByContentContainingOrLevel_NameContainingOrderByIdAsc(String searchContent, String searchLevel,
+	Page<Question> findByContentContainingOrSubject_NameContainingOrLevel_NameContainingOrderByIdAsc(String searchContent,
+																									 String searchLevel,
+																									 String searchSubject,
 			Pageable pageable);
 
 	@Query(nativeQuery = true, value = "FindRandomQuestionBySubjectLevel @Subject_Id=:Subject_Id, @Level_Id=:Level_Id,@Quantity=:Quantity")

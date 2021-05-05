@@ -6,7 +6,7 @@
 <%@ taglib prefix="s-form"
            uri="http://www.springframework.org/tags/form" %>
 
-<template:_admin title="ManageQuestion">
+<template:_admin title="ManageSubject">
     <jsp:attribute name="content">
 
         <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
@@ -16,14 +16,14 @@
                     <li class="breadcrumb-item">
                         <a href="student-dashboard.html">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Manage Questions</li>
+                    <li class="breadcrumb-item active">Manage Subjects</li>
                 </ol>
 
                 <div class="row">
-                    <div class="col-md-9"><h3>Manage Questions</h3></div>
+                    <div class="col-md-9"><h3>Manage Subjects</h3></div>
                     <div class="col-md-3">
-                        <a role="button" href="${pageContext.request.contextPath}/admin/question/create-question"
-                           class="btn btn-success float-right" id="btnAddQuestion">
+                        <a role="button" href="${pageContext.request.contextPath}/admin/subject/create-subject"
+                           class="btn btn-success float-right" id="btnAddSubject">
                             CREATE &nbsp;&nbsp;<i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -37,13 +37,14 @@
                             <div class="col-10">
                                 <input name="search" id="searchText"
                                        class="form-control"
-                                       placeholder="Search by Content, Level"
+                                       placeholder="Search by Name"
                                        size="4"
-                                       value="${searchText == null ? '': searchText}" />
+                                       value="${searchText == null ? '': searchText}"/>
                             </div>
                             <div class="col-2">
                                 <button type="button"
-                                        class="btn btn-primary float-right" style="width: 100%; height: 100%" id="btnSearchQuestion">
+                                        class="btn btn-primary float-right" style="width: 100%; height: 100%"
+                                        id="btnSearchQuestion">
                                     <span class="material-icons">search</span>
                                 </button>
                             </div>
@@ -57,37 +58,31 @@
                             <div class="col">
                                 <table class="table">
                                     <thead>
-                                        <tr>
-                                            <th>Content</th>
-                                            <th>Score</th>
-                                            <th>Level</th>
-                                            <th>Subject</th>
-                                            <th>Created Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Created Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <core:forEach items="${questionModels.data}"
-                                                      var="question" varStatus="i">
+                                    <core:forEach items="${subjectModels.data}"
+                                                  var="subject" varStatus="i">
                                             <tr>
-                                                <td>${question.content}</td>
-                                                <td>${question.score}</td>
-                                                <td>${question.levelModel.name}</td>
-                                                <td>${question.subject.name}</td>
-                                                <td>${question.createdDate}</td>
+                                                <td>${subject.name}</td>
+                                                <td>${subject.createdDate}</td>
                                                 <td>
                                                     <div class="form-check form-switch">
-                                                        <input class="form-check-input status-question" type="checkbox"
-                                                               data-question-id="${question.id}"
-                                                               id="status-question"
-                                                               ${question.status ? "checked" : "" }>
-                                                        <label class="form-check-label" for="status-question"></label>
+                                                        <input class="form-check-input status-subject" type="checkbox"
+                                                               data-subject-id="${subject.id}"
+                                                               id="status-subject"
+                                                            ${subject.status ? "checked" : "" }>
+                                                        <label class="form-check-label" for="status-subject"></label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <a role="button"
-                                                       href="${pageContext.request.contextPath}/admin/question/${question.id}"
+                                                       href="${pageContext.request.contextPath}/admin/subject/${subject.id}"
                                                        class="btn btn-primary">
                                                         <span class="material-icons">edit</span>
                                                     </a>
@@ -102,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <core:if test="${questionModels.data != null}">
+        <core:if test="${subjectModels.data != null}">
             <div class="pagination-wrapper">
                 <div class="container-fluid">
                     <div class="row">
@@ -114,9 +109,9 @@
             </div>
 
             <script>
-                var currentPage = [[${ questionModels.currentPage }]]
-                var data = [[${ questionModels.totalItems }]]
-                var itemsOnPage = [[${ questionModels.pageSize }]]
+                var currentPage = [[${ subjectModels.currentPage }]]
+                var data = [[${ subjectModels.totalItems }]]
+                var itemsOnPage = [[${ subjectModels.pageSize }]]
             </script>
         </core:if>
     </jsp:attribute>
