@@ -1,6 +1,7 @@
 package com.services;
 
 import com.model.entities.Level;
+import com.model.entityModels.LevelInputModel;
 import com.model.entityModels.LevelModel;
 
 import java.util.List;
@@ -12,4 +13,10 @@ public interface ILevelService {
     List<LevelModel> GetAll();
     
     List<LevelModel> FindAllModelValid();
+
+    int Create(LevelInputModel model, int userId);
+
+    Level Update(LevelInputModel model);
+
+    boolean UpdateStatus(int levelId, boolean status);
 }
