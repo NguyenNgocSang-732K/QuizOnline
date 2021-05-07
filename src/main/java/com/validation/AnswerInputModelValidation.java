@@ -71,11 +71,11 @@ public class AnswerInputModelValidation extends ValidatorObject implements Valid
                 errors.rejectValue("correct", "AnswerCorrect_SINGULAR");
             }
 
-            if(answerInput.isCorrect()
-                    && answerIsCorrect == answers.size() - 1
-                    && questionModel.getAnswerType() == AnswerTypeEnum.CHECKBOX.getKey()){
-                errors.rejectValue("correct", "AnswerCorrect_PLURAL");
-            }
+//            if(answerInput.isCorrect()
+//                    && answerIsCorrect == answers.size() - 1
+//                    && questionModel.getAnswerType() == AnswerTypeEnum.CHECKBOX.getKey()){
+//                errors.rejectValue("correct", "AnswerCorrect_PLURAL");
+//            }
 
         }
     }

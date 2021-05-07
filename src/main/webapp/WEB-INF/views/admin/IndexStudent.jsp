@@ -62,6 +62,7 @@
                                             <th>Phone</th>
                                             <th>Address</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,6 +86,13 @@
                                                         <label class="form-check-label" for="status-student"></label>
                                                     </div>
                                                 </td>
+                                                 <td>
+                                                 	 <a role="button"
+                                                       href="${pageContext.request.contextPath}/admin/level/${level.id}"
+                                                       class="btn btn-primary">
+                                                        <span class="material-icons">visibility</span>
+                                                    </a>
+                                                 </td>
                                             </tr>
                                         </core:forEach>
                                     </tbody>

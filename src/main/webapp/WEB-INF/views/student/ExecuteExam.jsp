@@ -73,7 +73,6 @@
                                         <h4 class="mb-0">
                                             <strong>Câu ${loop.index+1 }</strong>
                                         </h4>
-
                                     </div>
                                     <div class="media-body">
                                         <h4 class="card-title">
@@ -81,11 +80,6 @@
                                         </h4>
                                     </div>
                                 </div>
-                                <core:if test="${question.image!=null }">
-                                    <div style="margin: auto;width: 60%; height: 300px;">
-                                        <img src="${pageContext.request.contextPath}/images/${question.image}" alt="${question.content }" width="100%" height="300px">
-                                    </div>
-                                </core:if>
                             </div>
                             <div class="card-body">
                                 <core:forEach var="answer"
@@ -138,7 +132,7 @@
             </div>
         </div>
         <!-- Sidebar -->
-        <core:if test="${isHistory==null}">
+        <core:if test="${true}">
             <div class="mdk-drawer js-mdk-drawer" data-align="end">
                 <div class="mdk-drawer__content">
                     <div class="sidebar sidebar-right sidebar-light bg-white o-hidden">
@@ -146,7 +140,7 @@
                              data-simplebar-force-enabled="true">
                             <div class="sidebar-heading">Time left</div>
                             <div class="countdown sidebar-p-x"
-                                 data-value="0.5" data-unit="minute"></div>
+                                 data-value="45" data-unit="minute"></div>
 
                             <div class="sidebar-heading">Pending</div>
                             <ul class="list-group list-group-fit">

@@ -35,7 +35,7 @@
                                     </div>
                                     <a href="student-take-course.html">
                                         <img
-										src="${pageContext.request.contextPath}/images/logo.png"
+										src="${pageContext.request.contextPath}/images/${subject.image }"
 										alt="Card image cap" style="width: 100%; height: 200px">
                                     </a>
                                     <div class="card-body">
